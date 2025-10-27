@@ -77,7 +77,7 @@
     "supports": "Supports PDF, JPG, PNG files up to 10MB",
     "resultPrefix": "Your blood result: ",
     "ready": "File uploaded succesfully",
-    "button": "Upload",
+    "button": "Upload +",
     "list": {
       "title": "What happens next?",
       "line1": "We'll extract all blood markers from your report",

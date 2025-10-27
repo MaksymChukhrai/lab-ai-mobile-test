@@ -156,6 +156,7 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
 
   return {
     fileInputRef,
+    handleFile,
     handleFileChange,
     handleDrop,
     handleDragOver,
