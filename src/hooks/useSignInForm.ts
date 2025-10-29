@@ -34,7 +34,7 @@ export const useSignInForm = () => {
     if (isAuthenticated) {
       navigate(PATHS.UPLOAD);
     } else {
-      navigate(PATHS.SIGNIN);
+      navigate(PATHS.SIGN_IN);
     }
   };
 

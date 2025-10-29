@@ -61,7 +61,7 @@ export const useAuthCallback = () => {
 
       if (errorOccurred) {
         const timer = setTimeout(() => {
-          navigate(PATHS.SIGNIN);
+          navigate(PATHS.SIGN_IN);
         }, 3000);
 
         return () => clearTimeout(timer);

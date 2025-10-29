@@ -92,9 +92,21 @@ export const SignInPage = () => {
 
         <FormSubtitle>
           {t("signIn.legal")}
-          <LegalLink href={PATHS.DEFAULT}>{t("signIn.terms")}</LegalLink>
+          <LegalLink
+            href={PATHS.TERMS}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("signIn.terms")}
+          </LegalLink>
           {t("signIn.and")}
-          <LegalLink href={PATHS.DEFAULT}>{t("signIn.privacy")}</LegalLink>
+          <LegalLink
+            href={PATHS.PRIVACY}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("signIn.privacy")}
+          </LegalLink>
         </FormSubtitle>
       </FormContainer>
     </PageWrapper>

@@ -11,7 +11,7 @@ export const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    return <Navigate to={PATHS.SIGNIN} replace />;
+    return <Navigate to={PATHS.SIGN_IN} replace />;
   }
 
   return children;

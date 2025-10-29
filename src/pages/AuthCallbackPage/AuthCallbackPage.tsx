@@ -23,7 +23,7 @@ export const AuthCallbackPage = () => {
       <ErrorPageTemplate
         errorCode={callbackError.code}
         message={callbackError.message}
-        redirectPath={PATHS.SIGNIN}
+        redirectPath={PATHS.SIGN_IN}
       />
     );
   }

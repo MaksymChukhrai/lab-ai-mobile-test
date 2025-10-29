@@ -1,11 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import { SignInPage } from "pages/SignInPage/SignInPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@mui/material";
 import { AuthCallbackPage } from "pages/AuthCallbackPage/AuthCallbackPage";
+import { SignInPage } from "pages/SignInPage/SignInPage";
 import { OptionsPage } from "pages/OptionPage";
 import Landing from "pages/LandingPage/Landing";
 import UploadPage from "pages/UploadPage/UploadPage";
+import { TermsOfServicePage } from "pages/TermsOfServicePage/TermsOfServicePage";
+import { PrivacyPolicyPage } from "pages/PrivacyPolicyPage";
 import { ErrorPageTemplate } from "components/ErrorPageTemplate";
 import { PrivateRoute } from "components/PrivateRoute";
 import { PATHS } from "constants/navigation";
@@ -20,8 +22,10 @@ function App() {
         <Router>
           <Routes>
             <Route path={PATHS.DEFAULT} element={<Landing />} />
-            <Route path={PATHS.SIGNIN} element={<SignInPage />} />
+            <Route path={PATHS.SIGN_IN} element={<SignInPage />} />{" "}
             <Route path={PATHS.MAGIC_LINK} element={<AuthCallbackPage />} />
+            <Route path={PATHS.TERMS} element={<TermsOfServicePage />} />
+            <Route path={PATHS.PRIVACY} element={<PrivacyPolicyPage />} />
             <Route
               path={PATHS.UPLOAD}
               element={
