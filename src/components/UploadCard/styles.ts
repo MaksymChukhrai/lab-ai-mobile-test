@@ -6,8 +6,8 @@ export const Upload = styled(Card)<{ wide?: boolean }>(({ theme, wide }) => ({
   height: wide ? "911px" : "84%",
   background: "transparent",
   borderRadius: "20px",
-  backgroundColor: `${theme.palette.common.white}`,
-  boxShadow: `0px 4px 4px 0px ${theme.palette.primary.dark}`,
+  backgroundColor: `${theme.colors.WHITE}`,
+  boxShadow: `0px 4px 4px 0px ${theme.colors.PRIMARY_DARK}`,
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -32,33 +32,44 @@ export const PreTitleBox = styled(Box)({
   gap: "1%",
 });
 
-export const PreTitle = styled(Typography)({
+export const PreTitle = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize16,
+  lineHeight: theme.lineHeights.lineHeight35,
+  color: theme.colors.PRIMARY_DARK,
+  letterSpacing: "1%",
+  textAlign: "center",
   marginLeft: "1%",
-});
+}));
 
 export const Title = styled(Typography)<{ wide?: boolean }>(
   ({ theme, wide }) => ({
-    fontSize: wide
-      ? theme.typography.body2.fontSize
-      : theme.typography.subtitle1.fontSize,
+    fontFamily: theme.fontFamily.DM_SANS,
+    fontWeight: theme.fontWeight.BOLD,
+    fontSize: wide ? theme.fontSizes.fontSize32 : theme.fontSizes.fontSize24,
     lineHeight: wide
-      ? theme.typography.h1.lineHeight
-      : theme.typography.subtitle1.lineHeight,
+      ? theme.lineHeights.lineHeight70
+      : theme.lineHeights.lineHeight35,
     letterSpacing: "1%",
     marginLeft: "25px",
     textAlign: wide ? "center" : "left",
+    color: theme.colors.PRIMARY_DARK,
   }),
 );
 
 export const Description = styled(Typography)<{ wide?: boolean }>(
   ({ theme, wide }) => ({
-    fontSize: wide
-      ? theme.typography.body1.fontSize
-      : theme.typography.subtitle2.fontSize,
-    lineHeight: wide ? theme.typography.subtitle2.lineHeight : "20px",
+    fontFamily: theme.fontFamily.POPPINS,
+    fontWeight: theme.fontWeight.LIGHT,
+    fontSize: wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize16,
+    lineHeight: wide
+      ? theme.lineHeights.lineHeight35
+      : theme.lineHeights.lineHeight20,
     letterSpacing: "1%",
     marginLeft: "25px",
     textAlign: wide ? "center" : "left",
+    color: theme.colors.PRIMARY_DARK,
   }),
 );
 
@@ -77,7 +88,7 @@ export const UploadBox = styled(Box)<{ wide?: boolean }>(({ theme, wide }) => ({
   gap: "4px",
   transition: "background-color 0.3s ease",
   "&:hover": {
-    backgroundColor: alpha(theme.palette.primary.dark, 0.1),
+    backgroundColor: alpha(theme.colors.PRIMARY_DARK, 0.1),
   },
 }));
 
@@ -89,8 +100,8 @@ export const LoaderBox = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "112px",
   borderRadius: "20px",
-  border: `1px dashed ${theme.palette.primary.dark}`,
-  backgroundColor: theme.palette.background.default,
+  border: `1px dashed ${theme.colors.PRIMARY_DARK}`,
+  backgroundColor: theme.colors.WHITE,
   position: "relative",
   display: "flex",
   alignItems: "center",
@@ -113,7 +124,7 @@ export const ProgressBar = styled(Box)<{ progress: number }>(
     left: 0,
     height: "100%",
     width: `${progress}%`,
-    backgroundColor: alpha(theme.palette.primary.light, 0.2),
+    backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.2),
     borderRadius: "20px",
     transition: "width 0.4s ease",
     zIndex: 0,
@@ -136,41 +147,53 @@ export const DeleteIconBox = styled(Box)(({ theme }) => ({
   alignItems: "center",
   top: "8px",
   right: "8px",
-  color: theme.palette.error.main,
+  color: theme.colors.SECONDARY_RED,
   zIndex: 2,
 }));
 
 export const DropText = styled(Typography)<{ wide?: boolean }>(
   ({ theme, wide }) => ({
-    fontSize: wide
-      ? theme.typography.button.fontSize
-      : theme.typography.subtitle2.fontSize,
-    lineHeight: "28px",
-    color: alpha(theme.palette.primary.dark, 0.8),
+    fontFamily: theme.fontFamily.DM_SANS,
+    fontWeight: theme.fontWeight.LIGHT,
+    fontSize: wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize16,
+    lineHeight: theme.lineHeights.lineHeight28,
+    color: alpha(theme.colors.PRIMARY_DARK, 0.8),
+    textAlign: "center",
+    letterSpacing: "1%",
   }),
 );
 
 export const DropTextPrefix = styled(DropText)(({ theme }) => ({
-  fontSize: theme.typography.subtitle2.fontSize,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize16,
+  lineHeight: theme.lineHeights.lineHeight35,
+  letterSpacing: "1%",
+  textAlign: "center",
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const CLickText = styled(Typography)<{ wide?: boolean }>(
   ({ theme, wide }) => ({
-    fontSize: wide
-      ? theme.customSizes.UPLOAD_CARD_MEDIUM_FONT
-      : theme.customSizes.UPLOAD_CARD_SMALL_FONT,
-    lineHeight: wide ? theme.typography.subtitle1.lineHeight : 0,
-    color: alpha(theme.palette.primary.dark, 0.5),
+    fontFamily: theme.fontFamily.DM_SANS,
+    fontWeight: theme.fontWeight.LIGHT,
+    fontSize: wide ? theme.fontSizes.fontSize18 : theme.fontSizes.fontSize14,
+    lineHeight: wide ? theme.lineHeights.lineHeight35 : 0,
+    color: alpha(theme.colors.PRIMARY_DARK, 0.5),
+    letterSpacing: "1%",
+    textAlign: "center",
   }),
 );
 
 export const SupportsText = styled(Typography)<{ wide?: boolean }>(
   ({ theme, wide }) => ({
-    fontSize: wide
-      ? theme.typography.button.fontSize
-      : theme.customSizes.UPLOAD_CARD_SMALL_FONT,
-    lineHeight: "41px",
-    color: alpha(theme.palette.primary.dark, 0.4),
+    fontFamily: theme.fontFamily.DM_SANS,
+    fontWeight: theme.fontWeight.LIGHT,
+    fontSize: wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize14,
+    lineHeight: theme.lineHeights.lineHeight40,
+    color: alpha(theme.colors.PRIMARY_DARK, 0.4),
+    letterSpacing: "1%",
+    textAlign: "center",
   }),
 );
 
@@ -182,61 +205,61 @@ export const UploadButton = styled(Button)<{ wide?: boolean }>(
     justifySelf: "flex-end",
     alignSelf: "center",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    boxShadow: `0px 4px 4px ${alpha(theme.palette.primary.main, 0.25)}`,
+    backgroundColor: theme.colors.PRIMARY_DARK,
+    color: theme.colors.WHITE,
+    boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
     opacity: 1,
     textTransform: "none",
     transition: "all 0.4s ease-out",
 
     "&:not(:disabled)": {
-      backgroundColor: theme.palette.primary.main,
-      boxShadow: `0px 4px 4px ${alpha(theme.palette.primary.main, 0.25)}`,
+      backgroundColor: theme.colors.PRIMARY_DARK,
+      boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
     },
 
     "&:active": {
-      backgroundColor: alpha(theme.palette.primary.light, 0.55),
-      boxShadow: `0px 4px 4px ${alpha(theme.palette.primary.main, 0.25)}`,
+      backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.55),
+      boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
       transition: "all 0.4s ease-out",
     },
 
     "&:hover": {
-      backgroundColor: alpha(theme.palette.primary.light, 0.55),
+      backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.55),
     },
 
     "&.Mui-focusVisible": {
-      backgroundColor: theme.palette.primary.main,
-      border: `3px solid ${theme.palette.primary.light}`,
+      backgroundColor: theme.colors.PRIMARY_DARK,
+      border: `3px solid ${theme.colors.PRIMARY_LIGHT}`,
       boxShadow: "none",
       outline: "none",
     },
 
     "&.Mui-disabled": {
-      backgroundColor: theme.palette.secondary.dark,
-      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.colors.SECONDARY_GRAY,
+      color: theme.colors.WHITE,
       boxShadow: "none",
       opacity: 1,
     },
 
     "&.error": {
-      backgroundColor: theme.palette.background.default,
-      color: theme.palette.error.main,
-      border: `1px solid ${theme.palette.secondary.main}`,
-      borderColor: theme.palette.error.main,
+      backgroundColor: theme.colors.WHITE,
+      color: theme.colors.SECONDARY_RED,
+      border: `1px solid ${theme.colors.SECONDARY_TEAL}`,
+      borderColor: theme.colors.SECONDARY_RED,
       boxShadow: "none",
     },
   }),
 );
 
 export const ErrorMessage = styled(Typography)(({ theme }) => ({
-  color: theme.palette.error.main,
-  fontSize: theme.typography.button.fontSize,
-  fontWeight: theme.typography.button.fontWeight,
+  color: theme.colors.SECONDARY_RED,
+  fontSize: theme.fontSizes.fontSize20,
+  fontWeight: theme.fontWeight.MEDIUM,
   textAlign: "center",
   position: "absolute",
   marginTop: "8px",
   bottom: "-20px",
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: theme.colors.WHITE,
   borderRadius: "20px",
   padding: "10px 20px",
   lineHeight: "100%",
@@ -253,7 +276,7 @@ export const GreenBox = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "flex-start",
-  backgroundColor: alpha(theme.palette.info.main, 0.15),
+  backgroundColor: alpha(theme.colors.SECONDARY_GREEN, 0.15),
 }));
 
 export const TextBox = styled(Box)({
@@ -265,12 +288,12 @@ export const TextBox = styled(Box)({
 });
 
 export const GreenUl = styled("ul")(({ theme }) => ({
-  color: theme.palette.info.main,
+  color: theme.colors.SECONDARY_GREEN,
 }));
 
 export const GreenText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.info.main,
-  fontWeight: theme.typography.button.fontWeight,
+  color: theme.colors.SECONDARY_GREEN,
+  fontWeight: theme.fontWeight.MEDIUM,
 }));
 
 export const ButtonsBox = styled(Box)({

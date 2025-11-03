@@ -26,7 +26,7 @@ export const Background = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "4%",
   height: "604px",
-  background: `linear-gradient(99.53deg, ${theme.palette.common.white} 30%, ${theme.palette.primary.light}55 100%)`,
+  background: `linear-gradient(99.53deg, ${theme.colors.WHITE} 30%, ${theme.colors.PRIMARY_LIGHT}55 100%)`,
 }));
 
 export const BgTextContainer = styled(Box)({
@@ -38,13 +38,25 @@ export const BgTextContainer = styled(Box)({
   gap: "15px",
 });
 
-export const LeftHeading = styled(Typography)({
+export const LeftHeading = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: theme.fontSizes.fontSize64,
+  lineHeight: theme.lineHeights.lineHeight70,
+  color: theme.colors.PRIMARY_DARK,
   textAlign: "left",
-});
+  letterSpacing: 0,
+}));
 
-export const LeftSubtitle = styled(Typography)({
+export const LeftSubtitle = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize24,
+  lineHeight: theme.lineHeights.lineHeight35,
+  color: theme.colors.PRIMARY_DARK,
+  letterSpacing: 0,
   textAlign: "left",
-});
+}));
 
 export const Criteria = styled(Box)({
   display: "flex",
@@ -65,9 +77,13 @@ export const CriteriaIcon = styled("img")({
 });
 
 export const CriteriaText = styled(Typography)(({ theme }) => ({
-  fontFamily: theme.typography.subtitle2.fontFamily,
-  fontSize: theme.typography.subtitle2.fontSize,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  letterSpacing: "1%",
+  fontSize: theme.fontSizes.fontSize16,
+  lineHeight: theme.lineHeights.lineHeight35,
+  textAlign: "center",
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const NavLink = styled(Link)(({ theme }) => ({
@@ -79,34 +95,34 @@ export const NavLink = styled(Link)(({ theme }) => ({
   textTransform: "none",
   transition: "all 0.3s ease",
 
-  fontFamily: theme.typography.button.fontFamily,
-  fontWeight: theme.typography.button.fontWeight,
-  fontSize: theme.typography.button.fontSize,
-  lineHeight: theme.typography.button.lineHeight,
-  color: theme.palette.primary.main,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.MEDIUM,
+  fontSize: theme.fontSizes.fontSize20,
+  lineHeight: theme.lineHeights.lineHeight24,
+  color: theme.colors.PRIMARY_DARK,
 
   "&:hover": {
     backgroundColor: "transparent",
-    color: theme.palette.primary.light,
+    color: theme.colors.PRIMARY_LIGHT,
     boxShadow: "none",
   },
 
   "&:active": {
     backgroundColor: "transparent",
-    color: theme.palette.primary.light,
-    boxShadow: `0px 2px 4px 0px ${alpha(theme.palette.primary.main, 0.25)}`,
+    color: theme.colors.PRIMARY_LIGHT,
+    boxShadow: `0px 2px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
     transition: "all 0.3s ease-out",
   },
 
   "&.Mui-focusVisible": {
-    outline: `2px solid ${theme.palette.primary.light}`,
+    outline: `2px solid ${theme.colors.PRIMARY_LIGHT}`,
     outlineOffset: "3px",
     boxShadow: "none",
     backgroundColor: "transparent",
   },
 
   "&.Mui-disabled": {
-    color: alpha(theme.palette.primary.main, 0.4),
+    color: alpha(theme.colors.PRIMARY_DARK, 0.4),
     backgroundColor: "transparent",
     boxShadow: "none",
   },
@@ -126,13 +142,28 @@ export const StatBox = styled(Box)({
   alignItems: "center",
 });
 
+export const StatName = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: theme.fontSizes.fontSize64,
+  lineHeight: theme.lineHeights.lineHeight70,
+  color: theme.colors.PRIMARY_DARK,
+  textAlign: "center",
+  letterSpacing: 0,
+}));
+
 export const Stat = styled(Typography)(({ theme }) => ({
-  fontFamily: theme.typography.h1.fontFamily,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize24,
+  lineHeight: theme.lineHeights.lineHeight35,
+  textAlign: "center",
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const Line = styled(Divider)(({ theme }) => ({
   display: "flex",
   justifySelf: "center",
   width: "82%",
-  backgroundColor: alpha(theme.palette.primary.dark, 0.1),
+  backgroundColor: alpha(theme.colors.PRIMARY_DARK, 0.1),
 }));

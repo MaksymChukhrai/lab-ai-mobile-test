@@ -40,6 +40,7 @@ const LINE_HEIGHTS = {
   lineHeight24: "24px",
   lineHeight25: "25px",
   lineHeight28: "28px",
+  lineHeight30: "30px",
   lineHeight35: "35px",
   lineHeight40: "40px",
   lineHeight50: "50px",

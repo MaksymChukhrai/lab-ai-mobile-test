@@ -26,13 +26,15 @@ export const LogoText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "$light" && prop !== "$variant",
 })<{ $light?: boolean; $variant?: "default" | "hero" }>(
   ({ theme, $light, $variant }) => ({
-    color: $light
-      ? theme.palette.primary.contrastText
-      : theme.palette.primary.main,
+    fontFamily: theme.fontFamily.DM_SANS,
+    fontWeight: theme.fontWeight.BOLD,
+    fontSize: theme.fontSizes.fontSize36,
+    lineHeight: theme.lineHeights.lineHeight100,
+    color: $light ? theme.colors.WHITE : theme.colors.PRIMARY_DARK,
     paddingBottom: "8px",
     ...($variant === "hero" && {
-      fontSize: theme.customSizes.HERO_LOGO_FONT,
-      textShadow: `0 4px 4px ${alpha(theme.palette.primary.main, 0.3)}`,
+      fontSize: theme.fontSizes.fontSize50,
+      textShadow: `0 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.3)}`,
     }),
   }),
 );
