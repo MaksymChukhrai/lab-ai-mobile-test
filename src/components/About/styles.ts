@@ -11,7 +11,7 @@ export const GradientBox = styled(Box)({
 export const BgImage = styled("img")(({ theme }) => ({
   display: "flex",
   justifySelf: "center",
-  color: alpha(theme.palette.primary.dark, 0.5),
+  color: alpha(theme.colors.PRIMARY_DARK, 0.5),
   alignSelf: "center",
   marginTop: "65px",
 }));
@@ -27,16 +27,25 @@ export const AboutTitleBox = styled(Box)({
 });
 
 export const AboutTitle = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h2.fontSize,
-  letterSpacing: 0,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: theme.fontSizes.fontSize48,
+  lineHeight: theme.lineHeights.lineHeight56,
+  marginTop: "0.67em",
+  marginBottom: "0.27em",
+  letterSpacing: "2%",
   verticalAlign: "middle",
-  color: theme.palette.primary.main,
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const AboutDescription = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize24,
+  lineHeight: theme.lineHeights.lineHeight35,
   letterSpacing: 0,
   verticalAlign: "middle",
-  color: theme.palette.primary.main,
+  color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
 }));
 
@@ -50,9 +59,9 @@ export const Container = styled(Box)(({ theme }) => ({
   height: "170px",
   borderRadius: "20px",
   gap: "10px",
-  background: alpha(theme.palette.primary.light, 0.15),
-  border: `1px solid ${alpha(theme.palette.primary.light, 0.45)}`,
-  boxShadow: `0px 5px 4px 0px ${alpha(theme.palette.primary.dark, 0.25)}`,
+  background: alpha(theme.colors.PRIMARY_LIGHT, 0.15),
+  border: `1px solid ${alpha(theme.colors.PRIMARY_LIGHT, 0.45)}`,
+  boxShadow: `0px 5px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
 }));
 
 export const Container1 = styled(Container)({
@@ -80,11 +89,13 @@ export const Container4 = styled(Container)({
 });
 
 export const ContainerName = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h6.fontSize,
-  lineHeight: "30px",
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.SEMIBOLD,
+  fontSize: theme.fontSizes.fontSize22,
+  lineHeight: theme.lineHeights.lineHeight30,
   letterSpacing: 0,
   verticalAlign: "middle",
-  color: theme.palette.primary.main,
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const ContainerIcon = styled("img")({
@@ -102,13 +113,15 @@ export const ContainerTitle = styled(Box)({
 });
 
 export const ContainerText = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
   width: "90%",
-  fontSize: theme.typography.subtitle2.fontSize,
-  lineHeight: theme.typography.body1.lineHeight,
+  fontSize: theme.fontSizes.fontSize16,
+  lineHeight: theme.lineHeights.lineHeight25,
   letterSpacing: "0%",
   verticalAlign: "middle",
   textAlign: "left",
-  color: theme.palette.primary.main,
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const TextBox = styled(Box)({
@@ -123,17 +136,24 @@ export const TextBox = styled(Box)({
 });
 
 export const AboutTextTitle = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.body2.fontSize,
-  letterSpacing: 0,
-  verticalAlign: "middle",
-  color: theme.palette.primary.main,
-}));
-
-export const AboutText = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.body1.fontSize,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: theme.fontSizes.fontSize32,
+  lineHeight: theme.lineHeights.lineHeight70,
   letterSpacing: 0,
   verticalAlign: "middle",
   textAlign: "left",
-  color: theme.palette.primary.main,
+  color: theme.colors.PRIMARY_DARK,
+}));
+
+export const AboutText = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize20,
+  lineHeight: theme.lineHeights.lineHeight35,
+  letterSpacing: 0,
+  verticalAlign: "middle",
+  textAlign: "left",
+  color: theme.colors.PRIMARY_DARK,
   whiteSpace: "pre-line",
 }));

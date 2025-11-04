@@ -72,10 +72,8 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
       <Upload wide={uploadEnabled}>
         {uploadEnabled ? (
           <UploadContainer wide={uploadEnabled}>
-            <Title variant="h1" wide={uploadEnabled}>
-              {t("card.title")}
-            </Title>
-            <Description variant="subtitle1" wide={uploadEnabled}>
+            <Title wide={uploadEnabled}>{t("card.title")}</Title>
+            <Description wide={uploadEnabled}>
               {t("card.description")}
             </Description>
             {!isFileSelected || !showLoader ? (
@@ -87,13 +85,9 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
                 onClick={handleBrowseClick}
               >
                 <img src={download} alt="download" />
-                <DropText wide={uploadEnabled} variant="subtitle2">
-                  {t("card.drop")}
-                </DropText>
-                <CLickText wide={uploadEnabled} variant="subtitle2">
-                  {t("card.click")}
-                </CLickText>
-                <SupportsText wide={uploadEnabled} variant="subtitle2">
+                <DropText wide={uploadEnabled}>{t("card.drop")}</DropText>
+                <CLickText wide={uploadEnabled}>{t("card.click")}</CLickText>
+                <SupportsText wide={uploadEnabled}>
                   {t("card.supports")}
                 </SupportsText>
                 <HiddenInput
@@ -102,27 +96,23 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
                   accept={FILE_INPUTS}
                   onChange={handleFileChange}
                 />
-                {errorMessage && (
-                  <ErrorMessage variant="subtitle2">
-                    {errorMessage}
-                  </ErrorMessage>
-                )}
+                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
               </UploadBox>
             ) : (
               <LoaderBox>
                 {isProcessing ? (
                   <>
                     <CircularProgress size={48} />
-                    <DropText variant="subtitle2">{ocrProgress}%</DropText>
+                    <DropText>{ocrProgress}%</DropText>
                   </>
                 ) : (
                   <ResultsBox>
                     <img src={fileIcon}></img>
                     <LoaderText>
-                      <DropTextPrefix variant="subtitle2">
+                      <DropTextPrefix>
                         {t("card.resultPrefix")} {selectedFileName}
                       </DropTextPrefix>
-                      <DropText variant="subtitle2">{t("card.ready")}</DropText>
+                      <DropText>{t("card.ready")}</DropText>
                     </LoaderText>
                     <DeleteIconBox>
                       <IconButton onClick={handleDeleteFile}>
@@ -183,19 +173,15 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
           <UploadContainer>
             <PreTitleBox>
               <img src={heart} alt="heart" width={18} height={18} />
-              <PreTitle variant="subtitle2">{t("card.preTitle")}</PreTitle>
+              <PreTitle>{t("card.preTitle")}</PreTitle>
             </PreTitleBox>
-            <Title variant="h1">{t("card.title")}</Title>
-            <Description variant="subtitle1">
-              {t("card.description")}
-            </Description>
+            <Title>{t("card.title")}</Title>
+            <Description>{t("card.description")}</Description>
             <UploadBox>
               <img src={download} alt="heart" />
-              <DropText variant="subtitle2">{t("card.drop")}</DropText>
-              <CLickText variant="subtitle2">{t("card.click")}</CLickText>
-              <SupportsText variant="subtitle2">
-                {t("card.supports")}
-              </SupportsText>
+              <DropText>{t("card.drop")}</DropText>
+              <CLickText>{t("card.click")}</CLickText>
+              <SupportsText>{t("card.supports")}</SupportsText>
             </UploadBox>
             <UploadButton
               variant="contained"

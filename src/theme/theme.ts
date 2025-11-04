@@ -3,11 +3,52 @@ import { createTheme, alpha } from "@mui/material/styles";
 declare module "@mui/material/styles" {
   interface Theme {
     customSizes: typeof SIZES;
+    fontSizes: typeof FONT_SIZES;
+    lineHeights: typeof LINE_HEIGHTS;
+    fontFamily: typeof FONT_FAMILY;
+    fontWeight: typeof FONT_WEIGHT;
+    colors: typeof COLORS;
   }
   interface ThemeOptions {
     customSizes?: typeof SIZES;
+    fontSizes?: typeof FONT_SIZES;
+    lineHeights?: typeof LINE_HEIGHTS;
+    fontFamily?: typeof FONT_FAMILY;
+    fontWeight?: typeof FONT_WEIGHT;
+    colors?: typeof COLORS;
   }
 }
+
+const FONT_SIZES = {
+  fontSize12: "12px",
+  fontSize14: "14px",
+  fontSize16: "16px",
+  fontSize18: "18px",
+  fontSize20: "20px",
+  fontSize22: "22px",
+  fontSize24: "24px",
+  fontSize32: "32px",
+  fontSize36: "36px",
+  fontSize48: "48px",
+  fontSize50: "50px",
+  fontSize64: "64px",
+  fontSize400: "400px",
+};
+
+const LINE_HEIGHTS = {
+  lineHeight20: "20px",
+  lineHeight24: "24px",
+  lineHeight25: "25px",
+  lineHeight28: "28px",
+  lineHeight30: "30px",
+  lineHeight35: "35px",
+  lineHeight40: "40px",
+  lineHeight50: "50px",
+  lineHeight56: "56px",
+  lineHeight70: "70px",
+  lineHeight100: "100%",
+};
+
 const FONT_FAMILY = {
   DM_SANS: '"DM Sans", sans-serif',
   POPPINS: '"Poppins", sans-serif',
@@ -205,5 +246,10 @@ export const theme = createTheme({
     },
   },
   customSizes: SIZES,
+  fontSizes: FONT_SIZES,
+  lineHeights: LINE_HEIGHTS,
+  fontFamily: FONT_FAMILY,
+  fontWeight: FONT_WEIGHT,
+  colors: COLORS,
 });
 export default theme;
