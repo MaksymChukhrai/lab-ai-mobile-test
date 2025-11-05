@@ -55,6 +55,7 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
     handleBrowseClick,
     handleUpload,
     handleContinue,
+    handleBack,
     handleDeleteFile,
     isProcessing,
     ocrProgress,
@@ -157,7 +158,7 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
               </TextBox>
             </GreenBox>
             <ButtonsBox>
-              <IconButton>
+              <IconButton onClick={handleBack}>
                 <img src={arrow} alt="arrow" />
               </IconButton>
               <ContinueButton

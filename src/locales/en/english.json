@@ -165,6 +165,7 @@
     "largeFile": "Please upload a smaller file. Max file size in MB:",
     "pdf": "PDF extraction failed. Please try another file.",
     "ocr": "OCR processing failed. Please try another image.",
+    "canvas": "Failed to create canvas context for OCR fallback",
     "noFile": "No file or extracted text available for upload.",
     "unknownError": "Uploading failed. Please, try later."
   },
@@ -256,6 +257,7 @@
         "content": "If you have any questions about this Privacy Policy or our data practices, please contact us at: Email: privacy@labai-analyzer.com | Address: Lab AI Blood Test Analyzer, Kyiv, Ukraine"
       }
     }
+  },
   "options": {
     "title": "What would you like to add to your blood test result interpretation?",
     "subtitle": "Select the types of recommendations you would like to receive with your analysis",

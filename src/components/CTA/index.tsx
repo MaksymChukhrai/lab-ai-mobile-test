@@ -1,7 +1,6 @@
-import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSignInForm } from "@/hooks/useSignInForm";
-import { Wrapper, Subtitle, CtaButton } from "./styles";
+import { Wrapper, Subtitle, CtaButton, Title } from "./styles";
 
 export const CTA = () => {
   const { t } = useTranslation();
@@ -9,7 +8,7 @@ export const CTA = () => {
 
   return (
     <Wrapper>
-      <Typography variant="h1">{t("CTA.title")}</Typography>
+      <Title>{t("CTA.title")}</Title>
 
       <Subtitle>{t("CTA.subtitle")}</Subtitle>
 

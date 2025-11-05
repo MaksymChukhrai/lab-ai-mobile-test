@@ -20,19 +20,22 @@ export const PageWrapper = styled(Box)(({ theme }) => ({
   height: "100vh",
   paddingTop: "54px",
   paddingBottom: "79px",
-  background: `linear-gradient(100.41deg, ${alpha(theme.palette.primary.contrastText, 0.09)} 0%, ${alpha(theme.palette.primary.light, 0.3)} 100%)`,
+  background: `linear-gradient(100.41deg, ${alpha(theme.colors.WHITE, 0.09)} 0%, ${alpha(theme.colors.PRIMARY_LIGHT, 0.3)} 100%)`,
 }));
 
 export const Subtitle = styled(Typography)(({ theme }) => ({
-  ...theme.typography.subtitle1,
-  fontSize: theme.typography.body1.fontSize,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  lineHeight: theme.lineHeights.lineHeight35,
+  fontSize: theme.fontSizes.fontSize20,
+  color: theme.colors.PRIMARY_DARK,
+  textAlign: "center",
 }));
 
 export const DividerPage = styled(Divider)(({ theme }) => ({
   marginTop: "20px",
   marginBottom: "40px",
-  borderColor: theme.palette.primary.main,
+  borderColor: theme.colors.PRIMARY_DARK,
   opacity: 0.1,
   width: "650px",
 }));
@@ -45,20 +48,26 @@ export const FormContainer = styled(Paper)(({ theme }) => ({
   borderRadius: "15px",
   maxWidth: "929px",
   width: "100%",
-  boxShadow: `0px 4px 4px 0px ${alpha(theme.palette.primary.main, 0.25)}`,
-  backgroundColor: `${alpha(theme.palette.primary.contrastText, 0.8)}`,
+  boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
+  backgroundColor: `${alpha(theme.colors.WHITE, 0.8)}`,
 }));
 
 export const FormTitle = styled(Typography)(({ theme }) => ({
-  ...theme.typography.h1,
-  fontSize: theme.typography.body2.fontSize,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  lineHeight: theme.lineHeights.lineHeight70,
+  fontSize: theme.fontSizes.fontSize32,
+  color: theme.colors.PRIMARY_DARK,
+  textAlign: "center",
 }));
 
 export const FormSubtitle = styled(Typography)(({ theme }) => ({
-  ...theme.typography.subtitle1,
-  fontSize: theme.typography.subtitle2.fontSize,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  lineHeight: theme.lineHeights.lineHeight35,
+  fontSize: theme.fontSizes.fontSize16,
+  color: theme.colors.PRIMARY_DARK,
+  textAlign: "center",
 }));
 
 export const SocialButtonContainer = styled(Box)({
@@ -73,32 +82,35 @@ export const SocialButtonContainer = styled(Box)({
 export const SocialButton = styled(Button)(({ theme }) => ({
   width: "100%",
   height: "45px",
-  border: `1px solid ${theme.palette.primary.main}`,
+  border: `1px solid ${theme.colors.PRIMARY_DARK}`,
   borderRadius: "15px",
-  color: theme.palette.text.primary,
+  color: theme.colors.PRIMARY_DARK,
   justifyContent: "center",
   backgroundColor: "transparent",
   boxShadow: "none",
-  ...theme.typography.subtitle2,
-  fontWeight: theme.typography.fontWeightRegular,
-  fontFamily: theme.typography.body1.fontFamily,
+  letterSpacing: "1%",
+  fontSize: "16px",
+  lineHeight: "35px",
+  textAlign: "center",
+  fontWeight: theme.fontWeight.REGULAR,
+  fontFamily: theme.fontFamily.DM_SANS,
   padding: "0",
 
   "&:hover": {
-    boxShadow: `0px 3px 5px 0px ${alpha(theme.palette.primary.main, 0.4)}`,
+    boxShadow: `0px 3px 5px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.4)}`,
     backgroundColor: "transparent",
   },
   "&:active": {
     border: "1px solid transparent",
-    backgroundColor: theme.palette.primary.main,
-    boxShadow: `0px 4px 4px 0px ${alpha(theme.palette.primary.main, 0.4)}`,
-    color: theme.palette.common.white,
+    backgroundColor: theme.colors.PRIMARY_DARK,
+    boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.4)}`,
+    color: theme.colors.WHITE,
   },
   "&:focus-visible": {
-    border: `2px solid ${theme.palette.primary.light}`,
+    border: `2px solid ${theme.colors.PRIMARY_LIGHT}`,
   },
   "&.Mui-disabled": {
-    backgroundColor: alpha(theme.palette.secondary.dark, 0.1),
+    backgroundColor: alpha(theme.colors.SECONDARY_GRAY, 0.1),
     border: `1px solid ${theme.palette.divider}`,
     boxShadow: "none",
   },
@@ -115,10 +127,13 @@ export const EmailInput = styled(TextField)(({ theme }) => ({
   marginBottom: "20px",
   input: {
     "&::placeholder": {
-      color: alpha(theme.palette.primary.main, 0.9),
-      ...theme.typography.subtitle2,
+      color: alpha(theme.colors.PRIMARY_DARK, 0.9),
+      fontFamily: theme.fontFamily.DM_SANS,
+      letterSpacing: "1%",
+      fontSize: "16px",
+      lineHeight: "35px",
       textAlign: "start",
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: theme.fontWeight.REGULAR,
       margin: "0",
     },
   },
@@ -129,20 +144,20 @@ export const EmailInput = styled(TextField)(({ theme }) => ({
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: alpha(theme.palette.primary.main, 0.5),
+      borderColor: alpha(theme.colors.PRIMARY_DARK, 0.5),
     },
     "&:hover fieldset": {
-      boxShadow: `0px 2px 4px ${alpha(theme.palette.secondary.dark, 0.1)}`,
-      borderColor: theme.palette.secondary.dark,
+      boxShadow: `0px 2px 4px ${alpha(theme.colors.SECONDARY_GRAY, 0.1)}`,
+      borderColor: theme.colors.SECONDARY_GRAY,
     },
     "&.Mui-focused fieldset": {
-      border: `2px solid ${theme.palette.primary.main}`,
+      border: `2px solid ${theme.colors.PRIMARY_DARK}`,
     },
     "&.Mui-error fieldset": {
       border: `2px solid ${theme.palette.error.main}`,
     },
     "&.Mui-disabled fieldset": {
-      backgroundColor: alpha(theme.palette.secondary.dark, 0.1),
+      backgroundColor: alpha(theme.colors.SECONDARY_GRAY, 0.1),
       boxShadow: "none",
     },
   },
@@ -152,9 +167,12 @@ export const FormAlert = styled(Alert)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  ...theme.typography.h1,
-  fontWeight: theme.typography.button.fontWeight,
-  fontSize: theme.typography.body1.fontSize,
+  fontFamily: theme.fontFamily.DM_SANS,
+  lineHeight: theme.lineHeights.lineHeight70,
+  textAlign: "center",
+  color: theme.colors.PRIMARY_DARK,
+  fontWeight: theme.fontWeight.MEDIUM,
+  fontSize: theme.fontSizes.fontSize20,
   letterSpacing: 0,
 }));
 
@@ -163,15 +181,18 @@ export const DividerForm = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   textAlign: "center",
-  color: alpha(theme.palette.primary.main, 0.3),
+  color: alpha(theme.colors.PRIMARY_DARK, 0.3),
   margin: "35px 0 0px",
-  ...theme.typography.subtitle2,
-  fontFamily: theme.typography.subtitle1.fontFamily,
+  fontWeight: theme.fontWeight.LIGHT,
+  letterSpacing: "1%",
+  fontSize: "16px",
+  lineHeight: "35px",
+  fontFamily: theme.fontFamily.POPPINS,
 
   "&::before, &::after": {
     content: '""',
     flex: 1,
-    borderBottom: `1px solid ${alpha(theme.palette.primary.main, 0.3)}`,
+    borderBottom: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.3)}`,
   },
   "&:not(:empty)::before": {
     marginRight: "12px",
@@ -182,25 +203,25 @@ export const DividerForm = styled(Box)(({ theme }) => ({
 }));
 
 export const LabelMail = styled(Typography)(({ theme }) => ({
-  fontFamily: theme.typography.body1.fontFamily,
+  fontFamily: theme.fontFamily.DM_SANS,
   fontSize: "14px",
-  lineHeight: theme.typography.subtitle2.lineHeight,
-  fontWeight: theme.typography.fontWeightRegular,
+  lineHeight: theme.lineHeights.lineHeight35,
+  fontWeight: theme.fontWeight.REGULAR,
   textDecoration: "none",
-  color: theme.palette.text.primary,
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const LegalLink = styled(Link)(({ theme }) => ({
   textDecoration: "underline",
-  color: theme.palette.primary.light,
+  color: theme.colors.PRIMARY_LIGHT,
   "&:hover": {
-    textShadow: `0px 5px 4px ${alpha(theme.palette.primary.dark, 0.34)}`,
+    textShadow: `0px 5px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.34)}`,
   },
   "&:active": {
-    color: theme.palette.primary.main,
+    color: theme.colors.PRIMARY_DARK,
   },
   "&:focus-visible": {
-    outline: `2px solid ${theme.palette.primary.light}`,
+    outline: `2px solid ${theme.colors.PRIMARY_LIGHT}`,
   },
   "&.Mui-disabled": {
     color: theme.palette.text.disabled,

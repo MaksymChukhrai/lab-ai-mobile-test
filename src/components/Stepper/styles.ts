@@ -8,11 +8,11 @@ interface StepProps {
 const getStatusColor = (status: string, theme: Theme): string => {
   switch (status) {
     case "active":
-      return theme.palette.primary.main;
+      return theme.colors.PRIMARY_DARK;
     case "completed":
-      return theme.palette.primary.light;
+      return theme.colors.PRIMARY_LIGHT;
     default:
-      return alpha(theme.palette.primary.main, 0.3);
+      return alpha(theme.colors.PRIMARY_DARK, 0.3);
   }
 };
 
@@ -37,24 +37,24 @@ export const StepIcon = styled(Box)<StepProps>(({ theme, status }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: theme.palette.primary.contrastText,
-  fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.body1.fontSize,
-  fontFamily: theme.typography.subtitle1.fontFamily,
+  color: theme.colors.WHITE,
+  fontWeight: theme.fontWeight.MEDIUM,
+  fontSize: theme.fontSizes.fontSize20,
+  fontFamily: theme.fontFamily.POPPINS,
   transition: "all 0.3s ease",
   backgroundColor: getStatusColor(status, theme),
 }));
 
 export const StepLabel = styled(Typography)<StepProps>(({ theme, status }) => ({
   marginLeft: "12px",
-  fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.h6.fontSize,
-  fontFamily: theme.typography.subtitle1.fontFamily,
+  fontWeight: theme.fontWeight.MEDIUM,
+  fontSize: theme.fontSizes.fontSize22,
+  fontFamily: theme.fontFamily.POPPINS,
   color: getStatusColor(status, theme),
 }));
 
 export const StepConnector = styled(Box)(({ theme }) => ({
-  borderBottom: `1px solid ${alpha(theme.palette.primary.main, 0.3)}`,
+  borderBottom: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.3)}`,
   width: "57px",
   marginLeft: "12px",
 }));

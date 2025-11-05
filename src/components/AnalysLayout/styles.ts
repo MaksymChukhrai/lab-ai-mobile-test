@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 export const GradientBox = styled(Box)(({ theme }) => ({
   width: "100%",
-  background: `linear-gradient(100.17deg, ${alpha(theme.palette.background.default, 0.09)} 0.19%, ${alpha(theme.palette.primary.light, 0.3)} 100%)`,
+  background: `linear-gradient(100.17deg, ${alpha(theme.colors.WHITE, 0.09)} 0.19%, ${alpha(theme.colors.PRIMARY_LIGHT, 0.3)} 100%)`,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -21,5 +21,10 @@ export const HeadingContainer = styled(Box)({
 });
 
 export const Heading = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.body1.fontSize,
+  fontSize: theme.fontSizes.fontSize20,
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  lineHeight: theme.lineHeights.lineHeight35,
+  textAlign: "center",
+  color: theme.colors.PRIMARY_DARK,
 }));

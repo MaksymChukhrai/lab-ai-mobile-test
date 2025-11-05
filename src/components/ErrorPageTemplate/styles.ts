@@ -6,30 +6,30 @@ export const PageWrapper = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   minHeight: "100vh",
-  background: `linear-gradient(100.41deg, ${alpha(theme.palette.primary.contrastText, 0.09)} 0%, ${alpha(theme.palette.primary.light, 0.3)} 100%)`,
+  background: `linear-gradient(100.41deg, ${alpha(theme.colors.WHITE, 0.09)} 0%, ${alpha(theme.colors.PRIMARY_LIGHT, 0.3)} 100%)`,
   width: "100%",
 }));
 
 export const ErrorCode = styled(Typography)(({ theme }) => ({
-  fontSize: theme.customSizes.ERROR_CODE,
-  fontWeight: theme.typography.fontWeightRegular,
-  fontFamily: theme.typography.h1.fontFamily,
-  color: theme.palette.primary.main,
+  fontSize: theme.fontSizes.fontSize400,
+  fontWeight: theme.fontWeight.REGULAR,
+  fontFamily: theme.fontFamily.DM_SANS,
+  color: theme.colors.PRIMARY_DARK,
   lineHeight: "100%",
 }));
 
 export const ErrorMessage = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.body1.fontSize,
-  fontWeight: theme.typography.fontWeightLight,
-  fontFamily: theme.typography.subtitle1.fontFamily,
-  color: theme.palette.primary.main,
+  fontSize: theme.fontSizes.fontSize20,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontFamily: theme.fontFamily.POPPINS,
+  color: theme.colors.PRIMARY_DARK,
   marginBottom: "25px",
   textAlign: "center",
 }));
 
 export const HomeButton = styled(Button)({
   padding: "12px 40px",
-  fontSize: theme.customSizes.UPLOAD_CARD_MEDIUM_FONT,
+  fontSize: theme.fontSizes.fontSize18,
 });
 
 export const MainContent = styled(Box)({

@@ -20,8 +20,8 @@ export const FooterWrapper = styled(
   Box,
   options,
 )<FooterProps>(({ theme, $variant }) => ({
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.primary.contrastText,
+  backgroundColor: theme.colors.FOOTER_BG,
+  color: theme.colors.WHITE,
   padding: "60px 78px 20px",
   width: "100%",
   ...($variant === "compact" && {
@@ -44,6 +44,11 @@ export const Description = styled(
   options,
 )<FooterProps>(({ theme, $variant }) => ({
   marginTop: theme.spacing(2),
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize20,
+  lineHeight: theme.lineHeights.lineHeight25,
+  color: alpha(theme.colors.WHITE, 0.75),
   maxWidth: "515px",
   ...($variant === "compact" && {
     display: "none",
@@ -61,8 +66,20 @@ export const FooterLinkContainer = styled(
   }),
 }));
 
+export const LinkTitle = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: theme.fontSizes.fontSize22,
+  lineHeight: theme.lineHeights.lineHeight25,
+  marginBottom: "14px",
+}));
+
 export const FooterLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.primary.contrastText,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize20,
+  lineHeight: theme.lineHeights.lineHeight25,
+  color: theme.colors.WHITE,
   textDecoration: "none",
   opacity: 0.7,
   transition: "all 0.2s ease-in-out",
@@ -72,15 +89,15 @@ export const FooterLink = styled(Link)(({ theme }) => ({
 
   "&:hover": {
     opacity: 1,
-    textShadow: `0 0 8px ${alpha(theme.palette.common.white, 0.5)}`,
+    textShadow: `0 0 8px ${alpha(theme.colors.WHITE, 0.5)}`,
   },
   "&:active": {
-    color: theme.palette.primary.light,
+    color: theme.colors.PRIMARY_LIGHT,
     transform: "translateY(1px)",
     textShadow: "none",
   },
   "&.Mui-disabled": {
-    color: theme.palette.secondary.dark,
+    color: theme.colors.SECONDARY_GRAY,
     opacity: 0.5,
     pointerEvents: "none",
     textShadow: "none",
@@ -89,7 +106,7 @@ export const FooterLink = styled(Link)(({ theme }) => ({
     opacity: 1,
     textShadow: "none",
     outline: "1px solid",
-    outlineColor: theme.palette.background.default,
+    outlineColor: theme.colors.WHITE,
     outlineOffset: "0px",
     maxWidth: "fit-content",
   },
@@ -97,6 +114,17 @@ export const FooterLink = styled(Link)(({ theme }) => ({
 
 export const FooterDivider = styled(Divider)(({ theme }) => ({
   marginTop: "90px",
-  borderColor: theme.palette.background.default,
+  borderColor: theme.colors.WHITE,
   opacity: 0.5,
+}));
+
+export const Caption = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize16,
+  lineHeight: theme.lineHeights.lineHeight25,
+  color: alpha(theme.colors.WHITE, 0.75),
+  textAlign: "center",
+  display: "block",
+  marginTop: "20px",
 }));

@@ -16,7 +16,7 @@ export const AnalysLayout = ({ currentStep, children }: AnalysLayoutProps) => {
       <GradientBox>
         <HeadingContainer>
           <Logo variant="hero" />
-          <Heading variant="subtitle1">{t("logo.subtitle")}</Heading>
+          <Heading>{t("logo.subtitle")}</Heading>
           <Stepper currentStep={currentStep} />
         </HeadingContainer>
         {children}

@@ -13,20 +13,26 @@ export const ContentContainer = styled(Box)(({ theme }) => ({
   borderRadius: "15px",
   padding: "60px 50px",
   marginBottom: "20px",
-  backgroundColor: theme.palette.primary.contrastText,
-  boxShadow: `0px 4px 4px 0px ${alpha(theme.palette.primary.main, 0.25)}`,
+  backgroundColor: theme.colors.WHITE,
+  boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
 }));
 
 export const FormTitle = styled(Typography)(({ theme }) => ({
-  ...theme.typography.h1,
-  fontSize: theme.typography.body2.fontSize,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  lineHeight: theme.lineHeights.lineHeight70,
+  fontSize: theme.fontSizes.fontSize32,
+  color: theme.colors.PRIMARY_DARK,
+  textAlign: "center",
 }));
 
 export const FormSubtitle = styled(Typography)(({ theme }) => ({
-  ...theme.typography.subtitle1,
-  fontSize: theme.typography.body1.fontSize,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize24,
+  lineHeight: theme.lineHeights.lineHeight35,
+  textAlign: "center",
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const OptionsGrid = styled(Box)({
@@ -49,13 +55,13 @@ export const OptionCard = styled(Box, {
   padding: "43px 37px ",
   borderRadius: "16px",
   cursor: "pointer",
-  border: `1px solid ${alpha(theme.palette.primary.light, 0.45)}`,
+  border: `1px solid ${alpha(theme.colors.PRIMARY_LIGHT, 0.45)}`,
   backgroundColor: isSelected
-    ? alpha(theme.palette.info.main, 0.25)
-    : theme.palette.primary.contrastText,
+    ? alpha(theme.colors.SECONDARY_GREEN, 0.25)
+    : theme.colors.WHITE,
   transition: "all 0.2s ease-in-out",
   "&:hover": {
-    boxShadow: `1px 8px 10px 0px ${alpha(theme.palette.primary.main, 0.7)}`,
+    boxShadow: `1px 8px 10px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.7)}`,
   },
 }));
 
@@ -67,19 +73,21 @@ export const CardContent = styled(Box)({
 });
 
 export const OptionTitle = styled(Typography)(({ theme }) => ({
-  ...theme.typography.h3,
-  fontSize: theme.typography.subtitle1.fontSize,
-  fontWeight: theme.typography.fontWeightBold,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: theme.fontSizes.fontSize22,
+  lineHeight: theme.lineHeights.lineHeight100,
   textShadow: `0px 2px 4px ${alpha(theme.palette.primary.dark, 0.25)}`,
+  color: theme.colors.PRIMARY_DARK,
 }));
 
 export const OptionSubtitle = styled(Typography)(({ theme }) => ({
-  ...theme.typography.subtitle1,
-  fontSize: theme.typography.body1.fontSize,
-  color: theme.palette.text.primary,
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize20,
+  color: theme.colors.PRIMARY_DARK,
   textAlign: "start",
-  lineHeight: "25px",
+  lineHeight: theme.lineHeights.lineHeight25,
 }));
 
 export const OptionIcon = styled(Box, {
@@ -93,8 +101,8 @@ export const OptionIcon = styled(Box, {
   justifyContent: "center",
   transition: "all 0.2s ease-in-out",
   backgroundColor: isSelected
-    ? alpha(theme.palette.info.main, 0.45)
-    : alpha(theme.palette.primary.light, 0.5),
+    ? alpha(theme.colors.SECONDARY_GREEN, 0.45)
+    : alpha(theme.colors.PRIMARY_LIGHT, 0.5),
 }));
 
 export const FooterActions = styled(Box)({
@@ -105,7 +113,7 @@ export const FooterActions = styled(Box)({
 });
 
 export const BackButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: theme.colors.SECONDARY_GRAY,
   transition: "all 0.3s ease-in-out",
 }));
 
