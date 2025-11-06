@@ -24,7 +24,6 @@ export const COMPANY_LINKS: NavLink[] = [
 ];
 
 export const SUPPORT_LINKS: NavLink[] = [
-  { key: "footer.links.contactUs", path: PATHS.DEFAULT },
   { key: "footer.links.privacyPolicy", path: PATHS.PRIVACY },
   { key: "footer.links.termsOfService", path: PATHS.TERMS },
 ];

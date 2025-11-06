@@ -72,6 +72,7 @@ export const LinkTitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.fontSizes.fontSize22,
   lineHeight: theme.lineHeights.lineHeight25,
   marginBottom: "14px",
+  color: theme.colors.WHITE,
 }));
 
 export const FooterLink = styled(Link)(({ theme }) => ({
@@ -84,8 +85,8 @@ export const FooterLink = styled(Link)(({ theme }) => ({
   opacity: 0.7,
   transition: "all 0.2s ease-in-out",
   borderRadius: "4px",
-  padding: "2px 4px",
-  margin: "-2px -4px",
+  padding: "4px 0px",
+  cursor: "pointer",
 
   "&:hover": {
     opacity: 1,

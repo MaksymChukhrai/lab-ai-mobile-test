@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Box, Grid } from "@mui/material";
 import { COMPANY_LINKS, SUPPORT_LINKS } from "constants/navigation";
 import { Logo } from "components/Logo";
+import { ContactUsModal } from "components/Contact";
 import {
   FooterWrapper,
   Description,
@@ -19,7 +21,15 @@ interface FooterProps {
 
 export const Footer = ({ variant = "full" }: FooterProps) => {
   const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const handleOpenModal = (): void => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (): void => {
+    setIsModalOpen(false);
+  };
   return (
     <FooterWrapper $variant={variant}>
       <GridWrapper container spacing={5} $variant={variant}>
@@ -53,13 +63,12 @@ export const Footer = ({ variant = "full" }: FooterProps) => {
             <LinkTitle>{t("footer.supportTitle")}</LinkTitle>
           )}
           <FooterLinkContainer $variant={variant}>
+            <FooterLink display="block" onClick={handleOpenModal}>
+              {t("footer.links.contactUs")}
+            </FooterLink>
+            <ContactUsModal isOpen={isModalOpen} onClose={handleCloseModal} />
             {SUPPORT_LINKS.map((link) => (
-              <FooterLink
-                href={link.path}
-                key={link.key}
-                display="block"
-                mb={"4px"}
-              >
+              <FooterLink href={link.path} key={link.key} display="block">
                 {t(link.key)}
               </FooterLink>
             ))}
