@@ -12,49 +12,55 @@ import {
 export const ContentContainer = styled(Box)(({ theme }) => ({
   maxWidth: "1284px",
   width: "100%",
-  borderRadius: "20px",
-  padding: "41px",
-  marginBottom: "20px",
-  backgroundColor: theme.palette.primary.contrastText,
-  boxShadow: `0px 4px 4px 0px ${alpha(theme.palette.primary.main, 0.25)}`,
+  borderRadius: "15px",
+  minHeight: "61.5vh",
+  height: "100%",
+  padding: "59px",
+  backgroundColor: theme.colors.WHITE,
+  boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_LIGHT, 0.25)}`,
 }));
 
 export const PageTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.BOLD,
   fontSize: theme.fontSizes.fontSize32,
-  lineHeight: theme.lineHeights.lineHeight40,
+  lineHeight: theme.lineHeights.lineHeight70,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
-  marginBottom: "5px",
 }));
 
 export const PageDescription = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
-  fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight25,
+  fontSize: theme.fontSizes.fontSize20,
+  lineHeight: theme.lineHeights.lineHeight35,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
-  marginBottom: "32px",
+}));
+
+export const SectionInfoBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.2),
+  border: `1px solid ${theme.colors.PRIMARY_LIGHT}`,
+  borderRadius: "20px",
+  padding: "10px 45px 40px",
+  marginTop: "35px",
+  marginBottom: "55px",
 }));
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
-  fontWeight: theme.fontWeight.SEMIBOLD,
-  fontSize: theme.fontSizes.fontSize18,
-  lineHeight: theme.lineHeights.lineHeight25,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: theme.fontSizes.fontSize28,
+  lineHeight: theme.lineHeights.lineHeight70,
   color: theme.colors.PRIMARY_DARK,
-  marginBottom: "16px",
-  backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.1),
-  padding: "12px 20px",
-  borderRadius: "10px",
+  textAlign: "center",
 }));
 
 export const PatientInfoBox = styled(Box)({
   display: "flex",
-  gap: "32px",
-  marginBottom: "32px",
+  gap: "50px",
 });
 
 export const InputWrapper = styled(Box)({
@@ -66,170 +72,164 @@ export const InputWrapper = styled(Box)({
 export const InputLabel = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.REGULAR,
-  fontSize: theme.fontSizes.fontSize16,
+  fontSize: theme.fontSizes.fontSize24,
   lineHeight: theme.lineHeights.lineHeight35,
   color: theme.colors.PRIMARY_DARK,
-  marginBottom: "4px",
-}));
-
-export const StyledTextField = styled(TextField)(({ theme }) => ({
-  "& .MuiInputBase-root": {
-    fontFamily: theme.fontFamily.DM_SANS,
-    fontSize: theme.fontSizes.fontSize16,
-    height: "45px",
-  },
-  "& .MuiOutlinedInput-root": {
-    borderRadius: "15px",
-    "& fieldset": {
-      borderColor: alpha(theme.colors.PRIMARY_DARK, 0.5),
-      borderWidth: "2px",
-    },
-    "&:hover fieldset": {
-      borderColor: alpha(theme.colors.PRIMARY_DARK, 0.7),
-      boxShadow: `0px 2px 4px ${alpha(theme.colors.SECONDARY_GRAY, 0.25)}`,
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: theme.colors.PRIMARY_DARK,
-      borderWidth: "3px",
-    },
-  },
+  marginBottom: "10px",
 }));
 
 export const StyledSelect = styled(Select)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
-  fontSize: theme.fontSizes.fontSize16,
+  fontSize: theme.fontSizes.fontSize20,
   height: "45px",
-  borderRadius: "15px",
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: alpha(theme.colors.PRIMARY_DARK, 0.5),
-    borderWidth: "2px",
+
+  boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
+  "&:hover": {
+    boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)} inset`,
   },
-  "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: alpha(theme.colors.PRIMARY_DARK, 0.7),
-    boxShadow: `0px 2px 4px ${alpha(theme.colors.SECONDARY_GRAY, 0.25)}`,
+  "&.Mui-focused": {
+    border: `1px solid ${theme.colors.PRIMARY_DARK}`,
   },
-  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: theme.colors.PRIMARY_DARK,
-    borderWidth: "3px",
+  "& .MuiSelect-icon": {
+    color: theme.colors.PRIMARY_DARK,
   },
 }));
 
 export const TableContainer = styled(Box)(({ theme }) => ({
-  marginBottom: "24px",
-  border: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.2)}`,
-  borderRadius: "15px",
-  overflow: "hidden",
+  marginTop: "20px",
+  marginBottom: "35px",
+  borderRadius: "20px",
+  boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)} `,
 }));
 
 export const TableHeader = styled(Box)(({ theme }) => ({
   display: "grid",
-  gridTemplateColumns: "2fr 1fr 2fr 48px",
-  gap: "16px",
-  padding: "16px 24px",
+  gridTemplateColumns: "1.25fr 2fr 1fr 48px",
+  gap: "40px",
+  padding: "20px 44px",
   backgroundColor: theme.colors.PRIMARY_DARK,
   color: theme.colors.WHITE,
+  borderStartStartRadius: "20px",
+  borderStartEndRadius: "20px",
 }));
 
 export const TableHeaderCell = styled(Typography)(({ theme }) => ({
-  fontFamily: theme.fontFamily.DM_SANS,
+  fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.SEMIBOLD,
-  fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight20,
+  fontSize: theme.fontSizes.fontSize22,
+  lineHeight: theme.lineHeights.lineHeight35,
   color: theme.colors.WHITE,
 }));
 
-export const TableRow = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "isNormal",
-})<{ isNormal?: boolean }>(({ theme, isNormal = true }) => ({
+export const TableRow = styled(Box)(({ theme }) => ({
   display: "grid",
-  gridTemplateColumns: "2fr 1fr 2fr 48px",
-  gap: "16px",
-  padding: "16px 24px",
+  gridTemplateColumns: "1.25fr 2fr 1fr 48px",
+  gap: "40px",
+  padding: "20px 44px",
   alignItems: "center",
-  borderBottom: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.1)}`,
-  backgroundColor: isNormal
-    ? theme.colors.WHITE
-    : alpha(theme.colors.SECONDARY_RED, 0.05),
-  "&:last-child": {
-    borderBottom: "none",
+  borderBottom: `2px solid ${alpha(theme.colors.PRIMARY_LIGHT, 0.1)}`,
+  borderRadius: "20px",
+  backgroundColor: theme.colors.WHITE,
+}));
+
+export const MarkerNameText = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontSize: theme.fontSizes.fontSize18,
+  fontWeight: theme.fontWeight.REGULAR,
+  lineHeight: theme.lineHeights.lineHeight35,
+  color: theme.colors.PRIMARY_DARK,
+  display: "flex",
+  alignItems: "center",
+}));
+
+export const MarkerSelect = styled(Select)(({ theme }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontSize: theme.fontSizes.fontSize18,
+  fontWeight: theme.fontWeight.REGULAR,
+  lineHeight: theme.lineHeights.lineHeight35,
+  height: "40px",
+  border: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
+  "&:hover": {
+    boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)} inset `,
+    border: `1px solid ${theme.colors.PRIMARY_DARK}`,
+  },
+  "&.Mui-focused": {
+    border: `1px solid ${theme.colors.PRIMARY_DARK}`,
+  },
+  "& .MuiSelect-icon": {
+    color: theme.colors.PRIMARY_DARK,
   },
 }));
 
 export const TableInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-root": {
-    fontFamily: theme.fontFamily.DM_SANS,
-    fontSize: theme.fontSizes.fontSize14,
+    fontFamily: theme.fontFamily.POPPINS,
+    fontSize: theme.fontSizes.fontSize18,
+    fontWeight: theme.fontWeight.REGULAR,
+    lineHeight: theme.lineHeights.lineHeight35,
     height: "40px",
+    maxWidth: "390px",
+    border: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
+    borderRadius: "10px",
   },
   "& .MuiOutlinedInput-root": {
-    borderRadius: "8px",
     "& fieldset": {
-      borderColor: alpha(theme.colors.PRIMARY_DARK, 0.3),
-    },
-    "&:hover fieldset": {
       borderColor: alpha(theme.colors.PRIMARY_DARK, 0.5),
+    },
+    "&:hover": {
+      boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
     },
     "&.Mui-focused fieldset": {
       borderColor: theme.colors.PRIMARY_DARK,
-      borderWidth: "2px",
     },
   },
+  "& input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button ":
+    {
+      opacity: 1,
+    },
 }));
 
-export const AddRowButton = styled(Button)(({ theme }) => ({
-  alignSelf: "flex-start",
-  marginBottom: "32px",
-  color: theme.colors.PRIMARY_DARK,
-  backgroundColor: "transparent",
-  border: `2px dashed ${alpha(theme.colors.PRIMARY_DARK, 0.3)}`,
-  padding: "10px 20px",
-  "&:hover": {
-    backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.1),
-    border: `2px dashed ${theme.colors.PRIMARY_DARK}`,
-  },
-}));
-
-export const CommentBox = styled(Box)({
-  marginBottom: "32px",
+export const AddRowButton = styled(Button)({
+  display: "block",
+  margin: "35px auto 55px",
+  padding: "10px 50px",
 });
 
 export const CommentLabel = styled(Typography)(({ theme }) => ({
-  fontFamily: theme.fontFamily.DM_SANS,
-  fontWeight: theme.fontWeight.REGULAR,
-  fontSize: theme.fontSizes.fontSize16,
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: theme.fontSizes.fontSize18,
   lineHeight: theme.lineHeights.lineHeight25,
   color: theme.colors.PRIMARY_DARK,
-  marginBottom: "8px",
+  marginBottom: "15px",
 }));
 
 export const StyledTextarea = styled("textarea")(({ theme }) => ({
   width: "100%",
   minHeight: "150px",
   padding: "15px",
-  fontFamily: theme.fontFamily.DM_SANS,
-  fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight25,
+  fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.REGULAR,
+  fontSize: theme.fontSizes.fontSize20,
+  lineHeight: theme.lineHeights.lineHeight25,
   color: theme.colors.PRIMARY_DARK,
-  border: `2px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
+  border: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
   borderRadius: "15px",
   outline: "none",
-  resize: "vertical",
-  transition: "all 0.2s ease-in-out",
+  resize: "none",
+  transition: "all 0.1s ease-in-out",
   boxSizing: "border-box",
   backgroundColor: theme.colors.WHITE,
   "&::placeholder": {
-    color: alpha(theme.colors.SECONDARY_GRAY, 0.6),
+    color: alpha(theme.colors.PRIMARY_DARK, 0.5),
     fontWeight: theme.fontWeight.LIGHT,
   },
   "&:hover": {
-    boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.15)}`,
-    borderColor: alpha(theme.colors.PRIMARY_DARK, 0.7),
+    boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
   },
   "&:focus": {
-    border: `3px solid ${theme.colors.PRIMARY_DARK}`,
+    border: `3px solid ${theme.colors.PRIMARY_LIGHT}`,
     boxShadow: "none",
-    padding: "14px",
   },
 }));
 

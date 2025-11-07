@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { STEP_PATHS } from "constants/steps";
 import {
   useGetBloodMarkersQuery,
   useGenerateAnalysisMutation,
 } from "store/api/bloodMarkersApi";
 import { useAppDispatch, useAppSelector } from "store/hooks";
+import { selectSelectedOptions } from "store/slices/optionSlice";
 import {
   setBloodMarkersData,
+  updateMarkerName,
   updateMarkerValue,
   addMarker,
   removeMarker,
@@ -18,9 +21,6 @@ import {
   selectGender,
   selectComment,
 } from "store/slices/bloodMarkersSlice";
-import { selectSelectedOptions } from "store/slices/optionSlice";
-import { STEP_PATHS } from "constants/steps";
-import type { BloodMarker } from "store/api/bloodMarkersApi";
 
 export const useReviewPage = () => {
   const navigate = useNavigate();
@@ -39,27 +39,31 @@ export const useReviewPage = () => {
   const [birthDate, setBirthDate] = useState<string>("");
 
   useEffect(() => {
-    if (data) {
+    if (data && markers.length === 0) {
       dispatch(setBloodMarkersData(data));
 
       const calculatedBirthYear = new Date().getFullYear() - data.age;
-      setBirthDate(`01-01-${calculatedBirthYear}`);
+      setBirthDate(`01/01/${calculatedBirthYear}`);
     }
-  }, [data, dispatch]);
+  }, [data, dispatch, markers.length]);
+  useEffect(() => {
+    if (age > 0 && !birthDate) {
+      const calculatedBirthYear = new Date().getFullYear() - age;
+      setBirthDate(`01/01/${calculatedBirthYear}`);
+    }
+  }, [age, birthDate]);
+
+  const handleMarkerNameChange = (index: number, name: string): void => {
+    dispatch(updateMarkerName({ index, name }));
+  };
 
   const handleMarkerValueChange = (index: number, value: string): void => {
-    dispatch(updateMarkerValue({ index, value }));
+    const numericValue = value.replace(/[^0-9.]/g, "");
+    dispatch(updateMarkerValue({ index, value: numericValue }));
   };
 
   const handleAddMarker = (): void => {
-    const newMarker: BloodMarker = {
-      name: "",
-      value: "",
-      unit: "",
-      normalRange: "",
-      isNormal: true,
-    };
-    dispatch(addMarker(newMarker));
+    dispatch(addMarker());
   };
 
   const handleRemoveMarker = (index: number): void => {
@@ -73,8 +77,10 @@ export const useReviewPage = () => {
   const handleBirthDateChange = (value: string): void => {
     setBirthDate(value);
 
-    const [year] = value.split("-");
-    if (year && year.length === 4) {
+    const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+    const match = value.match(dateRegex);
+    if (match) {
+      const [, , , year] = match;
       const calculatedAge = new Date().getFullYear() - parseInt(year, 10);
       dispatch(updateAge(calculatedAge));
     }
@@ -93,18 +99,20 @@ export const useReviewPage = () => {
       const analysisData = {
         age,
         gender,
-        markers: markers.map((marker) => ({
-          name: marker.name,
-          value: marker.value,
-          unit: marker.unit,
-        })),
+        markers: markers
+          .filter((marker) => marker.name && marker.value)
+          .map((marker) => ({
+            name: marker.name,
+            value: marker.value,
+            unit: marker.unit,
+          })),
         comment,
         selectedOptions,
       };
 
       await generateAnalysis(analysisData).unwrap();
 
-      navigate(STEP_PATHS.result);
+      navigate(STEP_PATHS.review);
     } catch (error) {
       console.error("Failed to generate analysis:", error);
     }
@@ -119,6 +127,7 @@ export const useReviewPage = () => {
     isLoading,
     isError,
     isGenerating,
+    handleMarkerNameChange,
     handleMarkerValueChange,
     handleAddMarker,
     handleRemoveMarker,

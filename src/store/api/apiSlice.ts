@@ -60,7 +60,7 @@ const baseQueryWithReauth: BaseQueryFn<
         };
         Cookies.set("accessToken", accessToken, {
           ...cookieOptions,
-          expires: 1 / 48,
+          expires: 6048880,
         });
         Cookies.set("refreshToken", newRefreshToken, {
           ...cookieOptions,

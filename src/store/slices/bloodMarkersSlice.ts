@@ -1,11 +1,19 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../index";
-import type { BloodMarker } from "../api/bloodMarkersApi";
+
+export interface BloodMarkerWithMeta {
+  name: string;
+  value: string;
+  unit: string;
+  normalRange: string;
+  isNormal: boolean;
+  isNew?: boolean;
+}
 
 interface BloodMarkersState {
   age: number;
   gender: string;
-  markers: BloodMarker[];
+  markers: BloodMarkerWithMeta[];
   comment: string;
 }
 
@@ -25,12 +33,24 @@ export const bloodMarkersSlice = createSlice({
       action: PayloadAction<{
         age: number;
         gender: string;
-        markers: BloodMarker[];
+        markers: BloodMarkerWithMeta[];
       }>,
     ) => {
       state.age = action.payload.age;
       state.gender = action.payload.gender;
-      state.markers = action.payload.markers;
+      state.markers = action.payload.markers.map((marker) => ({
+        ...marker,
+        isNew: false,
+      }));
+    },
+    updateMarkerName: (
+      state,
+      action: PayloadAction<{ index: number; name: string }>,
+    ) => {
+      const { index, name } = action.payload;
+      if (state.markers[index]) {
+        state.markers[index].name = name;
+      }
     },
     updateMarkerValue: (
       state,
@@ -41,8 +61,16 @@ export const bloodMarkersSlice = createSlice({
         state.markers[index].value = value;
       }
     },
-    addMarker: (state, action: PayloadAction<BloodMarker>) => {
-      state.markers.push(action.payload);
+    addMarker: (state) => {
+      const newMarker: BloodMarkerWithMeta = {
+        name: "",
+        value: "",
+        unit: "",
+        normalRange: "",
+        isNormal: true,
+        isNew: true,
+      };
+      state.markers.push(newMarker);
     },
     removeMarker: (state, action: PayloadAction<number>) => {
       state.markers.splice(action.payload, 1);
@@ -61,6 +89,7 @@ export const bloodMarkersSlice = createSlice({
 
 export const {
   setBloodMarkersData,
+  updateMarkerName,
   updateMarkerValue,
   addMarker,
   removeMarker,

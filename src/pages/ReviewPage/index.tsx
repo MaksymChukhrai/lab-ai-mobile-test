@@ -1,8 +1,9 @@
 import { CircularProgress, MenuItem } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { STEPS } from "constants/steps";
-import { GENDER_OPTIONS } from "constants/review";
+import { GENDER_OPTIONS, AVAILABLE_MARKERS } from "constants/review";
 import { AnalysLayout } from "components/AnalysLayout";
+import { DatePicker } from "components/DatePicker";
 import { useReviewPage } from "hooks/useReviewPage";
 import arrow from "locals/arrow.svg";
 import deleteIcon from "locals/delete.svg";
@@ -14,7 +15,6 @@ import {
   PatientInfoBox,
   InputWrapper,
   InputLabel,
-  StyledTextField,
   StyledSelect,
   TableContainer,
   TableHeader,
@@ -22,12 +22,14 @@ import {
   TableRow,
   TableInput,
   AddRowButton,
-  CommentBox,
   CommentLabel,
   StyledTextarea,
   FooterActions,
   BackButton,
   GenerateButton,
+  MarkerNameText,
+  SectionInfoBox,
+  MarkerSelect,
 } from "./styles";
 
 export const ReviewPage = () => {
@@ -40,6 +42,7 @@ export const ReviewPage = () => {
     isLoading,
     isError,
     isGenerating,
+    handleMarkerNameChange,
     handleMarkerValueChange,
     handleAddMarker,
     handleRemoveMarker,
@@ -53,14 +56,7 @@ export const ReviewPage = () => {
   if (isLoading) {
     return (
       <AnalysLayout currentStep={STEPS[2]}>
-        <ContentContainer
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "400px",
-          }}
-        >
+        <ContentContainer>
           <CircularProgress />
         </ContentContainer>
       </AnalysLayout>
@@ -71,10 +67,8 @@ export const ReviewPage = () => {
     return (
       <AnalysLayout currentStep={STEPS[2]}>
         <ContentContainer>
-          <PageTitle>Error loading blood markers</PageTitle>
-          <PageDescription>
-            Please try again or contact support if the problem persists.
-          </PageDescription>
+          <PageTitle>{t("review.errorLoading")}</PageTitle>
+          <PageDescription>{t("review.errorDescription")}</PageDescription>
         </ContentContainer>
       </AnalysLayout>
     );
@@ -86,32 +80,33 @@ export const ReviewPage = () => {
         <PageTitle>{t("review.title")}</PageTitle>
         <PageDescription>{t("review.description")}</PageDescription>
 
-        <SectionTitle>{t("review.patientInfo")}</SectionTitle>
-        <PatientInfoBox>
-          <InputWrapper>
-            <InputLabel>{t("review.birthDate")}</InputLabel>
-            <StyledTextField
-              value={birthDate}
-              onChange={(e) => handleBirthDateChange(e.target.value)}
-              placeholder={t("review.birthDatePlaceholder")}
-              fullWidth
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <InputLabel>{t("review.gender")}</InputLabel>
-            <StyledSelect
-              value={gender}
-              onChange={(e) => handleGenderChange(e.target.value as string)}
-              fullWidth
-            >
-              {GENDER_OPTIONS.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </StyledSelect>
-          </InputWrapper>
-        </PatientInfoBox>
+        <SectionInfoBox>
+          <SectionTitle>{t("review.patientInfo")}</SectionTitle>
+          <PatientInfoBox>
+            <InputWrapper>
+              <InputLabel>{t("review.birthDate")}</InputLabel>
+              <DatePicker
+                value={birthDate}
+                onChange={handleBirthDateChange}
+                placeholder={t("review.birthDatePlaceholder")}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <InputLabel>{t("review.gender")}</InputLabel>
+              <StyledSelect
+                value={gender}
+                onChange={(e) => handleGenderChange(e.target.value as string)}
+                fullWidth
+              >
+                {GENDER_OPTIONS.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </StyledSelect>
+            </InputWrapper>
+          </PatientInfoBox>
+        </SectionInfoBox>
 
         <SectionTitle>{t("review.bloodMarkers")}</SectionTitle>
         <TableContainer>
@@ -123,28 +118,51 @@ export const ReviewPage = () => {
           </TableHeader>
 
           {markers.map((marker, index) => (
-            <TableRow key={index} isNormal={marker.isNormal}>
+            <TableRow key={index}>
+              {marker.isNew ? (
+                <MarkerSelect
+                  value={marker.name}
+                  onChange={(e) =>
+                    handleMarkerNameChange(index, e.target.value as string)
+                  }
+                  fullWidth
+                  displayEmpty
+                  renderValue={(value) => {
+                    if (!value) {
+                      return (
+                        <MarkerNameText>
+                          {t("review.selectMarker")}
+                        </MarkerNameText>
+                      );
+                    }
+                    return <>{value}</>;
+                  }}
+                >
+                  {AVAILABLE_MARKERS.map((option, index) => (
+                    <MenuItem key={index} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </MarkerSelect>
+              ) : (
+                <MarkerNameText>{marker.name}</MarkerNameText>
+              )}
+
               <TableInput
-                value={marker.name}
-                placeholder="Marker name"
-                onChange={(e) => {
-                  const updatedMarkers = [...markers];
-                  updatedMarkers[index].name = e.target.value;
-                }}
-                fullWidth
-              />
-              <TableInput
-                value={marker.value}
+                type="number"
+                defaultValue={marker.value}
                 placeholder="Value"
-                onChange={(e) => handleMarkerValueChange(index, e.target.value)}
-                fullWidth
+                onBlur={(e) => handleMarkerValueChange(index, e.target.value)}
+                inputProps={{
+                  step: "1",
+                  min: "0",
+                }}
               />
-              <TableInput
-                value={`${marker.normalRange} ${marker.unit}`}
-                placeholder="Normal range"
-                disabled
-                fullWidth
-              />
+
+              <MarkerNameText>
+                {marker.isNew ? "-" : marker.normalRange} {marker.unit}
+              </MarkerNameText>
+
               <BackButton
                 onClick={() => handleRemoveMarker(index)}
                 size="small"
@@ -159,14 +177,14 @@ export const ReviewPage = () => {
           {t("review.addRow")}
         </AddRowButton>
 
-        <CommentBox>
-          <CommentLabel>{t("review.commentLabel")}</CommentLabel>
-          <StyledTextarea
-            value={comment}
-            onChange={(e) => handleCommentChange(e.target.value)}
-            placeholder={t("review.commentPlaceholder")}
-          />
-        </CommentBox>
+        <CommentLabel>
+          <Trans i18nKey="review.commentLabel" />
+        </CommentLabel>
+        <StyledTextarea
+          defaultValue={comment}
+          onBlur={(e) => handleCommentChange(e.target.value)}
+          placeholder={t("review.commentPlaceholder")}
+        />
 
         <FooterActions>
           <BackButton onClick={handleBack} aria-label="Back">
