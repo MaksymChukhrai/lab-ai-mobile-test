@@ -30,6 +30,7 @@ import {
   MarkerNameText,
   SectionInfoBox,
   MarkerSelect,
+  MarkerPlaceholder,
 } from "./styles";
 
 export const ReviewPage = () => {
@@ -130,9 +131,9 @@ export const ReviewPage = () => {
                   renderValue={(value) => {
                     if (!value) {
                       return (
-                        <MarkerNameText>
+                        <MarkerPlaceholder>
                           {t("review.selectMarker")}
-                        </MarkerNameText>
+                        </MarkerPlaceholder>
                       );
                     }
                     return <>{value}</>;

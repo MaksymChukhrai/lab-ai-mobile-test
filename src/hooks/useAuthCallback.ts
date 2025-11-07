@@ -32,7 +32,7 @@ export const useAuthCallback = () => {
 
       Cookies.set("accessToken", data.accessToken, {
         ...cookieOptions,
-        expires: 6048880,
+        expires: 1 / 48,
       });
       Cookies.set("refreshToken", data.refreshToken, {
         ...cookieOptions,

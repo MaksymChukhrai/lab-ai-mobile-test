@@ -142,6 +142,16 @@ export const MarkerNameText = styled(Typography)(({ theme }) => ({
   alignItems: "center",
 }));
 
+export const MarkerPlaceholder = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontSize: theme.fontSizes.fontSize18,
+  fontWeight: theme.fontWeight.REGULAR,
+  lineHeight: theme.lineHeights.lineHeight35,
+  color: alpha(theme.colors.PRIMARY_DARK, 0.4),
+  display: "flex",
+  alignItems: "center",
+}));
+
 export const MarkerSelect = styled(Select)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontSize: theme.fontSizes.fontSize18,
