@@ -327,5 +327,26 @@
     "friday": "Fri",
     "saturday": "Sat",
     "sunday": "Sun"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description_part_1": "Please fill out the form below so that we can assist you in resolving your issue. If for any reason we do not get in touch with you after receiving your request, please contact us at email",
+    "description_part_2": ".",
+    "support_email": "supportabai@gmail.com",
+    "full_name_label": "Full name",
+    "full_name_placeholder": "Enter your full name",
+    "email_label": "Email address",
+    "email_placeholder": "Enter your email address",
+    "message_label": "Please describe your question or issue in detail",
+    "button_send": "Send",
+    "button_sending": "Sending..."
+  },
+  "validation_messages": {
+    "full_name_required": "Full name is required",
+    "full_name_min_length": "Full name must be at least 2 characters",
+    "email_required": "Email address is required",
+    "email_invalid": "Please enter a valid email address",
+    "message_required": "Message is required",
+    "message_min_length": "Message must be at least 10 characters"
   }
 }
