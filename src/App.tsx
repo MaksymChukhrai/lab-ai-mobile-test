@@ -8,6 +8,7 @@ import Landing from "pages/LandingPage/Landing";
 import UploadPage from "pages/UploadPage/UploadPage";
 import { TermsOfServicePage } from "pages/TermsOfServicePage/TermsOfServicePage";
 import { PrivacyPolicyPage } from "pages/PrivacyPolicyPage";
+import { ReviewPage } from "pages/ReviewPage";
 import { ErrorPageTemplate } from "components/ErrorPageTemplate";
 import { PrivateRoute } from "components/PrivateRoute";
 import { PATHS } from "constants/navigation";
@@ -22,7 +23,8 @@ function App() {
         <Router>
           <Routes>
             <Route path={PATHS.DEFAULT} element={<Landing />} />
-            <Route path={PATHS.SIGN_IN} element={<SignInPage />} />{" "}
+            <Route path={PATHS.SIGN_IN} element={<SignInPage />} />
+            <Route path={PATHS.OAUTH_CALLBACK} element={<AuthCallbackPage />} />
             <Route path={PATHS.MAGIC_LINK} element={<AuthCallbackPage />} />
             <Route path={PATHS.TERMS} element={<TermsOfServicePage />} />
             <Route path={PATHS.PRIVACY} element={<PrivacyPolicyPage />} />
@@ -39,6 +41,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <OptionsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={PATHS.REVIEW}
+              element={
+                <PrivateRoute>
+                  <ReviewPage />
                 </PrivateRoute>
               }
             />

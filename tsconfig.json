@@ -5,18 +5,15 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"],
-      "components/*": ["components/*"],
-      "locales/*": ["locales/*"],
-      "locals/*": ["locals/*"],
-      "pages/*": ["pages/*"],
-      "constants/*": ["constants/*"],
-      "hooks/*": ["hooks/*"],
-      "store/*": ["store/*"]
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "locales/*": ["src/locales/*"],
+      "pages/*": ["src/pages/*"],
+      "constants/*": ["src/constants/*"],
+      "hooks/*": ["src/hooks/*"],
+      "store/*": ["src/store/*"]
     },
     "strict": true,
     "forceConsistentCasingInFileNames": true
