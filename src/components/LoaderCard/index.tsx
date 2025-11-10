@@ -28,12 +28,14 @@ function LoaderCard() {
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   const [animateSuccess, setAnimateSuccess] = useState(false);
+
   useEffect(() => {
     if (progress < 100) {
       const timer = setTimeout(
         () => setProgress((progress) => progress + PROGRESS_STEP),
         TIMER_INTERVAL_MS,
       );
+
       return () => clearTimeout(timer);
     } else {
       const timeout = setTimeout(() => setDone(true), DONE_DELAY_MS);
@@ -41,12 +43,14 @@ function LoaderCard() {
         () => setAnimateSuccess(true),
         ANIMATION_DELAY_MS,
       );
+
       return () => {
         clearTimeout(timeout);
         clearTimeout(animTimeout);
       };
     }
   }, [progress]);
+
   return (
     <LoaderBox>
       <TextBox>
