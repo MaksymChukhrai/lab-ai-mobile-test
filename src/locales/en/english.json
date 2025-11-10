@@ -279,6 +279,12 @@
     },
     "continue": "Continue to Review"
   },
+  "loader": {
+    "title": "Processing the result is in progress",
+    "wait": "Please wait while Lab AI processes your test results.",
+    "done": "Done!",
+    "100": "100%"
+  },
   "review": {
     "title": "Review your extracted markers from test results",
     "description": "Please review and edit the extracted values if needed",

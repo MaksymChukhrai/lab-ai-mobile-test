@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useOptionsPage } from "hooks/useOptionsPage";
+import { useLoader } from "@/hooks/useLoader";
 import { OPTIONS_CONFIG } from "constants/options";
 import { STEPS } from "constants/steps";
 import AnalysLayout from "components/AnalysLayout";
@@ -21,8 +22,8 @@ import {
 
 export const OptionsPage = () => {
   const { t } = useTranslation();
-  const { selectedOptions, handleToggleOption, handleBack, handleContinue } =
-    useOptionsPage();
+  const { selectedOptions, handleToggleOption, handleBack } = useOptionsPage();
+  const { handleContinue } = useLoader();
 
   return (
     <AnalysLayout currentStep={STEPS[1]}>
@@ -53,7 +54,7 @@ export const OptionsPage = () => {
             <img src={arrow} alt="arrow" />
           </BackButton>
           <ContinueButton
-            onClick={handleContinue}
+            onClick={() => handleContinue(1)}
             disabled={selectedOptions.length === 0}
           >
             {t("options.continue")}

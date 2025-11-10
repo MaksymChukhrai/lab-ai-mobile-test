@@ -123,8 +123,9 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
       setErrorMessage(message);
     } finally {
       setIsUploading(false);
+      navigate(PATHS.OPTION);
     }
-  }, [selectedFile, ocrText, sendParsedData]);
+  }, [selectedFile, ocrText, sendParsedData, navigate]);
 
   const handleBack = () => {
     navigate(PATHS.DEFAULT);

@@ -16,6 +16,7 @@ export const PATHS = {
   MAGIC_LINK: "/auth/magic-link/consume",
   TERMS: "/terms",
   PRIVACY: "/privacy",
+  LOADER: "/loader",
 };
 
 export const COMPANY_LINKS: NavLink[] = [

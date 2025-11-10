@@ -29,6 +29,7 @@ const FONT_SIZES = {
   fontSize28: "28px",
   fontSize32: "32px",
   fontSize36: "36px",
+  fontSize40: "40px",
   fontSize48: "48px",
   fontSize50: "50px",
   fontSize64: "64px",
