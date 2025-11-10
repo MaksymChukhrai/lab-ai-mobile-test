@@ -279,6 +279,55 @@
     },
     "continue": "Continue to Review"
   },
+  "review": {
+    "title": "Review your extracted markers from test results",
+    "description": "Please review and edit the extracted values if needed",
+    "patientInfo": "Patient information",
+    "birthDate": "Birth date",
+    "birthDatePlaceholder": "--/--/----",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "bloodMarkers": "Blood Markers",
+    "marker": "Marker",
+    "selectMarker": "Select marker",
+    "value": "Value",
+    "normalRange": "Normal Range",
+    "addRow": "Add row +",
+    "commentLabel": "Do you have any questions about your results? Please indicate if you have any <strong>chronic conditions</strong> or are <strong>pregnant</strong> — this information helps the system analyze your results more accurately.",
+    "commentPlaceholder": "e.g. Why is my cholesterol high? What can I do to improve my vitamin D levels?",
+    "generate": "Generate Analysis",
+    "errorLoading": "Error loading blood markers",
+    "errorDescription": "Please try again or contact support if the problem persists."
+  },
+  "common": {
+    "back": "Back",
+    "loading": "Loading...",
+    "continue": "Continue"
+  },
+  "months": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "weeks": {
+    "monday": "Mon",
+    "tuesday": "Tue",
+    "wednesday": "Wed",
+    "thursday": "Thu",
+    "friday": "Fri",
+    "saturday": "Sat",
+    "sunday": "Sun"
+  },
   "contact": {
     "title": "Contact Us",
     "description_part_1": "Please fill out the form below so that we can assist you in resolving your issue. If for any reason we do not get in touch with you after receiving your request, please contact us at email",

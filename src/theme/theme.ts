@@ -1,5 +1,4 @@
 import { createTheme, alpha } from "@mui/material/styles";
-
 declare module "@mui/material/styles" {
   interface Theme {
     customSizes: typeof SIZES;
@@ -27,6 +26,7 @@ const FONT_SIZES = {
   fontSize20: "20px",
   fontSize22: "22px",
   fontSize24: "24px",
+  fontSize28: "28px",
   fontSize32: "32px",
   fontSize36: "36px",
   fontSize48: "48px",
@@ -66,6 +66,7 @@ const COLORS = {
   WHITE: "#FFFFFF",
   SECONDARY_TEAL: "#4EB9BE",
   SECONDARY_GRAY: "#878F9E",
+  SECONDARY_SILVER: "#D9D9D9",
   SECONDARY_BEIGE: "#DBD69D",
   SECONDARY_GREEN: "#45A76A",
   SECONDARY_RED: "#BC0003",
@@ -241,6 +242,92 @@ export const theme = createTheme({
             color: COLORS.WHITE,
             boxShadow: "none",
             opacity: 1,
+          },
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          backgroundColor: COLORS.WHITE,
+          padding: "0",
+          border: `1px solid ${COLORS.PRIMARY_DARK}`,
+          borderRadius: "10px",
+        },
+        icon: {
+          color: alpha(COLORS.PRIMARY_DARK, 0.35),
+        },
+      },
+    },
+
+    MuiMenu: {
+      styleOverrides: {
+        list: {
+          border: `1px solid ${COLORS.PRIMARY_DARK}`,
+          borderRadius: "15px",
+          boxShadow: `0px 4px 4px 0px ${alpha(COLORS.PRIMARY_DARK, 0.25)}`,
+          backgroundColor: COLORS.WHITE,
+          overflowY: "auto",
+          maxHeight: "270px",
+
+          "&::-webkit-scrollbar": {
+            width: "5px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: COLORS.SECONDARY_SILVER,
+            borderRadius: "8px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: alpha(COLORS.PRIMARY_DARK, 1),
+            borderRadius: "8px",
+            transition: "background-color 0.3s ease",
+          },
+        },
+      },
+    },
+
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          padding: "10px 12px 10px 25px",
+          fontFamily: FONT_FAMILY.POPPINS,
+          fontSize: FONT_SIZES.fontSize16,
+          fontWeight: FONT_WEIGHT.REGULAR,
+          color: COLORS.PRIMARY_DARK,
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+
+          "&:hover": {
+            backgroundColor: alpha(COLORS.PRIMARY_LIGHT, 0.5),
+          },
+          "&.Mui-selected": {
+            backgroundColor: alpha(COLORS.PRIMARY_LIGHT, 0.5),
+            position: "relative",
+            "&::before": {
+              content: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='${encodeURIComponent(
+                COLORS.PRIMARY_DARK,
+              )}' viewBox='0 0 24 24'><path d='M20.285 6.709l-11.4 11.4-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.986z'/></svg>")`,
+              display: "inline-block",
+              position: "absolute",
+              left: "5px",
+              width: "16px",
+              height: "16px",
+            },
+            "&:hover": {
+              backgroundColor: alpha(COLORS.PRIMARY_LIGHT, 0.5),
+            },
+          },
+        },
+      },
+    },
+
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          border: "none",
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
           },
         },
       },
