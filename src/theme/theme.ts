@@ -1,20 +1,44 @@
 import { createTheme, alpha } from "@mui/material/styles";
+import type { CSSProperties } from "react";
+
 declare module "@mui/material/styles" {
+  interface TypographyVariants {
+    legalPageTitle: CSSProperties;
+    legalPageSubtitle: CSSProperties;
+    legalSectionTitle: CSSProperties;
+    legalSectionBody: CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    legalPageTitle?: CSSProperties;
+    legalPageSubtitle?: CSSProperties;
+    legalSectionTitle?: CSSProperties;
+    legalSectionBody?: CSSProperties;
+  }
+
   interface Theme {
-    customSizes: typeof SIZES;
     fontSizes: typeof FONT_SIZES;
     lineHeights: typeof LINE_HEIGHTS;
     fontFamily: typeof FONT_FAMILY;
     fontWeight: typeof FONT_WEIGHT;
     colors: typeof COLORS;
   }
+
   interface ThemeOptions {
-    customSizes?: typeof SIZES;
     fontSizes?: typeof FONT_SIZES;
     lineHeights?: typeof LINE_HEIGHTS;
     fontFamily?: typeof FONT_FAMILY;
     fontWeight?: typeof FONT_WEIGHT;
     colors?: typeof COLORS;
+  }
+}
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    legalPageTitle: true;
+    legalPageSubtitle: true;
+    legalSectionTitle: true;
+    legalSectionBody: true;
   }
 }
 
@@ -32,8 +56,13 @@ const FONT_SIZES = {
   fontSize40: "40px",
   fontSize48: "48px",
   fontSize50: "50px",
+  fontSize55: "55px",
   fontSize64: "64px",
   fontSize400: "400px",
+};
+
+const SHADOWS = {
+  LOGO: "0px 4px 4px rgba(0, 0, 0, 0.25)",
 };
 
 const LINE_HEIGHTS = {
@@ -73,12 +102,7 @@ const COLORS = {
   SECONDARY_RED: "#BC0003",
   FOOTER_BG: "#05184D",
 };
-const SIZES = {
-  HERO_LOGO_FONT: "50px",
-  ERROR_CODE: "400px",
-  UPLOAD_CARD_SMALL_FONT: "14px",
-  UPLOAD_CARD_MEDIUM_FONT: "18px",
-};
+
 export const theme = createTheme({
   palette: {
     primary: {
@@ -187,6 +211,41 @@ export const theme = createTheme({
       lineHeight: "24px",
       textTransform: "none",
     },
+
+    legalPageTitle: {
+      fontFamily: FONT_FAMILY.POPPINS,
+      fontWeight: FONT_WEIGHT.SEMIBOLD,
+      fontStyle: "normal",
+      fontSize: "40px",
+      lineHeight: "35px",
+      textAlign: "center",
+      color: COLORS.PRIMARY_DARK,
+    },
+    legalPageSubtitle: {
+      fontFamily: FONT_FAMILY.POPPINS,
+      fontWeight: FONT_WEIGHT.LIGHT,
+      fontStyle: "normal",
+      fontSize: "20px",
+      lineHeight: "35px",
+      textAlign: "center",
+      color: COLORS.SECONDARY_GRAY,
+    },
+    legalSectionTitle: {
+      fontFamily: FONT_FAMILY.POPPINS,
+      fontWeight: FONT_WEIGHT.SEMIBOLD,
+      fontStyle: "normal",
+      fontSize: "24px",
+      lineHeight: "35px",
+      color: COLORS.PRIMARY_DARK,
+    },
+    legalSectionBody: {
+      fontFamily: FONT_FAMILY.POPPINS,
+      fontWeight: FONT_WEIGHT.MEDIUM,
+      fontStyle: "normal",
+      fontSize: "24px",
+      lineHeight: "35px",
+      color: COLORS.PRIMARY_DARK,
+    },
   },
   shape: {
     borderRadius: 15,
@@ -221,7 +280,7 @@ export const theme = createTheme({
           textTransform: "none",
           color: COLORS.WHITE,
           backgroundColor: COLORS.PRIMARY_DARK,
-          boxShadow: `0px 4px 4px ${alpha(COLORS.PRIMARY_DARK, 0.25)}`,
+          boxShadow: SHADOWS.LOGO,
           transition: "all 0.3s cubic-bezier(0.45, 1.45, 0.8, 1)",
           "&:hover": {
             backgroundColor: alpha(COLORS.PRIMARY_LIGHT, 0.55),
@@ -229,7 +288,7 @@ export const theme = createTheme({
           },
           "&:active": {
             backgroundColor: alpha(COLORS.PRIMARY_LIGHT, 0.5),
-            boxShadow: `0px 4px 4px ${alpha(COLORS.PRIMARY_DARK, 0.25)}`,
+            boxShadow: SHADOWS.LOGO,
             transition: "all 0.4s ease-in",
           },
           "&.Mui-focusVisible": {
@@ -334,11 +393,12 @@ export const theme = createTheme({
       },
     },
   },
-  customSizes: SIZES,
+
   fontSizes: FONT_SIZES,
   lineHeights: LINE_HEIGHTS,
   fontFamily: FONT_FAMILY,
   fontWeight: FONT_WEIGHT,
   colors: COLORS,
 });
+
 export default theme;

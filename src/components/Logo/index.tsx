@@ -5,7 +5,7 @@ import { LogoContainer, LogoImage, LogoText } from "./styles";
 
 interface LogoProps {
   light?: boolean;
-  variant?: "default" | "hero";
+  variant?: "default" | "hero" | "page";
 }
 
 export const Logo = ({ light = false, variant = "default" }: LogoProps) => {

@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: zenbit-frontend-dev
     ports:
-      - '${FRONTEND_DEV_PORT:-5173}:5173'
+      - "${FRONTEND_DEV_PORT:-5173}:5173"
     volumes:
       - ./src:/app/src
       - ./public:/app/public
@@ -24,7 +24,15 @@ services:
       - app-network
     restart: unless-stopped
     healthcheck:
-      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://127.0.0.1:5173']
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://127.0.0.1:5173",
+        ]
       interval: 30s
       timeout: 5s
       retries: 3
