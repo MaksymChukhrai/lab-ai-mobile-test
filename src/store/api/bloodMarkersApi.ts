@@ -48,5 +48,8 @@ export const bloodMarkersApi = apiSlice.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetBloodMarkersQuery, useGenerateAnalysisMutation } =
-  bloodMarkersApi;
+export const {
+  useGetBloodMarkersQuery,
+  useGenerateAnalysisMutation,
+  useLazyGetBloodMarkersQuery,
+} = bloodMarkersApi;

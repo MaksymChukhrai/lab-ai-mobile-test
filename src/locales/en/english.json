@@ -167,7 +167,9 @@
     "ocr": "OCR processing failed. Please try another image.",
     "canvas": "Failed to create canvas context for OCR fallback",
     "noFile": "No file or extracted text available for upload.",
-    "unknownError": "Uploading failed. Please, try later."
+    "unknownError": "Uploading failed. Please, try later.",
+    "noMedicalData": "The uploaded file does not contain medical data.",
+    "noBloodMarkers": "The uploaded file does not contain blood markers."
   },
 
   "termsOfService": {
@@ -292,6 +294,7 @@
     "patientInfo": "Patient information",
     "birthDate": "Birth date",
     "birthDatePlaceholder": "--/--/----",
+    "selectGender": "Select gender",
     "gender": "Gender",
     "male": "Male",
     "female": "Female",

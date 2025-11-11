@@ -84,6 +84,12 @@ export const bloodMarkersSlice = createSlice({
     updateGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload;
     },
+    clearBloodMarkersData: (state) => {
+      state.age = 0;
+      state.gender = "";
+      state.markers = [];
+      state.comment = "";
+    },
   },
 });
 
@@ -96,6 +102,7 @@ export const {
   setComment,
   updateAge,
   updateGender,
+  clearBloodMarkersData,
 } = bloodMarkersSlice.actions;
 
 export const selectBloodMarkers = (state: RootState) =>

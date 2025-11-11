@@ -25,10 +25,13 @@ export const optionSlice = createSlice({
         state.selectedOptions.push(optionId);
       }
     },
+    clearSelectedOptions: (state) => {
+      state.selectedOptions = [];
+    },
   },
 });
 
-export const { toggleOption } = optionSlice.actions;
+export const { toggleOption, clearSelectedOptions } = optionSlice.actions;
 
 export const selectSelectedOptions = (state: RootState) =>
   state.option.selectedOptions;

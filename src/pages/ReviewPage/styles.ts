@@ -82,7 +82,7 @@ export const StyledSelect = styled(Select)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontSize: theme.fontSizes.fontSize20,
   height: "45px",
-
+  textTransform: "capitalize",
   boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
   "&:hover": {
     boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)} inset`,

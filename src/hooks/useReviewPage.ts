@@ -42,11 +42,15 @@ export const useReviewPage = () => {
     if (data && markers.length === 0) {
       dispatch(setBloodMarkersData(data));
 
+      if (data.age === null) setBirthDate("");
       const calculatedBirthYear = new Date().getFullYear() - data.age;
       setBirthDate(`01/01/${calculatedBirthYear}`);
     }
   }, [data, dispatch, markers.length]);
+
   useEffect(() => {
+    if (age === null) setBirthDate("");
+
     if (age > 0 && !birthDate) {
       const calculatedBirthYear = new Date().getFullYear() - age;
       setBirthDate(`01/01/${calculatedBirthYear}`);
@@ -111,7 +115,6 @@ export const useReviewPage = () => {
       };
 
       await generateAnalysis(analysisData).unwrap();
-
       navigate(STEP_PATHS.review);
     } catch (error) {
       console.error("Failed to generate analysis:", error);

@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { t } from "i18next";
 import Tesseract from "tesseract.js";
 import { useNavigate } from "react-router-dom";
@@ -6,14 +6,29 @@ import {
   FILE_TYPE_PDF,
   OCR_LANGUAGES,
   OCR_STATUS_RECOGNIZING,
-} from "@/constants/fileUpload";
-import { useSendParsedDataMutation } from "@/store/api/uploadFileApi";
-import { PATHS } from "@/constants/navigation";
-import { validateFile } from "./utils/fileUtils";
-import { extractTextFromPDF } from "./utils/pdfUtils";
+} from "constants/fileUpload";
+import { useSendParsedDataMutation } from "store/api/uploadFileApi";
+import { useLazyGetBloodMarkersQuery } from "store/api/bloodMarkersApi";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import {
+  setUploadedFile,
+  clearUploadedFile,
+  selectUploadedFile,
+  selectHasUploadedFile,
+} from "store/slices/uploadFileSlice";
+import { clearBloodMarkersData } from "store/slices/bloodMarkersSlice";
+import { clearSelectedOptions } from "store/slices/optionSlice";
+import { PATHS } from "constants/navigation";
+import { validateFile } from "components/UploadCard/utils/fileUtils";
+import { extractTextFromPDF } from "components/UploadCard/utils/pdfUtils";
 
 export const useUploadCard = (uploadEnabled: boolean = true) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const uploadedFile = useAppSelector(selectUploadedFile);
+  const hasUploadedFile = useAppSelector(selectHasUploadedFile);
+
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [ocrText, setOcrText] = useState<string | null>(null);
@@ -24,8 +39,23 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showLoader, setShowLoader] = useState(false);
 
-  const selectedFileName = selectedFile?.name ?? null;
   const [sendParsedData] = useSendParsedDataMutation();
+  const [getBloodMarkers] = useLazyGetBloodMarkersQuery();
+
+  useEffect(() => {
+    if (
+      hasUploadedFile &&
+      uploadedFile.fileName &&
+      uploadedFile.extractedText
+    ) {
+      setOcrText(uploadedFile.extractedText);
+      setShowLoader(true);
+      setOcrProgress(100);
+      setIsProcessing(false);
+    }
+  }, [hasUploadedFile, uploadedFile]);
+
+  const selectedFileName = uploadedFile.fileName || selectedFile?.name || null;
 
   const handleBrowseClick = useCallback(() => {
     if (!uploadEnabled) return;
@@ -103,7 +133,16 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
   }, [uploadEnabled]);
 
   const handleContinue = useCallback(async () => {
-    if (!selectedFile || !ocrText) {
+    if (uploadedFile.uploadId && hasUploadedFile) {
+      navigate(PATHS.OPTION);
+      return;
+    }
+
+    const fileName = uploadedFile.fileName || selectedFile?.name;
+    const fileType = uploadedFile.fileType || selectedFile?.type;
+    const textToUpload = ocrText;
+
+    if (!fileName || !fileType || !textToUpload) {
       setErrorMessage(t("error.noFile"));
       return;
     }
@@ -112,20 +151,54 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
       setIsUploading(true);
       setErrorMessage(null);
 
-      await sendParsedData({
-        fileName: selectedFile.name,
-        fileType: selectedFile.type,
-        extractedText: ocrText,
+      const uploadResponse = await sendParsedData({
+        fileName,
+        fileType,
+        extractedText: textToUpload,
       }).unwrap();
+
+      const { analysis, id } = uploadResponse;
+
+      if (!analysis.isMedical) {
+        setErrorMessage(t("error.noMedicalData"));
+        setIsUploading(false);
+        return;
+      }
+
+      if (!analysis.hasBloodMarkers) {
+        setErrorMessage(t("error.noBloodMarkers"));
+        setIsUploading(false);
+        return;
+      }
+
+      dispatch(
+        setUploadedFile({
+          fileName,
+          fileType,
+          extractedText: textToUpload,
+          uploadId: id,
+        }),
+      );
+
+      navigate(PATHS.OPTION);
+      await getBloodMarkers().unwrap();
     } catch (err) {
       const message =
         err instanceof Error ? err.message : t("error.uploadFailed");
       setErrorMessage(message);
     } finally {
       setIsUploading(false);
-      navigate(PATHS.OPTION);
     }
-  }, [selectedFile, ocrText, sendParsedData, navigate]);
+  }, [
+    selectedFile,
+    ocrText,
+    uploadedFile,
+    sendParsedData,
+    getBloodMarkers,
+    navigate,
+    dispatch,
+    hasUploadedFile,
+  ]);
 
   const handleBack = () => {
     navigate(PATHS.DEFAULT);
@@ -133,15 +206,15 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
 
   const handleDeleteFile = useCallback(() => {
     setSelectedFile(null);
-
     setOcrText(null);
-
     setErrorMessage(null);
-
     setOcrProgress(0);
-
     setShowLoader(false);
-  }, []);
+
+    dispatch(clearUploadedFile());
+    dispatch(clearBloodMarkersData());
+    dispatch(clearSelectedOptions());
+  }, [dispatch]);
 
   const handleDrop = useCallback(
     (e: React.DragEvent<HTMLDivElement>) => {
@@ -154,6 +227,7 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
     },
     [handleFile],
   );
+
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
@@ -182,7 +256,7 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
     ocrText,
     isProcessing,
     ocrProgress,
-    isFileSelected: !!selectedFile,
+    isFileSelected: !!selectedFile || hasUploadedFile,
     errorMessage,
     showLoader,
   };

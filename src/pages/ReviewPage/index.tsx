@@ -95,9 +95,20 @@ export const ReviewPage = () => {
             <InputWrapper>
               <InputLabel>{t("review.gender")}</InputLabel>
               <StyledSelect
-                value={gender}
+                value={gender || ""}
                 onChange={(e) => handleGenderChange(e.target.value as string)}
                 fullWidth
+                displayEmpty
+                renderValue={(value) => {
+                  if (!value) {
+                    return (
+                      <MarkerPlaceholder>
+                        {t("review.selectGender")}
+                      </MarkerPlaceholder>
+                    );
+                  }
+                  return <>{value}</>;
+                }}
               >
                 {GENDER_OPTIONS.map((option) => (
                   <MenuItem key={option.value} value={option.value}>

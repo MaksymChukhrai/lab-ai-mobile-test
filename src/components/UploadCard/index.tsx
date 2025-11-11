@@ -77,7 +77,7 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
             <Description wide={uploadEnabled}>
               {t("card.description")}
             </Description>
-            {!isFileSelected || !showLoader ? (
+            {!isFileSelected || !showLoader || errorMessage !== null ? (
               <UploadBox
                 wide={uploadEnabled}
                 onDrop={handleDrop}

@@ -6,10 +6,16 @@ export interface ParsedDataPayload {
   extractedText: string;
 }
 
+export interface UploadAnalysis {
+  isMedical: boolean;
+  hasBloodMarkers: boolean;
+}
+
 export interface ParsedDataResponse {
   message: string;
   saved: boolean;
-  id?: string;
+  id: string;
+  analysis: UploadAnalysis;
 }
 
 export const uploadFileApi = apiSlice.injectEndpoints({

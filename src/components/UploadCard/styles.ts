@@ -67,7 +67,7 @@ export const Description = styled(Typography)<{ wide?: boolean }>(
       ? theme.lineHeights.lineHeight35
       : theme.lineHeights.lineHeight20,
     letterSpacing: "1%",
-    marginLeft: "25px",
+    marginLeft: wide ? "0" : "25px",
     textAlign: wide ? "center" : "left",
     color: theme.colors.PRIMARY_DARK,
   }),
