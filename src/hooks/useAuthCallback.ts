@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
+import { COOKIE_EXPIRY } from "constants/auth";
 import { PATHS } from "constants/navigation";
 import { useConsumeMagicLinkQuery } from "store/api/apiSlice";
 import { useAuth } from "./useAuth";
@@ -11,18 +12,47 @@ export const useAuthCallback = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const token = searchParams.get("token");
 
-  const { data, isLoading, isSuccess, isError, error } =
-    useConsumeMagicLinkQuery({ token: token as string }, { skip: !token });
+  const magicToken = searchParams.get("token");
+
+  const oauthAccessToken = searchParams.get("access_token");
+  const oauthRefreshToken = searchParams.get("refresh_token");
 
   const [callbackError, setCallbackError] = useState<{
     code: string;
     message: string;
   } | null>(null);
 
+  const { data, isLoading, isSuccess, isError } = useConsumeMagicLinkQuery(
+    { token: magicToken as string },
+    { skip: !magicToken },
+  );
+
   useEffect(() => {
-    if (isAuthenticated) navigate(PATHS.UPLOAD);
+    if (isAuthenticated) {
+      navigate(PATHS.UPLOAD);
+      return;
+    }
+
+    if (oauthAccessToken && oauthRefreshToken) {
+      const cookieOptions = {
+        secure: true,
+        sameSite: "strict" as const,
+      };
+
+      Cookies.set("accessToken", oauthAccessToken, {
+        ...cookieOptions,
+        expires: COOKIE_EXPIRY.ACCESS_TOKEN,
+      });
+
+      Cookies.set("refreshToken", oauthRefreshToken, {
+        ...cookieOptions,
+        expires: COOKIE_EXPIRY.REFRESH_TOKEN,
+      });
+
+      navigate(PATHS.UPLOAD);
+      return;
+    }
 
     if (isSuccess && data) {
       const cookieOptions = {
@@ -32,12 +62,14 @@ export const useAuthCallback = () => {
 
       Cookies.set("accessToken", data.accessToken, {
         ...cookieOptions,
-        expires: 1 / 48,
+        expires: COOKIE_EXPIRY.ACCESS_TOKEN,
       });
+
       Cookies.set("refreshToken", data.refreshToken, {
         ...cookieOptions,
-        expires: 7,
+        expires: COOKIE_EXPIRY.REFRESH_TOKEN,
       });
+
       navigate(PATHS.UPLOAD);
       return;
     }
@@ -51,7 +83,7 @@ export const useAuthCallback = () => {
           message: t("authCallback.errorInvalidToken"),
         });
         errorOccurred = true;
-      } else if (!token) {
+      } else if (!magicToken && !oauthAccessToken) {
         setCallbackError({
           code: t("errorPage.codeGeneric"),
           message: t("authCallback.noTokenFound"),
@@ -72,15 +104,16 @@ export const useAuthCallback = () => {
     isError,
     isLoading,
     data,
-    token,
+    magicToken,
+    oauthAccessToken,
+    oauthRefreshToken,
     navigate,
-    error,
     t,
     isAuthenticated,
   ]);
 
   return {
-    isLoading,
+    isLoading: isLoading || !!(oauthAccessToken && oauthRefreshToken),
     callbackError,
   };
 };

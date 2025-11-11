@@ -24,7 +24,8 @@ function App() {
         <Router>
           <Routes>
             <Route path={PATHS.DEFAULT} element={<Landing />} />
-            <Route path={PATHS.SIGN_IN} element={<SignInPage />} />{" "}
+            <Route path={PATHS.SIGN_IN} element={<SignInPage />} />
+            <Route path={PATHS.OAUTH_CALLBACK} element={<AuthCallbackPage />} />
             <Route path={PATHS.MAGIC_LINK} element={<AuthCallbackPage />} />
             <Route path={PATHS.TERMS} element={<TermsOfServicePage />} />
             <Route path={PATHS.PRIVACY} element={<PrivacyPolicyPage />} />

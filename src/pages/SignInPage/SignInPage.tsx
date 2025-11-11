@@ -2,9 +2,10 @@ import { Box, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSignInForm } from "hooks/useSignInForm";
 import { PATHS } from "constants/navigation";
+import { authService } from "@/api/authService";
 import { Logo } from "@/components/Logo";
 import google from "locals/google.svg";
-import facebook from "locals/facebook.svg";
+import linkedin from "locals/linkedin.svg";
 import errorIcon from "locals/error.svg";
 import {
   PageWrapper,
@@ -38,16 +39,31 @@ export const SignInPage = () => {
         <FormSubtitle>{t("signIn.subtitle")}</FormSubtitle>
 
         <SocialButtonContainer>
-          <SocialButton
-            startIcon={<img src={google} alt={t("icons.googleAlt")} />}
+          <Box
+            component="a"
+            href={authService.getGoogleAuthUrl()}
+            sx={{ textDecoration: "none", display: "block", width: "100%" }}
           >
-            {t("signIn.google")}
-          </SocialButton>
-          <SocialButton
-            startIcon={<img src={facebook} alt={t("icons.facebookAlt")} />}
+            <SocialButton
+              fullWidth
+              startIcon={<img src={google} alt={t("icons.googleAlt")} />}
+            >
+              {t("signIn.google")}
+            </SocialButton>
+          </Box>
+
+          <Box
+            component="a"
+            href={authService.getLinkedInAuthUrl()}
+            sx={{ textDecoration: "none", display: "block", width: "100%" }}
           >
-            {t("signIn.facebook")}
-          </SocialButton>
+            <SocialButton
+              fullWidth
+              startIcon={<img src={linkedin} alt={t("icons.linkedinAlt")} />}
+            >
+              {t("signIn.linkedin")}
+            </SocialButton>
+          </Box>
         </SocialButtonContainer>
 
         <DividerForm>{t("signIn.divider")}</DividerForm>
