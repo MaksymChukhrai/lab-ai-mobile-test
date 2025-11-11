@@ -103,6 +103,7 @@ export const ReviewPage = () => {
                       </MarkerPlaceholder>
                     );
                   }
+
                   return <>{value}</>;
                 }}
               >

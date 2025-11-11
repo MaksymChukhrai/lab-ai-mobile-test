@@ -61,6 +61,7 @@ export const MarkerRow = ({
                 </MarkerPlaceholder>
               );
             }
+
             return <>{value}</>;
           }}
         >
