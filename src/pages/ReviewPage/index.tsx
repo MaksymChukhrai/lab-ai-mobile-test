@@ -1,12 +1,11 @@
 import { CircularProgress, MenuItem } from "@mui/material";
 import { Trans, useTranslation } from "react-i18next";
 import { STEPS } from "constants/steps";
-import { GENDER_OPTIONS, AVAILABLE_MARKERS } from "constants/review";
+import { GENDER_OPTIONS } from "constants/review";
 import { AnalysLayout } from "components/AnalysLayout";
 import { DatePicker } from "components/DatePicker";
 import { useReviewPage } from "hooks/useReviewPage";
 import arrow from "locals/arrow.svg";
-import deleteIcon from "locals/delete.svg";
 import {
   ContentContainer,
   PageTitle,
@@ -19,19 +18,16 @@ import {
   TableContainer,
   TableHeader,
   TableHeaderCell,
-  TableRow,
-  TableInput,
   AddRowButton,
   CommentLabel,
   StyledTextarea,
   FooterActions,
   BackButton,
   GenerateButton,
-  MarkerNameText,
   SectionInfoBox,
-  MarkerSelect,
   MarkerPlaceholder,
 } from "./styles";
+import { MarkerRow } from "@/components/MarkerRow";
 
 export const ReviewPage = () => {
   const { t } = useTranslation();
@@ -129,59 +125,14 @@ export const ReviewPage = () => {
             <TableHeaderCell />
           </TableHeader>
 
-          {markers.map((marker, index) => (
-            <TableRow key={index}>
-              {marker.isNew ? (
-                <MarkerSelect
-                  value={marker.name}
-                  onChange={(e) =>
-                    handleMarkerNameChange(index, e.target.value as string)
-                  }
-                  fullWidth
-                  displayEmpty
-                  renderValue={(value) => {
-                    if (!value) {
-                      return (
-                        <MarkerPlaceholder>
-                          {t("review.selectMarker")}
-                        </MarkerPlaceholder>
-                      );
-                    }
-                    return <>{value}</>;
-                  }}
-                >
-                  {AVAILABLE_MARKERS.map((option, index) => (
-                    <MenuItem key={index} value={option}>
-                      {option}
-                    </MenuItem>
-                  ))}
-                </MarkerSelect>
-              ) : (
-                <MarkerNameText>{marker.name}</MarkerNameText>
-              )}
-
-              <TableInput
-                type="number"
-                defaultValue={marker.value}
-                placeholder="Value"
-                onBlur={(e) => handleMarkerValueChange(index, e.target.value)}
-                inputProps={{
-                  step: "1",
-                  min: "0",
-                }}
-              />
-
-              <MarkerNameText>
-                {marker.isNew ? "-" : marker.normalRange} {marker.unit}
-              </MarkerNameText>
-
-              <BackButton
-                onClick={() => handleRemoveMarker(index)}
-                size="small"
-              >
-                <img src={deleteIcon} alt="Delete" width={24} height={24} />
-              </BackButton>
-            </TableRow>
+          {markers.map((marker) => (
+            <MarkerRow
+              key={marker.id}
+              marker={marker}
+              handleMarkerNameChange={handleMarkerNameChange}
+              handleMarkerValueChange={handleMarkerValueChange}
+              handleRemoveMarker={handleRemoveMarker}
+            />
           ))}
         </TableContainer>
 

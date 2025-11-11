@@ -2,6 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../index";
 
 export interface BloodMarkerWithMeta {
+  id: string;
   name: string;
   value: string;
   unit: string;
@@ -40,29 +41,34 @@ export const bloodMarkersSlice = createSlice({
       state.gender = action.payload.gender;
       state.markers = action.payload.markers.map((marker) => ({
         ...marker,
+        id: crypto.randomUUID(),
         isNew: false,
       }));
     },
     updateMarkerName: (
       state,
-      action: PayloadAction<{ index: number; name: string }>,
+      action: PayloadAction<{ id: string; name: string }>,
     ) => {
-      const { index, name } = action.payload;
-      if (state.markers[index]) {
-        state.markers[index].name = name;
+      // const { index, name } = action.payload;
+      const { id, name } = action.payload;
+      const marker = state.markers.find((m) => m.id === id);
+      if (marker) {
+        marker.name = name;
       }
     },
     updateMarkerValue: (
       state,
-      action: PayloadAction<{ index: number; value: string }>,
+      action: PayloadAction<{ id: string; value: string }>,
     ) => {
-      const { index, value } = action.payload;
-      if (state.markers[index]) {
-        state.markers[index].value = value;
+      const { id, value } = action.payload;
+      const marker = state.markers.find((m) => m.id === id);
+      if (marker) {
+        marker.value = value;
       }
     },
     addMarker: (state) => {
       const newMarker: BloodMarkerWithMeta = {
+        id: crypto.randomUUID(),
         name: "",
         value: "",
         unit: "",
@@ -72,8 +78,10 @@ export const bloodMarkersSlice = createSlice({
       };
       state.markers.push(newMarker);
     },
-    removeMarker: (state, action: PayloadAction<number>) => {
-      state.markers.splice(action.payload, 1);
+    removeMarker: (state, action: PayloadAction<string>) => {
+      state.markers = state.markers.filter(
+        (marker) => marker.id !== action.payload,
+      );
     },
     setComment: (state, action: PayloadAction<string>) => {
       state.comment = action.payload;

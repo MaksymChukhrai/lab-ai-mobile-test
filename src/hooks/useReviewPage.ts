@@ -57,21 +57,21 @@ export const useReviewPage = () => {
     }
   }, [age, birthDate]);
 
-  const handleMarkerNameChange = (index: number, name: string): void => {
-    dispatch(updateMarkerName({ index, name }));
+  const handleMarkerNameChange = (id: string, name: string): void => {
+    dispatch(updateMarkerName({ id, name }));
   };
 
-  const handleMarkerValueChange = (index: number, value: string): void => {
+  const handleMarkerValueChange = (id: string, value: string): void => {
     const numericValue = value.replace(/[^0-9.]/g, "");
-    dispatch(updateMarkerValue({ index, value: numericValue }));
+    dispatch(updateMarkerValue({ id, value: numericValue }));
   };
 
   const handleAddMarker = (): void => {
     dispatch(addMarker());
   };
 
-  const handleRemoveMarker = (index: number): void => {
-    dispatch(removeMarker(index));
+  const handleRemoveMarker = (id: string): void => {
+    dispatch(removeMarker(id));
   };
 
   const handleCommentChange = (value: string): void => {

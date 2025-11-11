@@ -1,6 +1,7 @@
 import { apiSlice } from "./apiSlice";
 
 export interface BloodMarker {
+  id: string;
   name: string;
   value: string;
   unit: string;
