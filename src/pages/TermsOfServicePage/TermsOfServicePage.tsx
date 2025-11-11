@@ -1,4 +1,4 @@
-import { Container, Typography, Divider } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Logo } from "components/Logo";
 import {
@@ -7,6 +7,8 @@ import {
   SectionBox,
   HeaderBox,
   FooterBox,
+  TopDivider,
+  BottomDivider,
 } from "./styles";
 
 export const TermsOfServicePage = () => {
@@ -26,34 +28,37 @@ export const TermsOfServicePage = () => {
 
   return (
     <PageWrapper>
-      <Container maxWidth="md">
+      <Container maxWidth={false} disableGutters>
         <HeaderBox>
-          <Logo variant="hero" />
+          <Logo variant="page" />
+
           <Typography
-            variant="h3"
+            variant="legalPageTitle"
             component="h1"
-            sx={{ mt: 3, mb: 1, fontWeight: 600 }}
+            sx={{ mt: 3, mb: 1 }}
           >
             {t("termsOfService.title")}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+
+          <Typography variant="legalPageSubtitle">
             {t("termsOfService.lastUpdated")}
           </Typography>
         </HeaderBox>
 
-        <Divider sx={{ my: 4 }} />
+        <TopDivider />
 
         <ContentContainer>
           {sections.map((section) => (
             <SectionBox key={section}>
               <Typography
-                variant="h5"
+                variant="legalSectionTitle"
                 component="h2"
-                sx={{ mb: 2, fontWeight: 500 }}
+                sx={{ mb: 2 }}
               >
                 {t(`termsOfService.sections.${section}.title`)}
               </Typography>
-              <Typography variant="body1" paragraph>
+
+              <Typography variant="legalSectionBody" paragraph>
                 {t(`termsOfService.sections.${section}.content`)}
               </Typography>
             </SectionBox>
@@ -61,8 +66,8 @@ export const TermsOfServicePage = () => {
         </ContentContainer>
 
         <FooterBox>
-          <Divider sx={{ mb: 2 }} />
-          <Typography variant="body2" color="text.secondary" align="center">
+          <BottomDivider />
+          <Typography variant="legalPageSubtitle">
             {t("footer.copyright")}
           </Typography>
         </FooterBox>
