@@ -2,15 +2,15 @@ import Cookies from "js-cookie";
 import { COOKIE_EXPIRY } from "@/constants/auth";
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 export const authService = {
   getGoogleAuthUrl: (): string => {
-    return `${API_BASE_URL}/auth/google`;
+    return `${API_BASE_URL}/api/auth/google`;
   },
 
   getLinkedInAuthUrl: (): string => {
-    return `${API_BASE_URL}/auth/linkedin`;
+    return `${API_BASE_URL}/api/auth/linkedin`;
   },
 
   handleOAuthCallback: (searchParams: URLSearchParams): boolean => {

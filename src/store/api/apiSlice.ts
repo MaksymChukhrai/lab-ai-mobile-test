@@ -27,6 +27,7 @@ const baseQuery = fetchBaseQuery({
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
+
     return headers;
   },
 });
@@ -43,7 +44,7 @@ const baseQueryWithReauth: BaseQueryFn<
     if (refreshToken) {
       const refreshResult = await baseQuery(
         {
-          url: "/auth/refresh",
+          url: "/api/auth/refresh",
           method: "POST",
           body: { refreshToken },
         },
@@ -75,6 +76,7 @@ const baseQueryWithReauth: BaseQueryFn<
       }
     }
   }
+
   return result;
 };
 
@@ -87,13 +89,13 @@ export const apiSlice = createApi({
       MagicLinkRequest
     >({
       query: (credentials) => ({
-        url: "/auth/magic-link/request",
+        url: "/api/auth/magic-link/request",
         method: "POST",
         body: credentials,
       }),
     }),
     consumeMagicLink: builder.query<AuthTokens, { token: string }>({
-      query: ({ token }) => `/auth/magic-link/consume?token=${token}`,
+      query: ({ token }) => `/api/auth/magic-link/consume?token=${token}`,
     }),
   }),
 });
