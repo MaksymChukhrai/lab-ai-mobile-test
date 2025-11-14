@@ -6,11 +6,11 @@ const API_BASE_URL =
 
 export const authService = {
   getGoogleAuthUrl: (): string => {
-    return `${API_BASE_URL}/auth/google`;
+    return `${API_BASE_URL}/api/auth/google`;
   },
 
   getLinkedInAuthUrl: (): string => {
-    return `${API_BASE_URL}/auth/linkedin`;
+    return `${API_BASE_URL}/api/auth/linkedin`;
   },
 
   handleOAuthCallback: (searchParams: URLSearchParams): boolean => {
