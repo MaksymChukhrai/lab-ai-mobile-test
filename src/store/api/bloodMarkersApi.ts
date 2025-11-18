@@ -59,18 +59,6 @@ export interface AnalysisResponse {
   finalAssessment: FinalAssessment;
 }
 
-export interface UploadAnalysis {
-  isMedical: boolean;
-  hasBloodMarkers: boolean;
-}
-
-export interface UploadFileResponse {
-  message: string;
-  saved: boolean;
-  id: string;
-  analysis: UploadAnalysis;
-}
-
 export const bloodMarkersApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getBloodMarkers: builder.query<BloodMarkersResponse, void>({
