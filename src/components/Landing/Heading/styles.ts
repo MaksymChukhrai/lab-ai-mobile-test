@@ -45,8 +45,7 @@ export const GetStartedButton = styled(Button)(({ theme }) => ({
   borderRadius: 15,
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.MEDIUM,
-  fontSize: "20px",
-  lineHeight: "24px",
+  fontSize: theme.fontSizes.fontSize20,
   textTransform: "none",
 
   color: theme.colors.WHITE,
@@ -183,7 +182,6 @@ export const UploadButton = styled(Button)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: theme.colors.PRIMARY_DARK,
   fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight24,
   color: theme.colors.WHITE,
   boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
   opacity: 1,
