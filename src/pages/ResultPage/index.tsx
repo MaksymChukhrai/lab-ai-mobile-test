@@ -52,14 +52,7 @@ export const ResultPage = () => {
   if (!analysisResult) {
     return (
       <AnalysLayout currentStep={STEPS[3]}>
-        <PageContainer
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "400px",
-          }}
-        >
+        <PageContainer>
           <CircularProgress />
         </PageContainer>
       </AnalysLayout>
