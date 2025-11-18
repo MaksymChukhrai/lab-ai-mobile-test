@@ -12,6 +12,12 @@ export const Upload = styled(Card)<{ wide?: boolean }>(({ theme, wide }) => ({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+
+  ...(!wide && {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  }),
 }));
 
 export const UploadContainer = styled(Box)<{ wide?: boolean }>(({ wide }) => ({

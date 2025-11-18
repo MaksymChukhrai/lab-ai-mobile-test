@@ -15,6 +15,7 @@ import {
 
 function Benefits() {
   const { t } = useTranslation();
+
   return (
     <>
       <BenefitsContainer id="use-cases">

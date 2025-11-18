@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 export const GradientBox = styled(Box)({
   width: "100%",
-  height: "1280px",
+  height: "1180px",
   position: "relative",
   display: "flex",
   flexDirection: "column",
@@ -64,25 +64,25 @@ export const Container = styled(Box)(({ theme }) => ({
 }));
 
 export const Container1 = styled(Container)({
-  top: "50%",
+  top: "52%",
   left: "50%",
   transform: "translate(-135%, -180%)",
 });
 
 export const Container2 = styled(Container)({
-  top: "50%",
+  top: "52%",
   left: "50%",
   transform: "translate(30%, -180%)",
 });
 
 export const Container3 = styled(Container)({
-  top: "50%",
+  top: "52%",
   left: "50%",
   transform: "translate(-150%, -20%)",
 });
 
 export const Container4 = styled(Container)({
-  top: "50%",
+  top: "52%",
   left: "50%",
   transform: "translate(45%, -30%)",
 });
