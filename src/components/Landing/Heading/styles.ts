@@ -162,8 +162,7 @@ export const Stat = styled(Typography)(({ theme }) => ({
 }));
 
 export const Line = styled(Divider)(({ theme }) => ({
-  display: "flex",
-  justifySelf: "center",
   width: "82%",
+  margin: "0 auto",
   backgroundColor: alpha(theme.colors.PRIMARY_DARK, 0.1),
 }));

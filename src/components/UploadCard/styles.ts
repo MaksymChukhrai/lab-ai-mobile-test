@@ -19,7 +19,6 @@ export const UploadContainer = styled(Box)<{ wide?: boolean }>(({ wide }) => ({
   width: "88%",
   display: "flex",
   flexDirection: "column",
-  justifySelf: "center",
   justifyContent: "space-between",
   alignItems: wide ? "center" : "flex-start",
 }));
@@ -136,7 +135,6 @@ export const ResultsBox = styled(Box)({
   width: "90%",
   display: "flex",
   gap: "15px",
-  justifySelf: "flex-start",
   alignItems: "center",
 });
 
@@ -202,8 +200,7 @@ export const UploadButton = styled(Button)<{ wide?: boolean }>(
     width: wide ? "180px" : "150px",
     minHeight: "34px",
     padding: "10px",
-    justifySelf: "flex-end",
-    alignSelf: "center",
+    margin: "0 auto",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.colors.PRIMARY_DARK,
     color: theme.colors.WHITE,
