@@ -7,7 +7,7 @@ import heart from "locals/heart.svg";
 import download from "locals/download.svg";
 import arrow from "locals/arrow.svg";
 import deleteIcon from "locals/delete.svg";
-import error2 from "locals/error2.svg";
+import error_new from "locals/error_new.svg";
 import fileIcon from "locals/fileIcon.svg";
 import { FILE_INPUTS, UPLOAD_MODE } from "@/constants/fileUpload";
 import { useUploadCard } from "./UploadCardHooks";
@@ -160,7 +160,7 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
             {isMobile && errorMessage && !showLoader && (
               <MobileBox>
                 <ErrorMessageBox>
-                  <ErrorImage src={error2} />
+                  <ErrorImage src={error_new} />
                   <ErrorMessageMobile>{errorMessage}</ErrorMessageMobile>
                 </ErrorMessageBox>
               </MobileBox>
