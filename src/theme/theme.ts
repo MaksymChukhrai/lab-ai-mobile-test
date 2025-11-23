@@ -68,6 +68,7 @@ const SHADOWS = {
 };
 
 const LINE_HEIGHTS = {
+  lineHeight15: "15px",
   lineHeight20: "20px",
   lineHeight24: "24px",
   lineHeight25: "25px",

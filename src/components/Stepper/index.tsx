@@ -4,6 +4,7 @@ import { STEP_PATHS, STEPS, type Steper } from "constants/steps";
 import {
   StepsContainer,
   StepWrapper,
+  StepContent,
   StepIcon,
   StepLabel,
   StepConnector,
@@ -35,7 +36,9 @@ export const Stepper = ({ currentStep }: StepperProps) => {
         } else {
           status = "upcoming";
         }
+
         const isClickable = index <= currentIndex;
+
         return (
           <StepWrapper
             key={step}
@@ -44,8 +47,10 @@ export const Stepper = ({ currentStep }: StepperProps) => {
               cursor: isClickable ? "pointer" : "default",
             }}
           >
-            <StepIcon status={status}>{index + 1}</StepIcon>
-            <StepLabel status={status}>{t(`steps.${step}`)}</StepLabel>
+            <StepContent>
+              <StepIcon status={status}>{index + 1}</StepIcon>
+              <StepLabel status={status}>{t(`steps.${step}`)}</StepLabel>
+            </StepContent>
             {index < STEPS.length - 1 && <StepConnector />}
           </StepWrapper>
         );

@@ -72,6 +72,7 @@
     "preTitle": "Start your analysis now",
     "title": "Upload Your Blood Test Results",
     "description": "Upload your blood test report and get personalized health insights. Our analyzer will extract key markers, highlight any concerns, and provide tailored recommendations based on your results.",
+    "descriptionMobile": "Upload your blood test to get personalized insights. The analyzer detects key markers and gives tailored recommendations.",
     "drop": "Drop your your document here",
     "click": "or click to browse files",
     "supports": "Supports PDF, JPG, PNG files up to 10MB",

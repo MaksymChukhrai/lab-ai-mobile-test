@@ -16,19 +16,33 @@ const getStatusColor = (status: string, theme: Theme): string => {
   }
 };
 
-export const StepsContainer = styled(Box)({
+export const StepsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   width: "100%",
   marginTop: "40px",
   gap: "12px",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "10px",
+  },
+}));
 
 export const StepWrapper = styled(Box)({
   display: "flex",
   alignItems: "center",
 });
+
+export const StepContent = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+}));
 
 export const StepIcon = styled(Box)<StepProps>(({ theme, status }) => ({
   width: "33px",
@@ -43,6 +57,11 @@ export const StepIcon = styled(Box)<StepProps>(({ theme, status }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   transition: "all 0.3s ease",
   backgroundColor: getStatusColor(status, theme),
+
+  [theme.breakpoints.down("sm")]: {
+    width: "23px",
+    height: "23px",
+  },
 }));
 
 export const StepLabel = styled(Typography)<StepProps>(({ theme, status }) => ({
@@ -51,10 +70,20 @@ export const StepLabel = styled(Typography)<StepProps>(({ theme, status }) => ({
   fontSize: theme.fontSizes.fontSize22,
   fontFamily: theme.fontFamily.POPPINS,
   color: getStatusColor(status, theme),
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize12,
+    marginLeft: 0,
+  },
 }));
 
 export const StepConnector = styled(Box)(({ theme }) => ({
   borderBottom: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.3)}`,
   width: "57px",
   marginLeft: "12px",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "25px",
+    marginBottom: "10px",
+  },
 }));

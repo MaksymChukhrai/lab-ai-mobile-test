@@ -12,19 +12,27 @@ export const GradientBox = styled(Box)(({ theme }) => ({
   paddingBottom: "79px",
 }));
 
-export const HeadingContainer = styled(Box)({
+export const HeadingContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   marginBottom: "50px",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "15px",
+    width: "60%",
+  },
+}));
 
 export const Heading = styled(Typography)(({ theme }) => ({
   fontSize: theme.fontSizes.fontSize20,
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
-  lineHeight: theme.lineHeights.lineHeight35,
   textAlign: "center",
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize15,
+  },
 }));

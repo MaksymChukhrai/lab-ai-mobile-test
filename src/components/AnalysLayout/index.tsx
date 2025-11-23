@@ -11,6 +11,7 @@ interface AnalysLayoutProps {
 
 export const AnalysLayout = ({ currentStep, children }: AnalysLayoutProps) => {
   const { t } = useTranslation();
+
   return (
     <>
       <GradientBox>
