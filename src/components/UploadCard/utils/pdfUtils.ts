@@ -88,6 +88,7 @@ export async function extractTextFromPDF(
       }
 
       onProgress?.(100);
+
       return combinedOCRText.trim();
     }
 

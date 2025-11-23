@@ -1,9 +1,11 @@
 import { styled, alpha } from "@mui/material/styles";
-import { Card, Box, Typography, Button } from "@mui/material";
+import { Card, Box, Typography, Button, CircularProgress } from "@mui/material";
 
-export const Upload = styled(Card)<{ wide?: boolean }>(({ theme, wide }) => ({
-  width: wide ? "1200px" : "43%",
-  height: wide ? "911px" : "84%",
+export const Upload = styled(Card, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  width: $wide ? "1200px" : "43%",
+  height: $wide ? "911px" : "84%",
   background: "transparent",
   borderRadius: "20px",
   backgroundColor: `${theme.colors.WHITE}`,
@@ -13,20 +15,35 @@ export const Upload = styled(Card)<{ wide?: boolean }>(({ theme, wide }) => ({
   justifyContent: "center",
   alignItems: "center",
 
-  ...(!wide && {
+  ...(!$wide && {
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
   }),
+
+  ...($wide && {
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      height: "555px",
+    },
+  }),
 }));
 
-export const UploadContainer = styled(Box)<{ wide?: boolean }>(({ wide }) => ({
+export const UploadContainer = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
   height: "88%",
   width: "88%",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
-  alignItems: wide ? "center" : "flex-start",
+  alignItems: $wide ? "center" : "flex-start",
+
+  ...($wide && {
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
+  }),
 }));
 
 export const PreTitleBox = styled(Box)({
@@ -48,40 +65,65 @@ export const PreTitle = styled(Typography)(({ theme }) => ({
   marginLeft: "1%",
 }));
 
-export const Title = styled(Typography)<{ wide?: boolean }>(
-  ({ theme, wide }) => ({
-    fontFamily: theme.fontFamily.DM_SANS,
-    fontWeight: theme.fontWeight.BOLD,
-    fontSize: wide ? theme.fontSizes.fontSize32 : theme.fontSizes.fontSize24,
-    lineHeight: wide
-      ? theme.lineHeights.lineHeight70
-      : theme.lineHeights.lineHeight35,
-    letterSpacing: "1%",
-    marginLeft: "25px",
-    textAlign: wide ? "center" : "left",
-    color: theme.colors.PRIMARY_DARK,
-  }),
-);
+export const Title = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.BOLD,
+  fontSize: $wide ? theme.fontSizes.fontSize32 : theme.fontSizes.fontSize24,
+  letterSpacing: "1%",
+  marginLeft: "25px",
+  textAlign: $wide ? "center" : "left",
+  color: theme.colors.PRIMARY_DARK,
 
-export const Description = styled(Typography)<{ wide?: boolean }>(
-  ({ theme, wide }) => ({
-    fontFamily: theme.fontFamily.POPPINS,
-    fontWeight: theme.fontWeight.LIGHT,
-    fontSize: wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize16,
-    lineHeight: wide
-      ? theme.lineHeights.lineHeight35
-      : theme.lineHeights.lineHeight20,
-    letterSpacing: "1%",
-    marginLeft: wide ? "0" : "25px",
-    textAlign: wide ? "center" : "left",
-    color: theme.colors.PRIMARY_DARK,
+  ...($wide && {
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "0",
+      fontSize: theme.fontSizes.fontSize20,
+    },
   }),
-);
+}));
 
-export const UploadBox = styled(Box)<{ wide?: boolean }>(({ theme, wide }) => ({
+export const Description = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  fontFamily: theme.fontFamily.POPPINS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: $wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize16,
+  letterSpacing: "1%",
+  marginLeft: $wide ? "0" : "25px",
+  textAlign: $wide ? "center" : "left",
+  color: theme.colors.PRIMARY_DARK,
+
+  ...($wide && {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  }),
+}));
+
+export const DescriptionMobile = styled(Description, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  display: "none",
+  width: "1px",
+
+  ...($wide && {
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      width: "100%",
+      fontSize: theme.fontSizes.fontSize15,
+      lineHeight: theme.lineHeights.lineHeight20,
+    },
+  }),
+}));
+
+export const UploadBox = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
   width: "100%",
   position: "relative",
-  minHeight: wide ? "250px" : "190px",
+  minHeight: $wide ? "250px" : "190px",
   borderRadius: "20px",
   borderWidth: "1px",
   borderStyle: "dashed",
@@ -95,6 +137,13 @@ export const UploadBox = styled(Box)<{ wide?: boolean }>(({ theme, wide }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.colors.PRIMARY_DARK, 0.1),
   },
+
+  ...($wide && {
+    [theme.breakpoints.down("sm")]: {
+      width: "1px",
+      display: "none",
+    },
+  }),
 }));
 
 export const HiddenInput = styled("input")({
@@ -113,14 +162,23 @@ export const LoaderBox = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   flexDirection: "column",
   overflow: "hidden",
+
+  [theme.breakpoints.down("sm")]: {
+    height: "77px",
+    borderStyle: "dashed",
+  },
 }));
 
-export const LoaderText = styled(Box)({
+export const LoaderText = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
   alignItems: "flex-start",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "center",
+  },
+}));
 
 export const ProgressBar = styled(Box)<{ progress: number }>(
   ({ progress, theme }) => ({
@@ -136,6 +194,17 @@ export const ProgressBar = styled(Box)<{ progress: number }>(
   }),
 );
 
+export const CircleLoader = styled(CircularProgress)(({ theme }) => ({
+  width: "48px",
+  height: "48px",
+
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "10px",
+    width: "32px !important",
+    height: "32px !important",
+  },
+}));
+
 export const ResultsBox = styled(Box)({
   height: "100%",
   width: "90%",
@@ -143,6 +212,16 @@ export const ResultsBox = styled(Box)({
   gap: "15px",
   alignItems: "center",
 });
+
+export const PdfImg = styled("img")(({ theme }) => ({
+  width: "45px",
+  height: "45px",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "27px",
+    height: "27px",
+  },
+}));
 
 export const DeleteIconBox = styled(Box)(({ theme }) => ({
   position: "absolute",
@@ -153,106 +232,152 @@ export const DeleteIconBox = styled(Box)(({ theme }) => ({
   right: "8px",
   color: theme.colors.SECONDARY_RED,
   zIndex: 2,
+
+  [theme.breakpoints.down("sm")]: {
+    top: "-10px",
+  },
 }));
 
-export const DropText = styled(Typography)<{ wide?: boolean }>(
-  ({ theme, wide }) => ({
-    fontFamily: theme.fontFamily.DM_SANS,
-    fontWeight: theme.fontWeight.LIGHT,
-    fontSize: wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize16,
-    lineHeight: theme.lineHeights.lineHeight28,
-    color: alpha(theme.colors.PRIMARY_DARK, 0.8),
-    textAlign: "center",
-    letterSpacing: "1%",
+export const DeleteImg = styled("img")(({ theme }) => ({
+  width: "32px",
+  height: "32px",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "21px",
+    height: "21px",
+  },
+}));
+
+export const DropText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: $wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize16,
+  color: alpha(theme.colors.PRIMARY_DARK, 0.8),
+  textAlign: "center",
+
+  ...(!$wide && {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: theme.fontSizes.fontSize12,
+      lineHeight: theme.lineHeights.lineHeight15,
+    },
   }),
-);
+}));
 
 export const DropTextPrefix = styled(DropText)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight35,
-  letterSpacing: "1%",
   textAlign: "center",
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize12,
+    lineHeight: theme.lineHeights.lineHeight15,
+    maxWidth: 200,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    display: "inline-block",
+    verticalAlign: "bottom",
+  },
 }));
 
-export const CLickText = styled(Typography)<{ wide?: boolean }>(
-  ({ theme, wide }) => ({
-    fontFamily: theme.fontFamily.DM_SANS,
-    fontWeight: theme.fontWeight.LIGHT,
-    fontSize: wide ? theme.fontSizes.fontSize18 : theme.fontSizes.fontSize14,
-    lineHeight: wide ? theme.lineHeights.lineHeight35 : 0,
-    color: alpha(theme.colors.PRIMARY_DARK, 0.5),
-    letterSpacing: "1%",
-    textAlign: "center",
-  }),
-);
+export const CLickText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: $wide ? theme.fontSizes.fontSize18 : theme.fontSizes.fontSize14,
+  lineHeight: $wide ? theme.lineHeights.lineHeight35 : 0,
+  color: alpha(theme.colors.PRIMARY_DARK, 0.5),
+  letterSpacing: "1%",
+  textAlign: "center",
+}));
 
-export const SupportsText = styled(Typography)<{ wide?: boolean }>(
-  ({ theme, wide }) => ({
-    fontFamily: theme.fontFamily.DM_SANS,
-    fontWeight: theme.fontWeight.LIGHT,
-    fontSize: wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize14,
-    lineHeight: theme.lineHeights.lineHeight40,
-    color: alpha(theme.colors.PRIMARY_DARK, 0.4),
-    letterSpacing: "1%",
-    textAlign: "center",
-  }),
-);
+export const SupportsText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  fontFamily: theme.fontFamily.DM_SANS,
+  fontWeight: theme.fontWeight.LIGHT,
+  fontSize: $wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize14,
+  color: alpha(theme.colors.PRIMARY_DARK, 0.4),
+  letterSpacing: "1%",
+  textAlign: "center",
+}));
 
-export const UploadButton = styled(Button)<{ wide?: boolean }>(
-  ({ theme, wide }) => ({
-    width: wide ? "180px" : "150px",
-    minHeight: "34px",
-    padding: "10px",
-    margin: "0 auto",
-    borderRadius: theme.shape.borderRadius,
+export const UploadButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "$wide",
+})<{ $wide?: boolean }>(({ theme, $wide }) => ({
+  width: $wide ? "180px" : "150px",
+  minHeight: "34px",
+  padding: "10px",
+  margin: "0 auto",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: theme.colors.PRIMARY_DARK,
+  color: theme.colors.WHITE,
+  boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
+  opacity: 1,
+  textTransform: "none",
+  transition: "all 0.4s ease-out",
+
+  "&:not(:disabled)": {
     backgroundColor: theme.colors.PRIMARY_DARK,
-    color: theme.colors.WHITE,
     boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
-    opacity: 1,
-    textTransform: "none",
+  },
+
+  "&:active": {
+    backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.55),
+    boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
     transition: "all 0.4s ease-out",
+  },
 
-    "&:not(:disabled)": {
-      backgroundColor: theme.colors.PRIMARY_DARK,
-      boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
-    },
+  "&:hover": {
+    backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.55),
+  },
 
-    "&:active": {
-      backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.55),
-      boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
-      transition: "all 0.4s ease-out",
-    },
+  "&.Mui-focusVisible": {
+    backgroundColor: theme.colors.PRIMARY_DARK,
+    border: `3px solid ${theme.colors.PRIMARY_LIGHT}`,
+    boxShadow: "none",
+    outline: "none",
+  },
 
-    "&:hover": {
-      backgroundColor: alpha(theme.colors.PRIMARY_LIGHT, 0.55),
-    },
+  "&.Mui-disabled": {
+    backgroundColor: theme.colors.SECONDARY_GRAY,
+    color: theme.colors.WHITE,
+    boxShadow: "none",
+    opacity: 1,
+  },
 
-    "&.Mui-focusVisible": {
-      backgroundColor: theme.colors.PRIMARY_DARK,
-      border: `3px solid ${theme.colors.PRIMARY_LIGHT}`,
-      boxShadow: "none",
-      outline: "none",
-    },
+  "&.error": {
+    backgroundColor: theme.colors.WHITE,
+    color: theme.colors.SECONDARY_RED,
+    border: `1px solid ${theme.colors.SECONDARY_TEAL}`,
+    borderColor: theme.colors.SECONDARY_RED,
+    boxShadow: "none",
+  },
 
-    "&.Mui-disabled": {
-      backgroundColor: theme.colors.SECONDARY_GRAY,
-      color: theme.colors.WHITE,
-      boxShadow: "none",
-      opacity: 1,
-    },
-
-    "&.error": {
-      backgroundColor: theme.colors.WHITE,
-      color: theme.colors.SECONDARY_RED,
-      border: `1px solid ${theme.colors.SECONDARY_TEAL}`,
-      borderColor: theme.colors.SECONDARY_RED,
-      boxShadow: "none",
+  ...($wide && {
+    [theme.breakpoints.down("sm")]: {
+      width: "151px",
+      height: "34px",
+      fontSize: theme.fontSizes.fontSize16,
     },
   }),
-);
+}));
+
+export const MobileBox = styled(Box)(({ theme }) => ({
+  display: "none",
+
+  [theme.breakpoints.down("sm")]: {
+    display: "flex",
+    flexDirection: "column",
+    alignitems: "center",
+    justifyContent: "flex-start",
+  },
+}));
 
 export const ErrorMessage = styled(Typography)(({ theme }) => ({
   color: theme.colors.SECONDARY_RED,
@@ -260,15 +385,51 @@ export const ErrorMessage = styled(Typography)(({ theme }) => ({
   fontWeight: theme.fontWeight.MEDIUM,
   textAlign: "center",
   position: "absolute",
-  marginTop: "8px",
+  marginTop: "10px",
   bottom: "-20px",
   backgroundColor: theme.colors.WHITE,
   borderRadius: "20px",
-  padding: "10px 20px",
-  lineHeight: "100%",
+  padding: "10px 15px",
   left: "50%",
   transform: "translateX(-50%)",
   whiteSpace: "nowrap",
+
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
+}));
+
+export const ErrorMessageBox = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+    width: "90%",
+    marginLeft: "5%",
+  },
+}));
+
+export const ErrorImage = styled("img")(({ theme }) => ({
+  width: "26px",
+  height: "26px",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "15px",
+    height: "15px",
+  },
+}));
+
+export const ErrorMessageMobile = styled(ErrorMessage)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    position: "relative",
+    display: "block",
+    bottom: 0,
+    fontSize: theme.fontSizes.fontSize12,
+    borderRadius: 0,
+    padding: "0 0 7px 0",
+  },
 }));
 
 export const GreenBox = styled(Box)(({ theme }) => ({
@@ -280,23 +441,41 @@ export const GreenBox = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "flex-start",
   backgroundColor: alpha(theme.colors.SECONDARY_GREEN, 0.15),
+
+  [theme.breakpoints.down("sm")]: {
+    width: "90%",
+    height: "177px",
+  },
 }));
 
-export const TextBox = styled(Box)({
+export const TextBox = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-around",
   alignItems: "flex-start",
   margin: "2% 0 0 3%",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "flex-start",
+    margin: "2% 0 0 3%",
+  },
+}));
 
 export const GreenUl = styled("ul")(({ theme }) => ({
   color: theme.colors.SECONDARY_GREEN,
+  [theme.breakpoints.down("sm")]: {
+    margin: "0",
+  },
 }));
 
 export const GreenText = styled(Typography)(({ theme }) => ({
   color: theme.colors.SECONDARY_GREEN,
   fontWeight: theme.fontWeight.MEDIUM,
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize13,
+    lineHeight: theme.lineHeights.lineHeight15,
+  },
 }));
 
 export const ButtonsBox = styled(Box)({
@@ -307,7 +486,37 @@ export const ButtonsBox = styled(Box)({
   alignItems: "center",
 });
 
-export const ContinueButton = styled(Button)({
+export const ContinueButton = styled(Button)(({ theme }) => ({
   width: "240px",
   height: "44px",
+
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
+}));
+
+export const ContinueButtonMobile = styled(UploadButton)(({ theme }) => ({
+  display: "none",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize16,
+    display: "block",
+    width: "222px",
+    height: "44px",
+  },
+}));
+
+export const BackImg = styled("img")(({ theme }) => ({
+  width: "38px",
+  height: "38px",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "24px",
+    height: "24px",
+  },
+}));
+
+export const HeartImg = styled("img")({
+  width: "18px",
+  height: "18px",
 });

@@ -165,6 +165,7 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
       if (!analysis.isMedical) {
         setErrorMessage(t("error.noMedicalData"));
         setIsUploading(false);
+        setShowLoader(false);
 
         return;
       }
@@ -172,6 +173,7 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
       if (!analysis.hasBloodMarkers) {
         setErrorMessage(t("error.noBloodMarkers"));
         setIsUploading(false);
+        setShowLoader(false);
 
         return;
       }

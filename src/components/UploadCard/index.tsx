@@ -1,11 +1,13 @@
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { IconButton } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useSignInForm } from "@/hooks/useSignInForm";
 import heart from "locals/heart.svg";
 import download from "locals/download.svg";
 import arrow from "locals/arrow.svg";
 import deleteIcon from "locals/delete.svg";
+import error2 from "locals/error2.svg";
 import fileIcon from "locals/fileIcon.svg";
 import { FILE_INPUTS, UPLOAD_MODE } from "@/constants/fileUpload";
 import { useUploadCard } from "./UploadCardHooks";
@@ -26,6 +28,8 @@ import {
   SupportsText,
   UploadButton,
   ErrorMessage,
+  ErrorMessageMobile,
+  ErrorImage,
   GreenBox,
   GreenText,
   TextBox,
@@ -35,6 +39,15 @@ import {
   ResultsBox,
   LoaderText,
   DropTextPrefix,
+  DescriptionMobile,
+  BackImg,
+  DeleteImg,
+  PdfImg,
+  ContinueButtonMobile,
+  ErrorMessageBox,
+  MobileBox,
+  CircleLoader,
+  HeartImg,
 } from "./styles";
 
 interface UploadCardProps {
@@ -43,8 +56,10 @@ interface UploadCardProps {
 
 export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
   const { t } = useTranslation();
+  const theme = useTheme();
   const uploadEnabled = mode === UPLOAD_MODE.FULL;
   const { handleButtonSignIn } = useSignInForm();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const {
     fileInputRef,
@@ -67,28 +82,32 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
   } = useUploadCard(uploadEnabled);
 
   const buttonClassName = errorMessage ? "error" : "";
+  const isMobileFinalStage = isMobile && showLoader && !isProcessing;
 
   return (
     <>
-      <Upload wide={uploadEnabled}>
+      <Upload $wide={uploadEnabled}>
         {uploadEnabled ? (
-          <UploadContainer wide={uploadEnabled}>
-            <Title wide={uploadEnabled}>{t("card.title")}</Title>
-            <Description wide={uploadEnabled}>
+          <UploadContainer $wide={uploadEnabled}>
+            <Title $wide={uploadEnabled}>{t("card.title")}</Title>
+            <Description $wide={uploadEnabled}>
               {t("card.description")}
             </Description>
+            <DescriptionMobile $wide={uploadEnabled}>
+              {t("card.descriptionMobile")}
+            </DescriptionMobile>
             {!isFileSelected || !showLoader || errorMessage !== null ? (
               <UploadBox
-                wide={uploadEnabled}
+                $wide={uploadEnabled}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onClick={handleBrowseClick}
               >
                 <img src={download} alt="download" />
-                <DropText wide={uploadEnabled}>{t("card.drop")}</DropText>
-                <CLickText wide={uploadEnabled}>{t("card.click")}</CLickText>
-                <SupportsText wide={uploadEnabled}>
+                <DropText $wide={uploadEnabled}>{t("card.drop")}</DropText>
+                <CLickText $wide={uploadEnabled}>{t("card.click")}</CLickText>
+                <SupportsText $wide={uploadEnabled}>
                   {t("card.supports")}
                 </SupportsText>
                 <HiddenInput
@@ -103,12 +122,12 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
               <LoaderBox>
                 {isProcessing ? (
                   <>
-                    <CircularProgress size={48} />
+                    <CircleLoader />
                     <DropText>{ocrProgress}%</DropText>
                   </>
                 ) : (
                   <ResultsBox>
-                    <img src={fileIcon}></img>
+                    <PdfImg src={fileIcon}></PdfImg>
                     <LoaderText>
                       <DropTextPrefix>
                         {t("card.resultPrefix")} {selectedFileName}
@@ -117,7 +136,7 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
                     </LoaderText>
                     <DeleteIconBox>
                       <IconButton onClick={handleDeleteFile}>
-                        <img src={deleteIcon}></img>
+                        <DeleteImg src={deleteIcon}></DeleteImg>
                       </IconButton>
                     </DeleteIconBox>
                   </ResultsBox>
@@ -128,7 +147,7 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
             )}
             {!showLoader && (
               <UploadButton
-                wide={uploadEnabled}
+                $wide={uploadEnabled}
                 variant="contained"
                 color="primary"
                 onClick={handleUpload}
@@ -138,28 +157,50 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
                 {t("card.button")}
               </UploadButton>
             )}
-            <GreenBox>
-              <TextBox>
-                <GreenText>{t("card.list.title")}</GreenText>
-                <GreenUl>
-                  <li>
-                    <GreenText>{t("card.list.line1")}</GreenText>
-                  </li>
-                  <li>
-                    <GreenText>{t("card.list.line2")}</GreenText>
-                  </li>
-                  <li>
-                    <GreenText>{t("card.list.line3")}</GreenText>
-                  </li>
-                  <li>
-                    <GreenText>{t("card.list.line4")}</GreenText>
-                  </li>
-                </GreenUl>
-              </TextBox>
-            </GreenBox>
+            {isMobile && errorMessage && !showLoader && (
+              <MobileBox>
+                <ErrorMessageBox>
+                  <ErrorImage src={error2} />
+                  <ErrorMessageMobile>{errorMessage}</ErrorMessageMobile>
+                </ErrorMessageBox>
+              </MobileBox>
+            )}
+            {!isMobileFinalStage && (
+              <GreenBox>
+                <TextBox>
+                  <GreenText>{t("card.list.title")}</GreenText>
+                  <GreenUl>
+                    <li>
+                      <GreenText>{t("card.list.line1")}</GreenText>
+                    </li>
+                    <li>
+                      <GreenText>{t("card.list.line2")}</GreenText>
+                    </li>
+                    <li>
+                      <GreenText>{t("card.list.line3")}</GreenText>
+                    </li>
+                    <li>
+                      <GreenText>{t("card.list.line4")}</GreenText>
+                    </li>
+                  </GreenUl>
+                </TextBox>
+              </GreenBox>
+            )}
+            {!isProcessing && showLoader && (
+              <>
+                <MobileBox>
+                  <ContinueButtonMobile
+                    onClick={handleContinue}
+                    className={buttonClassName}
+                  >
+                    {t("card.continue")}
+                  </ContinueButtonMobile>
+                </MobileBox>
+              </>
+            )}
             <ButtonsBox>
               <IconButton onClick={handleBack}>
-                <img src={arrow} alt="arrow" />
+                <BackImg src={arrow} alt="arrow" />
               </IconButton>
               <ContinueButton
                 variant="contained"
@@ -173,7 +214,7 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
         ) : (
           <UploadContainer>
             <PreTitleBox>
-              <img src={heart} alt="heart" width={18} height={18} />
+              <HeartImg src={heart} alt="heart" />
               <PreTitle>{t("card.preTitle")}</PreTitle>
             </PreTitleBox>
             <Title>{t("card.title")}</Title>
@@ -197,4 +238,5 @@ export const UploadCard = ({ mode = UPLOAD_MODE.PREVIEW }: UploadCardProps) => {
     </>
   );
 };
+
 export default UploadCard;
