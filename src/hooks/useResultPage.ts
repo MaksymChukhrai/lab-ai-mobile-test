@@ -8,6 +8,7 @@ import {
 import { clearUploadedFile } from "store/slices/uploadFileSlice";
 import { clearBloodMarkersData } from "store/slices/bloodMarkersSlice";
 import { clearSelectedOptions } from "store/slices/optionSlice";
+import { calculateDynamicPdfHeight } from "utils/pdfUtils";
 import { STEP_PATHS } from "constants/steps";
 
 export const useResultPage = () => {
@@ -18,39 +19,18 @@ export const useResultPage = () => {
   const [pdfPageHeight, setPdfPageHeight] = useState<number>(842);
 
   useEffect(() => {
-    const calculateExactHeight = () => {
-      const originalElement = document.getElementById("result-content");
-      if (!originalElement) return;
-
-      const clone = originalElement.cloneNode(true) as HTMLElement;
-
-      clone.style.width = "1980px";
-      clone.style.position = "absolute";
-      clone.style.top = "-9999px";
-      clone.style.left = "-9999px";
-      clone.style.visibility = "hidden";
-      clone.style.height = "auto";
-      clone.style.maxHeight = "none";
-      clone.style.overflow = "visible";
-
-      document.body.appendChild(clone);
-
-      const contentHeightPx = clone.scrollHeight;
-
-      document.body.removeChild(clone);
-
-      const calculatedPoints = contentHeightPx * 0.57;
-
-      setPdfPageHeight(Math.max(842, calculatedPoints));
+    const updateHeight = () => {
+      const height = calculateDynamicPdfHeight("result-content");
+      setPdfPageHeight(height);
     };
 
-    const timer = setTimeout(calculateExactHeight, 500);
+    const timer = setTimeout(updateHeight, 500);
 
-    window.addEventListener("resize", calculateExactHeight);
+    window.addEventListener("resize", updateHeight);
 
     return () => {
       clearTimeout(timer);
-      window.removeEventListener("resize", calculateExactHeight);
+      window.removeEventListener("resize", updateHeight);
     };
   }, [analysisResult]);
 
