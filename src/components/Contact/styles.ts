@@ -6,6 +6,7 @@ export const StyledModalOverlay = styled(Modal)({
   justifyContent: "center",
   alignItems: "center",
   backdropFilter: "blur(6px)",
+  padding: "16px",
 });
 
 export const StyledFormCard = styled(Box)(({ theme }) => ({
@@ -18,6 +19,13 @@ export const StyledFormCard = styled(Box)(({ theme }) => ({
   maxHeight: "90vh",
   overflowY: "auto",
   position: "relative",
+
+  [theme.breakpoints.down("md")]: {
+    background: `linear-gradient(359.35deg, ${alpha(theme.colors.PRIMARY_LIGHT, 0.3)} -1.53%, ${alpha(theme.colors.WHITE, 0.09)} 105.58%)`,
+    backgroundColor: theme.colors.WHITE,
+    padding: "24px 20px",
+    maxWidth: "100%",
+  },
 }));
 
 export const StyledTitle = styled(Typography)(({ theme }) => ({
@@ -28,6 +36,13 @@ export const StyledTitle = styled(Typography)(({ theme }) => ({
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
   marginBottom: "5px",
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize24,
+    textAlign: "left",
+    marginBottom: "12px",
+    lineHeight: "normal",
+  },
 }));
 
 export const StyledDescription = styled(Typography)(({ theme }) => ({
@@ -38,6 +53,12 @@ export const StyledDescription = styled(Typography)(({ theme }) => ({
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
   marginBottom: "32px",
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize16,
+    textAlign: "left",
+    marginBottom: "24px",
+  },
 }));
 
 export const StyledEmailLink = styled("a")(({ theme }) => ({
@@ -51,6 +72,10 @@ export const StyledLabel = styled(Typography)(({ theme }) => ({
   fontSize: theme.fontSizes.fontSize16,
   lineHeight: theme.lineHeights.lineHeight35,
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize13,
+  },
 }));
 
 export const StyledInput = styled(TextField)(({ theme }) => ({
@@ -64,6 +89,10 @@ export const StyledInput = styled(TextField)(({ theme }) => ({
   outline: "none",
   transition: "all 0.2s ease-in-out",
   boxSizing: "border-box",
+
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+  },
 
   ".MuiInputBase-input": {
     padding: "5px 15px !important",
@@ -117,12 +146,19 @@ export const StyledTextarea = styled(TextField)(({ theme }) => ({
     padding: "10px 15px",
     border: `2px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
 
+    [theme.breakpoints.down("md")]: {
+      border: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
+    },
+
     "&:hover fieldset": {
       boxShadow: `0px 4px 4px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
       borderColor: alpha(theme.colors.PRIMARY_DARK, 0.7),
     },
     "&.Mui-focused": {
       border: `2px solid ${theme.colors.PRIMARY_DARK}`,
+      [theme.breakpoints.down("md")]: {
+        border: `1px solid ${theme.colors.PRIMARY_DARK}`,
+      },
       boxShadow: "none",
     },
     "&.Mui-error": {
@@ -139,10 +175,15 @@ export const StyledInputWrapper = styled(Box)({
   marginBottom: "20px",
 });
 
-export const StyledButton = styled(Button)({
+export const StyledButton = styled(Button)(({ theme }) => ({
   width: "100%",
   maxWidth: "240px",
   minHeight: "44px",
   margin: "0 auto",
   display: "block",
-});
+
+  [theme.breakpoints.down("md")]: {
+    maxWidth: "100%",
+    marginTop: "20px",
+  },
+}));

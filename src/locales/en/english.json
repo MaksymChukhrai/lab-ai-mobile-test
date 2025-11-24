@@ -121,7 +121,7 @@
     "and": " and ",
     "privacy": "Privacy Policy",
     "emailSentSuccess": "A sign-in link has been sent to your email!",
-    "errorInvalidEmail": "Invalid email format. Please enter the correct email.",
+    "errorInvalidEmail": "Please enter the correct email.",
     "errorFromServer": "An error occurred: {{message}}",
     "errorNetwork": "Please check your connection and try again."
   },

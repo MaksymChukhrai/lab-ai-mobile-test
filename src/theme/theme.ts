@@ -298,6 +298,11 @@ export const theme = createTheme({
           backgroundColor: COLORS.PRIMARY_DARK,
           boxShadow: SHADOWS.LOGO,
           transition: "all 0.3s cubic-bezier(0.45, 1.45, 0.8, 1)",
+
+          "@media (max-width:900px)": {
+            fontSize: FONT_SIZES.fontSize16,
+          },
+
           "&:hover": {
             backgroundColor: alpha(COLORS.PRIMARY_LIGHT, 0.55),
             boxShadow: "none",

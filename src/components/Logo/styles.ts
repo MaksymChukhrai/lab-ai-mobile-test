@@ -12,7 +12,6 @@ export const LogoContainer = styled(Box, {
 
     "@media (max-width: 426px)": {
       gap: 20,
-      marginBottom: "31px",
     },
 
     [theme.breakpoints.down("md")]: {

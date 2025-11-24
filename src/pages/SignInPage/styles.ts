@@ -16,11 +16,16 @@ export const PageWrapper = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  maxHeight: "100vh",
   height: "100vh",
   paddingTop: "54px",
   paddingBottom: "79px",
   background: `linear-gradient(100.41deg, ${alpha(theme.colors.WHITE, 0.09)} 0%, ${alpha(theme.colors.PRIMARY_LIGHT, 0.3)} 100%)`,
+
+  [theme.breakpoints.down("md")]: {
+    height: "auto",
+    minHeight: "100vh",
+    padding: "58px 20px 40px",
+  },
 }));
 
 export const Subtitle = styled(Typography)(({ theme }) => ({
@@ -30,6 +35,12 @@ export const Subtitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.fontSizes.fontSize20,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize15,
+    lineHeight: theme.lineHeights.lineHeight25,
+    maxWidth: "210px",
+  },
 }));
 
 export const DividerPage = styled(Divider)(({ theme }) => ({
@@ -38,6 +49,10 @@ export const DividerPage = styled(Divider)(({ theme }) => ({
   borderColor: theme.colors.PRIMARY_DARK,
   opacity: 0.1,
   width: "650px",
+
+  [theme.breakpoints.down("md")]: {
+    width: "300px",
+  },
 }));
 
 export const FormContainer = styled(Paper)(({ theme }) => ({
@@ -50,6 +65,10 @@ export const FormContainer = styled(Paper)(({ theme }) => ({
   width: "100%",
   boxShadow: `0px 4px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
   backgroundColor: `${alpha(theme.colors.WHITE, 0.8)}`,
+
+  [theme.breakpoints.down("md")]: {
+    padding: "40px 22px",
+  },
 }));
 
 export const FormTitle = styled(Typography)(({ theme }) => ({
@@ -59,6 +78,11 @@ export const FormTitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.fontSizes.fontSize32,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize24,
+    lineHeight: theme.lineHeights.lineHeight35,
+  },
 }));
 
 export const FormSubtitle = styled(Typography)(({ theme }) => ({
@@ -68,10 +92,16 @@ export const FormSubtitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.fontSizes.fontSize16,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize14,
+    lineHeight: "normal",
+  },
 }));
 
 export const SocialButtonContainer = styled(Box)({
-  width: "344px",
+  maxWidth: "344px",
+  width: "100%",
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
@@ -89,12 +119,16 @@ export const SocialButton = styled(Button)(({ theme }) => ({
   backgroundColor: "transparent",
   boxShadow: "none",
   letterSpacing: "1%",
-  fontSize: "16px",
-  lineHeight: "35px",
+  fontSize: theme.fontSizes.fontSize16,
+  lineHeight: theme.lineHeights.lineHeight35,
   textAlign: "center",
   fontWeight: theme.fontWeight.REGULAR,
   fontFamily: theme.fontFamily.DM_SANS,
   padding: "0",
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize15,
+  },
 
   "&:hover": {
     boxShadow: `0px 3px 5px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.4)}`,
@@ -116,10 +150,15 @@ export const SocialButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const InputContainer = styled(Box)({
-  width: "344px",
+export const InputContainer = styled(Box)(({ theme }) => ({
+  maxWidth: "344px",
+  width: "100%",
   marginBottom: "60px",
-});
+
+  [theme.breakpoints.down("md")]: {
+    marginBottom: "35px",
+  },
+}));
 
 export const EmailInput = styled(TextField)(({ theme }) => ({
   width: "100%",
@@ -137,26 +176,31 @@ export const EmailInput = styled(TextField)(({ theme }) => ({
       margin: "0",
     },
   },
-
-  ".css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input": {
-    padding: "5px 14px !important",
+  ".MuiInputBase-input": {
+    padding: "5px 15px !important",
     height: "35px",
+    fontFamily: theme.fontFamily.DM_SANS,
+    fontSize: theme.fontSizes.fontSize16,
+    lineHeight: theme.lineHeights.lineHeight35,
+    fontWeight: theme.fontWeight.REGULAR,
+    color: theme.colors.PRIMARY_DARK,
   },
+
   "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: alpha(theme.colors.PRIMARY_DARK, 0.5),
-    },
-    "&:hover fieldset": {
+    border: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
+    borderRadius: "15px",
+
+    "&:hover": {
       boxShadow: `0px 2px 4px ${alpha(theme.colors.SECONDARY_GRAY, 0.1)}`,
       borderColor: theme.colors.SECONDARY_GRAY,
     },
-    "&.Mui-focused fieldset": {
-      border: `2px solid ${theme.colors.PRIMARY_DARK}`,
+    "&.Mui-focused": {
+      border: `1px solid ${theme.colors.PRIMARY_DARK}`,
     },
-    "&.Mui-error fieldset": {
-      border: `2px solid ${theme.palette.error.main}`,
+    "&.Mui-error": {
+      border: `1px solid ${theme.palette.error.main}`,
     },
-    "&.Mui-disabled fieldset": {
+    "&.Mui-disabled": {
       backgroundColor: alpha(theme.colors.SECONDARY_GRAY, 0.1),
       boxShadow: "none",
     },
@@ -174,10 +218,16 @@ export const FormAlert = styled(Alert)(({ theme }) => ({
   fontWeight: theme.fontWeight.MEDIUM,
   fontSize: theme.fontSizes.fontSize20,
   letterSpacing: 0,
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize16,
+    lineHeight: "normal",
+  },
 }));
 
 export const DividerForm = styled(Box)(({ theme }) => ({
-  width: "344px",
+  maxWidth: "344px",
+  width: "100%",
   display: "flex",
   alignItems: "center",
   textAlign: "center",
@@ -188,6 +238,10 @@ export const DividerForm = styled(Box)(({ theme }) => ({
   fontSize: "16px",
   lineHeight: "35px",
   fontFamily: theme.fontFamily.POPPINS,
+
+  [theme.breakpoints.down("md")]: {
+    marginTop: "28px",
+  },
 
   "&::before, &::after": {
     content: '""',
@@ -204,7 +258,7 @@ export const DividerForm = styled(Box)(({ theme }) => ({
 
 export const LabelMail = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
-  fontSize: "14px",
+  fontSize: theme.fontSizes.fontSize14,
   lineHeight: theme.lineHeights.lineHeight35,
   fontWeight: theme.fontWeight.REGULAR,
   textDecoration: "none",
