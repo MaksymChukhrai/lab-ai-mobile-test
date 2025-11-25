@@ -8,7 +8,7 @@ import three from "locals/three.svg";
 import four from "locals/four.svg";
 import bulb from "locals/bulb.svg";
 import book from "locals/book.svg";
-import { useAbout } from "hooks/useAbout";
+import { useAbout } from "./useAboutHooks";
 import { CONTAINER_INDEX, SHOW } from "constants/about";
 import {
   GradientBox,
