@@ -457,7 +457,7 @@ export const TextBox = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     justifyContent: "flex-start",
-    margin: "2% 0 0 3%",
+    margin: "2% 3% 0 3%",
   },
 }));
 
