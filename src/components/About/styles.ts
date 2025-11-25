@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 export const GradientBox = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "1180px",
+  overflow: "hidden",
   position: "relative",
   display: "flex",
   flexDirection: "column",
