@@ -2,9 +2,10 @@ import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 
 export const BenefitsContainer = styled(Box)(({ theme }) => ({
-  margin: "2% 0",
+  margin: "2% auto",
   gap: "3%",
   display: "flex",
+  maxWidth: "1600px",
   flexDirection: "column",
   justifyContent: "space-evenly",
   alignItems: "center",

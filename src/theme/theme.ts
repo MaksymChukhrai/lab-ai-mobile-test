@@ -43,6 +43,7 @@ declare module "@mui/material/Typography" {
 }
 
 const FONT_SIZES = {
+  fontSize11: "11px",
   fontSize12: "12px",
   fontSize13: "13px",
   fontSize14: "14px",

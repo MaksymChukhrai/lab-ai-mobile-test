@@ -1,7 +1,7 @@
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, lighten } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 
-export const GradientBox = styled(Box)({
+export const GradientBox = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "1180px",
   position: "relative",
@@ -9,21 +9,47 @@ export const GradientBox = styled(Box)({
   flexDirection: "column",
   alignItems: "center",
   background: `linear-gradient(317.68deg, rgba(255, 255, 255, 0.09) 44.63%, rgba(105, 151, 237, 0.3) 102.47%)`,
-});
+
+  [theme.breakpoints.down("sm")]: {
+    height: 1600,
+  },
+}));
 
 export const BgImage = styled("img")(({ theme }) => ({
   color: alpha(theme.colors.PRIMARY_DARK, 0.5),
   marginTop: "65px",
+  position: "relative",
+
+  [theme.breakpoints.down("sm")]: {
+    position: "absolute",
+    pointerEvents: "none",
+    right: "-40%",
+    top: "110px",
+    width: "auto",
+    maxWidth: "none",
+  },
 }));
 
-export const AboutTitleBox = styled(Box)({
+export const AboutTitleBox = styled(Box)(({ theme }) => ({
   width: "56%",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
   paddingTop: "30px",
-});
+  paddingBottom: "0px",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "80%",
+    paddingBottom: "30px",
+
+    opacity: 0,
+    transition: "opacity 0.7s ease-out",
+    "&.show": {
+      opacity: 1,
+    },
+  },
+}));
 
 export const AboutTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
@@ -35,6 +61,11 @@ export const AboutTitle = styled(Typography)(({ theme }) => ({
   letterSpacing: "2%",
   verticalAlign: "middle",
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize24,
+    marginTop: "0.2em",
+  },
 }));
 
 export const AboutDescription = styled(Typography)(({ theme }) => ({
@@ -46,6 +77,11 @@ export const AboutDescription = styled(Typography)(({ theme }) => ({
   verticalAlign: "middle",
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize16,
+    lineHeight: theme.lineHeights.lineHeight20,
+  },
 }));
 
 export const Container = styled(Box)(({ theme }) => ({
@@ -58,49 +94,100 @@ export const Container = styled(Box)(({ theme }) => ({
   height: "170px",
   borderRadius: "20px",
   gap: "10px",
-  background: alpha(theme.colors.PRIMARY_LIGHT, 0.15),
+  background: lighten(theme.colors.PRIMARY_LIGHT, 0.75),
   border: `1px solid ${alpha(theme.colors.PRIMARY_LIGHT, 0.45)}`,
   boxShadow: `0px 5px 4px 0px ${alpha(theme.colors.PRIMARY_DARK, 0.25)}`,
+
+  [theme.breakpoints.down("sm")]: {
+    position: "relative",
+    width: "238px",
+    height: "127px",
+    marginBottom: "20px",
+    marginLeft: "10%",
+    marginRight: "auto",
+    gap: "5px",
+
+    opacity: 0,
+    transform: "translateY(20px)",
+    transition: "opacity 0.7s ease-out, transform 1.1s ease-out",
+
+    "&.show": {
+      opacity: 1,
+      transform: "translateY(0)",
+    },
+  },
 }));
 
-export const Container1 = styled(Container)({
+export const Container1 = styled(Container)(({ theme }) => ({
   top: "52%",
   left: "50%",
   transform: "translate(-135%, -180%)",
-});
 
-export const Container2 = styled(Container)({
+  [theme.breakpoints.down("sm")]: {
+    top: "auto",
+    left: "auto",
+    transform: "none",
+  },
+}));
+
+export const Container2 = styled(Container)(({ theme }) => ({
   top: "52%",
   left: "50%",
   transform: "translate(30%, -180%)",
-});
 
-export const Container3 = styled(Container)({
+  [theme.breakpoints.down("sm")]: {
+    top: "auto",
+    left: "auto",
+    transform: "none",
+  },
+}));
+
+export const Container3 = styled(Container)(({ theme }) => ({
   top: "52%",
   left: "50%",
   transform: "translate(-150%, -20%)",
-});
 
-export const Container4 = styled(Container)({
+  [theme.breakpoints.down("sm")]: {
+    top: "auto",
+    left: "auto",
+    transform: "none",
+  },
+}));
+
+export const Container4 = styled(Container)(({ theme }) => ({
   top: "52%",
   left: "50%",
   transform: "translate(45%, -30%)",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    top: "auto",
+    left: "auto",
+    transform: "none",
+  },
+}));
 
 export const ContainerName = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.SEMIBOLD,
   fontSize: theme.fontSizes.fontSize22,
-  lineHeight: theme.lineHeights.lineHeight30,
   letterSpacing: 0,
   verticalAlign: "middle",
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize13,
+  },
 }));
 
-export const ContainerIcon = styled("img")({
+export const ContainerIcon = styled("img")(({ theme }) => ({
   width: "22px",
   height: "22px",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    width: "16px",
+    height: "16px",
+  },
+}));
 
 export const ContainerTitle = styled(Box)({
   width: "90%",
@@ -116,33 +203,62 @@ export const ContainerText = styled(Typography)(({ theme }) => ({
   fontWeight: theme.fontWeight.LIGHT,
   width: "90%",
   fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight25,
   letterSpacing: "0%",
   verticalAlign: "middle",
   textAlign: "left",
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize11,
+    lineHeight: theme.lineHeights.lineHeight15,
+  },
 }));
 
-export const TextBox = styled(Box)({
+export const TextBox = styled(Box)(({ theme }) => ({
   position: "absolute",
   bottom: "5%",
   width: "90%",
+  maxWidth: "1400px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "flex-start",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    width: "85%",
+  },
+}));
 
 export const AboutTextTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.BOLD,
   fontSize: theme.fontSizes.fontSize32,
   lineHeight: theme.lineHeights.lineHeight70,
-  letterSpacing: 0,
   verticalAlign: "middle",
   textAlign: "left",
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize24,
+  },
 }));
+
+export const AboutTextWrapper = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  marginTop: "10px",
+
+  [theme.breakpoints.down("sm")]: {
+    gap: "30px",
+  },
+}));
+
+export const ParagraphBox = styled(Box)({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "flex-end",
+});
 
 export const AboutText = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
@@ -154,4 +270,27 @@ export const AboutText = styled(Typography)(({ theme }) => ({
   textAlign: "left",
   color: theme.colors.PRIMARY_DARK,
   whiteSpace: "pre-line",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize16,
+    lineHeight: theme.lineHeights.lineHeight25,
+  },
+}));
+
+export const AboutTextIcon = styled("img")(({ theme }) => ({
+  width: "1px",
+  display: "none",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "auto",
+    height: "auto",
+    display: "inline",
+    transform: "translateY(5px)",
+  },
+}));
+
+export const AboutTextIconEdit = styled(AboutTextIcon)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "10px",
+  },
 }));

@@ -104,6 +104,7 @@ export const Background = styled(Box)(({ theme }) => ({
 export const BackgroundWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   width: "100%",
+  maxWidth: "1600px",
   height: "100%",
   justifyContent: "center",
   alignItems: "center",
@@ -325,10 +326,11 @@ export const NavLink = styled(Link)(({ theme }) => ({
 
 export const StatContainer = styled(Box)(({ theme }) => ({
   display: "flex",
+  maxWidth: "1600px",
   height: "auto",
   justifyContent: "space-evenly",
   alignItems: "center",
-  margin: "5% 0 3% 0",
+  margin: "5% auto 3% auto",
 
   [theme.breakpoints.down("md")]: {
     display: "grid",

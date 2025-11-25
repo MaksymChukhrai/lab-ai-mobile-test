@@ -6,3 +6,12 @@ export const CONTAINER_POSITIONS = {
   LEFT_3: "80px",
   LEFT_4: "912px",
 };
+
+export const CONTAINER_INDEX = {
+  HEART: 0,
+  CHECK: 1,
+  BULB: 2,
+  BOOK: 3,
+} as const;
+
+export const SHOW = "show";
