@@ -23,9 +23,11 @@ export const authService = {
       return false;
     }
 
+    const isSecure = window.location.protocol === "https:";
+
     const cookieOptions = {
-      secure: true,
-      sameSite: "strict" as const,
+      secure: isSecure,
+      sameSite: isSecure ? ("none" as const) : ("lax" as const),
     };
 
     Cookies.set("accessToken", accessToken, {

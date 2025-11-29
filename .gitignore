@@ -25,7 +25,10 @@ dist-ssr
 *.sw?
 
 .env
+.env.local
 .vercel
+!.env.development
+!.env.production
 
 # Test coverage
 coverage/
