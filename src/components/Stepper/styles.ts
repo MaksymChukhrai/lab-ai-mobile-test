@@ -59,6 +59,7 @@ export const StepIcon = styled(Box)<StepProps>(({ theme, status }) => ({
   backgroundColor: getStatusColor(status, theme),
 
   [theme.breakpoints.down("sm")]: {
+    fontSize: theme.fontSizes.fontSize12,
     width: "23px",
     height: "23px",
   },
