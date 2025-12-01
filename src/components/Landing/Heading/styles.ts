@@ -15,12 +15,17 @@ export const StyledAppBar = styled(AppBar)({
   margin: "1% 0",
 });
 
-export const StyledToolbar = styled(Toolbar)({
+export const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   width: "90%",
   margin: "0 auto",
-});
+
+  [theme.breakpoints.down("sm")]: {
+    alignItems: "flex-end",
+    paddingBottom: "5px",
+  },
+}));
 
 export const NavBox = styled(Box)(({ theme }) => ({
   display: "flex",

@@ -10,8 +10,8 @@ export const LogoContainer = styled(Box, {
     gap: 15,
     width: "fit-content",
 
-    "@media (max-width: 426px)": {
-      gap: 20,
+    "@media (max-width: 600px)": {
+      gap: 10,
     },
 
     [theme.breakpoints.down("md")]: {
@@ -26,40 +26,43 @@ export const LogoContainer = styled(Box, {
 
 export const LogoImage = styled("img", {
   shouldForwardProp: (prop) => prop !== "$variant",
-})<{ $variant?: "default" | "hero" | "page" | "footer" }>(({ $variant }) => ({
-  width: 40,
-  height: 40,
-  objectFit: "cover",
-  display: "block",
-
-  ...($variant === "hero" && {
-    width: 44,
-    height: 44,
-  }),
-
-  ...($variant === "page" && {
-    width: 56,
-    height: 56,
-    filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-  }),
-
-  "@media (max-width: 600px)": {
-    width: 27,
-    height: 27,
-    borderRadius: 5,
+})<{ $variant?: "default" | "hero" | "page" | "footer" }>(
+  ({ $variant, theme }) => ({
+    width: 40,
+    height: 40,
+    objectFit: "cover",
+    display: "block",
+    filter: `0px 4px 4px ${alpha(theme.colors.SHADOW_BLACK, 0.25)}`,
 
     ...($variant === "hero" && {
-      width: 33,
-      height: 33,
+      width: 44,
+      height: 44,
     }),
 
     ...($variant === "page" && {
-      width: 33,
-      height: 33,
+      width: 56,
+      height: 56,
       filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
     }),
-  },
-}));
+
+    "@media (max-width: 600px)": {
+      width: 27,
+      height: 27,
+      borderRadius: 5,
+
+      ...($variant === "hero" && {
+        width: 33,
+        height: 33,
+      }),
+
+      ...($variant === "page" && {
+        width: 33,
+        height: 33,
+        filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+      }),
+    },
+  }),
+);
 
 export const LogoText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "$light" && prop !== "$variant",
@@ -71,6 +74,7 @@ export const LogoText = styled(Typography, {
     lineHeight: theme.lineHeights.lineHeight100,
     color: $light ? theme.colors.WHITE : theme.colors.PRIMARY_DARK,
     paddingBottom: 8,
+    textShadow: `0px 4px 4px ${alpha(theme.colors.SHADOW_BLACK, 0.25)}`,
 
     ...($variant === "hero" && {
       fontSize: theme.fontSizes.fontSize50,
@@ -88,6 +92,7 @@ export const LogoText = styled(Typography, {
       fontSize: theme.fontSizes.fontSize20,
       fontWeight: theme.fontWeight.BOLD,
       lineHeight: 1.31,
+      padding: 0,
 
       ...($variant === "hero" && {
         fontSize: theme.fontSizes.fontSize36,
