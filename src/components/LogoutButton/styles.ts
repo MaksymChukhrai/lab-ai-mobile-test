@@ -3,9 +3,10 @@ import { Button, Box, Typography } from "@mui/material";
 
 export const StyledLogoutButton = styled(Button)(({ theme }) => ({
   minWidth: 140,
-  "@media (max-width: 426px)": {
-    minWidth: 119,
-    minHeight: 29,
+  [theme.breakpoints.down("sm")]: {
+    minWidth: 120,
+    minHeight: "30px",
+    padding: "0",
     gap: 5,
     fontSize: theme.fontSizes.fontSize14,
   },
@@ -26,7 +27,7 @@ export const StyledModalBox = styled(Box)(({ theme }) => ({
   alignItems: "center",
   boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.15)",
 
-  "@media (max-width: 426px)": {
+  [theme.breakpoints.down("sm")]: {
     width: 335,
     height: 231,
     padding: 28,
@@ -50,7 +51,7 @@ export const StyledModalIcon = styled(Box)(({ theme }) => ({
     content: '"i"',
   },
 
-  "@media (max-width: 426px)": {
+  [theme.breakpoints.down("sm")]: {
     width: 24,
     height: 24,
     fontSize: theme.fontSizes.fontSize16,
@@ -72,7 +73,7 @@ export const StyledModalTitle = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   marginBottom: 57,
 
-  "@media (max-width: 426px)": {
+  [theme.breakpoints.down("sm")]: {
     width: 258,
     height: 50,
     fontSize: theme.fontSizes.fontSize20,
@@ -81,14 +82,14 @@ export const StyledModalTitle = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const StyledModalButtonContainer = styled(Box)(() => ({
+export const StyledModalButtonContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
   justifyContent: "flex-start",
   alignItems: "center",
   gap: 112,
 
-  "@media (max-width: 426px)": {
+  [theme.breakpoints.down("sm")]: {
     width: 224,
     height: 35,
     gap: 50,
@@ -124,7 +125,7 @@ export const StyledConfirmButton = styled(Button)(({ theme }) => ({
     opacity: 0.9,
   },
 
-  "@media (max-width: 426px)": {
+  [theme.breakpoints.down("sm")]: {
     minWidth: 87,
     fontSize: theme.fontSizes.fontSize16,
     fontWeight: theme.fontWeight.REGULAR,
@@ -160,7 +161,7 @@ export const StyledCancelButton = styled(Button)(({ theme }) => ({
     opacity: 0.9,
   },
 
-  "@media (max-width: 426px)": {
+  [theme.breakpoints.down("sm")]: {
     minWidth: 87,
 
     fontSize: theme.fontSizes.fontSize16,

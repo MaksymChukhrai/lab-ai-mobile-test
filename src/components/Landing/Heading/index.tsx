@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "@mui/material";
 import CountUp from "react-countup";
+import { useTheme } from "@mui/material";
 import { Logo } from "@/components/Logo";
 import { LogoutButton } from "@/components/LogoutButton";
 import UploadCard from "@/components/UploadCard";
@@ -39,6 +41,8 @@ function Heading() {
   const { t } = useTranslation();
   const { handleButtonSignIn } = useSignInForm();
   const { isAuthenticated } = useAuth();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <>
@@ -46,27 +50,43 @@ function Heading() {
         <StyledToolbar>
           <Logo />
           <NavBox>
-            {COMPANY_LINKS.map((link) => (
-              <NavLink
-                href={link.path}
-                key={link.key}
-                underline="none"
-                color="text.primary"
-              >
-                {t(link.key)}
-              </NavLink>
-            ))}
-            
+            {!isMobile &&
+              COMPANY_LINKS.map((link) => (
+                <NavLink
+                  href={link.path}
+                  key={link.key}
+                  underline="none"
+                  color="text.primary"
+                >
+                  {t(link.key)}
+                </NavLink>
+              ))}
+
             {isAuthenticated ? (
               <LogoutButton />
             ) : (
-              <GetStartedButton
-                variant="contained"
-                color="primary"
-                onClick={handleButtonSignIn}
-              >
-                {t("navLanding.button")}
-              </GetStartedButton>
+              <>
+                {isMobile &&
+                  COMPANY_LINKS.map((link) => (
+                    <NavLink
+                      href={link.path}
+                      key={link.key}
+                      underline="none"
+                      color="text.primary"
+                    >
+                      {t(link.key)}
+                    </NavLink>
+                  ))}
+                {!isMobile && (
+                  <GetStartedButton
+                    variant="contained"
+                    color="primary"
+                    onClick={handleButtonSignIn}
+                  >
+                    {t("navLanding.button")}
+                  </GetStartedButton>
+                )}
+              </>
             )}
           </NavBox>
         </StyledToolbar>
