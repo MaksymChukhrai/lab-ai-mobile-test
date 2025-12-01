@@ -10,7 +10,7 @@ export const LogoContainer = styled(Box, {
     gap: 15,
     width: "fit-content",
 
-    "@media (max-width: 600px)": {
+    [theme.breakpoints.down("sm")]: {
       gap: 10,
     },
 
@@ -45,7 +45,7 @@ export const LogoImage = styled("img", {
       filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
     }),
 
-    "@media (max-width: 600px)": {
+    [theme.breakpoints.down("sm")]: {
       width: 27,
       height: 27,
       borderRadius: 5,
@@ -88,7 +88,7 @@ export const LogoText = styled(Typography, {
       filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
     }),
 
-    "@media (max-width: 600px)": {
+    [theme.breakpoints.down("sm")]: {
       fontSize: theme.fontSizes.fontSize20,
       fontWeight: theme.fontWeight.BOLD,
       lineHeight: 1.31,
