@@ -4,7 +4,6 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  base: "/lab-ai-mobile-test/",
   plugins: [
     react(),
     nodePolyfills({
@@ -38,17 +37,12 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // Allow external access
+    host: true,
     port: 5173,
     strictPort: true,
     watch: {
       usePolling: true,
     },
-    allowedHosts: [
-      ".ngrok-free.app", // Allow all ngrok domains
-      ".ngrok-free.dev", // Allow all ngrok dev domains
-      ".ngrok.io", // Legacy ngrok domains
-    ],
   },
   preview: {
     host: "0.0.0.0",
