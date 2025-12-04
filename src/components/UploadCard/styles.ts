@@ -154,7 +154,7 @@ export const LoaderBox = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "112px",
   borderRadius: "20px",
-  border: `1px dashed ${theme.colors.PRIMARY_DARK}`,
+  border: `3px dashed ${theme.colors.FRAME_YELLOW}`,
   backgroundColor: theme.colors.WHITE,
   position: "relative",
   display: "flex",
@@ -166,6 +166,7 @@ export const LoaderBox = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     height: "77px",
     borderStyle: "dashed",
+    border: `3px dashed ${theme.colors.FRAME_YELLOW}`,
   },
 }));
 

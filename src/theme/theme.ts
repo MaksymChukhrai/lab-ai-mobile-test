@@ -110,6 +110,7 @@ const COLORS = {
   SECONDARY_RED: "#BC0003",
   FOOTER_BG: "#05184D",
   SHADOW_BLACK: "#000000",
+  FRAME_YELLOW: "#FFD700",
 };
 
 export const theme = createTheme({
