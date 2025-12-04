@@ -49,7 +49,7 @@ function LoaderCard() {
 
     if (progress < 80) {
       const timer = setTimeout(
-        () => setProgress((p) => p + PROGRESS_STEP),
+        () => setProgress((progress) => progress + PROGRESS_STEP),
         currentInterval,
       );
 
@@ -62,7 +62,8 @@ function LoaderCard() {
 
     if (progress < 100 && !waitingForApi) {
       const timer = setTimeout(
-        () => setProgress((p) => Math.min(100, p + PROGRESS_STEP)),
+        () =>
+          setProgress((progress) => Math.min(100, progress + PROGRESS_STEP)),
         TIMER_INTERVAL_MS,
       );
 
@@ -77,7 +78,7 @@ function LoaderCard() {
 
       return () => clearTimeout(doneTimeout);
     }
-  }, [progress, waitingForApi, done]);
+  }, [progress, waitingForApi, done, currentInterval]);
 
   return (
     <LoaderBox>
