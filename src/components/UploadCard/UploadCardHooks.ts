@@ -122,13 +122,11 @@ export const useUploadCard = (uploadEnabled: boolean = true) => {
 
       setErrorMessage(null);
 
-      // ✅ НОВОЕ: Compress image before OCR
       try {
         const compressedFile = await compressImage(file);
-        setSelectedFile(compressedFile); // Store compressed file
+        setSelectedFile(compressedFile);
         await extractTextFromFile(compressedFile);
       } catch {
-        // If compression fails, use original file
         setSelectedFile(file);
         await extractTextFromFile(file);
       }

@@ -1,8 +1,5 @@
 import imageCompression from "browser-image-compression";
 
-/**
- * Compression settings optimized for OCR
- */
 interface CompressionOptions {
   maxSizeMB: number;
   maxWidthOrHeight: number;
@@ -10,9 +7,9 @@ interface CompressionOptions {
 }
 
 const DEFAULT_OPTIONS: CompressionOptions = {
-  maxSizeMB: 2, // 2MB max (optimal for Tesseract OCR)
-  maxWidthOrHeight: 1920, // Full HD (good quality for text recognition)
-  useWebWorker: true, // Use separate thread for better performance
+  maxSizeMB: 2,
+  maxWidthOrHeight: 1920,
+  useWebWorker: true,
 };
 
 /**
@@ -29,7 +26,6 @@ export const compressImage = async (
     const finalOptions = { ...DEFAULT_OPTIONS, ...options };
     const maxBytes = finalOptions.maxSizeMB * 1024 * 1024;
 
-    // Skip compression if file is already small enough
     if (file.size <= maxBytes) {
       return file;
     }
@@ -38,7 +34,6 @@ export const compressImage = async (
 
     return compressedFile;
   } catch {
-    // If compression fails, return original file
     return file;
   }
 };
@@ -58,7 +53,6 @@ export const validateImageDimensions = async (
     img.onload = () => {
       URL.revokeObjectURL(url);
 
-      // Minimum resolution for OCR: 640x480
       const isValid = img.width >= 640 && img.height >= 480;
 
       resolve({
