@@ -9,6 +9,7 @@ export const LogoContainer = styled(Box, {
     alignItems: "center",
     gap: 15,
     width: "fit-content",
+    cursor: "pointer",
 
     [theme.breakpoints.down("sm")]: {
       gap: 10,
