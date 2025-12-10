@@ -2,7 +2,6 @@ import { styled, alpha, lighten } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 
 export const GradientBox = styled(Box)(({ theme }) => ({
-  width: "100%",
   height: "1180px",
   overflow: "hidden",
   position: "relative",
@@ -11,16 +10,20 @@ export const GradientBox = styled(Box)(({ theme }) => ({
   alignItems: "center",
   background: `linear-gradient(317.68deg, rgba(255, 255, 255, 0.09) 44.63%, rgba(105, 151, 237, 0.3) 102.47%)`,
 
+  transform: "scale(0.9)",
+  transformOrigin: "top left",
+  width: `calc(100% / 0.9)`,
+
   [theme.breakpoints.down("lg")]: {
-    height: 1300,
+    height: `calc(1300px / 1)`,
   },
 
   [theme.breakpoints.down("md")]: {
-    height: 1200,
+    height: 1100,
   },
 
   [theme.breakpoints.down("sm")]: {
-    height: 1600,
+    height: 1350,
   },
 }));
 
@@ -287,6 +290,10 @@ export const TextBox = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "flex-start",
+
+  [theme.breakpoints.down("md")]: {
+    bottom: "10px",
+  },
 
   [theme.breakpoints.down("sm")]: {
     width: "85%",
