@@ -1,9 +1,17 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { ThemeProvider } from "@mui/material/styles";
 import { LogoutButton } from "../index";
 import { logout } from "../../../api/authService";
 import theme from "../../../theme/theme";
+import { apiSlice } from "../../../store/api/apiSlice";
+import uploadFileReducer from "../../../store/slices/uploadFileSlice";
+import analysisResultReducer from "../../../store/slices/analysisResultSlice";
+import bloodMarkersReducer from "../../../store/slices/bloodMarkersSlice";
+import optionReducer from "../../../store/slices/optionSlice";
+import counterReducer from "../../../store/slices/counterSlice";
 
 jest.mock("../../../api/authService", () => ({
   logout: jest.fn(),
@@ -21,11 +29,30 @@ jest.mock("react-i18next", () => ({
   }),
 }));
 
+const createMockStore = () => {
+  return configureStore({
+    reducer: {
+      counter: counterReducer,
+      option: optionReducer,
+      bloodMarkers: bloodMarkersReducer,
+      uploadFile: uploadFileReducer,
+      analysisResult: analysisResultReducer,
+      [apiSlice.reducerPath]: apiSlice.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(apiSlice.middleware),
+  });
+};
+
 const renderWithProviders = (component: React.ReactElement) => {
+  const store = createMockStore();
+
   return render(
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>{component}</ThemeProvider>
-    </BrowserRouter>,
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>{component}</ThemeProvider>
+      </BrowserRouter>
+    </Provider>,
   );
 };
 

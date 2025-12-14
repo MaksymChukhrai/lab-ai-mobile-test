@@ -6,6 +6,7 @@ import {
   type FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
+import { ENV } from "@/config/env";
 
 interface MagicLinkSuccessResponse {
   success: boolean;
@@ -21,7 +22,7 @@ interface AuthTokens {
 }
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_BASE_URL,
+  baseUrl: ENV.API_BASE_URL,
   prepareHeaders: (headers) => {
     const token = Cookies.get("accessToken");
     if (token) {
