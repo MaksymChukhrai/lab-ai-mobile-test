@@ -303,7 +303,6 @@ export const CommentLabel = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize18,
-  lineHeight: theme.lineHeights.lineHeight25,
   color: theme.colors.PRIMARY_DARK,
   marginBottom: "15px",
 
@@ -320,7 +319,6 @@ export const StyledTextarea = styled("textarea")(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.REGULAR,
   fontSize: theme.fontSizes.fontSize20,
-  lineHeight: theme.lineHeights.lineHeight25,
   color: theme.colors.PRIMARY_DARK,
   border: `1px solid ${alpha(theme.colors.PRIMARY_DARK, 0.5)}`,
   borderRadius: "15px",

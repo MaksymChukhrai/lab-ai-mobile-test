@@ -32,13 +32,21 @@ export const BenefitsHeading = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.BOLD,
   fontSize: theme.fontSizes.fontSize48,
-  lineHeight: theme.lineHeights.lineHeight70,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
-  letterSpacing: 0,
+  marginBottom: "20px",
+
+  [theme.breakpoints.down("lg")]: {
+    fontSize: theme.fontSizes.fontSize36,
+  },
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize32,
+  },
 
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize24,
+    marginBottom: "10px",
   },
 }));
 
@@ -46,14 +54,20 @@ export const BenefitsDescription = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize24,
-  lineHeight: theme.lineHeights.lineHeight35,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
   letterSpacing: 0,
 
+  [theme.breakpoints.down("lg")]: {
+    fontSize: theme.fontSizes.fontSize20,
+  },
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize18,
+  },
+
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize16,
-    lineHeight: theme.lineHeights.lineHeight20,
     width: "90%",
   },
 }));
@@ -75,7 +89,7 @@ export const Card = styled(Box)(({ theme }) => ({
   height: "230px",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-start",
+  justifyContent: "space-evenly",
   alignItems: "center",
 
   "& img": {
@@ -96,8 +110,15 @@ export const CardTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.SEMIBOLD,
   fontSize: theme.fontSizes.fontSize22,
-  lineHeight: theme.lineHeights.lineHeight56,
   color: theme.colors.PRIMARY_DARK,
+
+  [theme.breakpoints.down("lg")]: {
+    fontSize: theme.fontSizes.fontSize18,
+  },
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize14,
+  },
 
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize20,
@@ -109,13 +130,21 @@ export const CardDescription = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight25,
+  lineHeight: 1.8,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
   letterSpacing: 0,
 
+  [theme.breakpoints.down("lg")]: {
+    fontSize: theme.fontSizes.fontSize14,
+  },
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize12,
+    lineHeight: 1.5,
+  },
+
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize15,
-    lineHeight: theme.lineHeights.lineHeight20,
   },
 }));

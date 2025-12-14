@@ -31,14 +31,12 @@ export const PageWrapper = styled(Box)(({ theme }) => ({
 export const Subtitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
-  lineHeight: theme.lineHeights.lineHeight35,
   fontSize: theme.fontSizes.fontSize20,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
 
   [theme.breakpoints.down("md")]: {
     fontSize: theme.fontSizes.fontSize15,
-    lineHeight: theme.lineHeights.lineHeight25,
     maxWidth: "210px",
   },
 }));

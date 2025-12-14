@@ -11,6 +11,7 @@ export const Wrapper = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down("md")]: {
     padding: "60px 25px 80px",
+    minHeight: "30vh",
   },
 }));
 

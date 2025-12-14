@@ -68,7 +68,6 @@ export const StyledModalTitle = styled(Typography)(({ theme }) => ({
   fontFamily: "Poppins",
   fontSize: theme.fontSizes.fontSize32,
   fontWeight: theme.fontWeight.MEDIUM,
-  lineHeight: theme.lineHeights.lineHeight30,
   letterSpacing: 0,
   textAlign: "center",
   marginBottom: 57,
@@ -77,7 +76,6 @@ export const StyledModalTitle = styled(Typography)(({ theme }) => ({
     width: 258,
     height: 50,
     fontSize: theme.fontSizes.fontSize20,
-    lineHeight: theme.lineHeights.lineHeight25,
     marginBottom: 31,
   },
 }));

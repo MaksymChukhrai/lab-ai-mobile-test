@@ -134,7 +134,6 @@ export const OptionSubtitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.fontSizes.fontSize20,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "start",
-  lineHeight: theme.lineHeights.lineHeight25,
 
   [theme.breakpoints.down("md")]: {
     fontSize: theme.fontSizes.fontSize14,

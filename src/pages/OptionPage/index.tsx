@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useOptionsPage } from "hooks/useOptionsPage";
 import { useLoader } from "@/hooks/useLoader";
+import { useGetBloodMarkersQuery } from "store/api/bloodMarkersApi";
 import { OPTIONS_CONFIG } from "constants/options";
 import { STEPS } from "constants/steps";
 import AnalysLayout from "components/AnalysLayout";
@@ -26,6 +27,7 @@ export const OptionsPage = () => {
   const { t } = useTranslation();
   const { selectedOptions, handleToggleOption, handleBack } = useOptionsPage();
   const { handleContinue } = useLoader();
+  const { isLoading: isFetchingMarkers } = useGetBloodMarkersQuery();
 
   return (
     <AnalysLayout currentStep={STEPS[1]}>
@@ -57,7 +59,7 @@ export const OptionsPage = () => {
             <img src={arrow} alt="arrow" />
           </BackButton>
           <ContinueButton
-            onClick={() => handleContinue(1)}
+            onClick={() => handleContinue(1, isFetchingMarkers)}
             disabled={selectedOptions.length === 0}
           >
             {t("options.continue")}

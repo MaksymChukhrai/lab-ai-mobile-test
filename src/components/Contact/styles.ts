@@ -32,7 +32,6 @@ export const StyledTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.BOLD,
   fontSize: theme.fontSizes.fontSize36,
-  lineHeight: theme.lineHeights.lineHeight40,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
   marginBottom: "5px",
@@ -49,7 +48,6 @@ export const StyledDescription = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize20,
-  lineHeight: theme.lineHeights.lineHeight25,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
   marginBottom: "32px",
@@ -136,7 +134,6 @@ export const StyledTextarea = styled(TextField)(({ theme }) => ({
   ".MuiInputBase-input": {
     fontFamily: theme.fontFamily.DM_SANS,
     fontSize: theme.fontSizes.fontSize16,
-    lineHeight: theme.lineHeights.lineHeight25,
     fontWeight: theme.fontWeight.REGULAR,
     color: theme.colors.PRIMARY_DARK,
   },

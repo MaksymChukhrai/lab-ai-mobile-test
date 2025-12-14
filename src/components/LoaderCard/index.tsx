@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { IconButton, useMediaQuery, useTheme } from "@mui/material";
-import {
-  ANIMATION_DELAY_MS,
-  DONE_DELAY_MS,
-  PROGRESS_STEP,
-  TIMER_INTERVAL_MS,
-} from "constants/loader";
 import arrow from "locals/arrow.svg";
-import { useLoader } from "hooks/useLoader";
+import { useLoader, useLoaderProgress } from "hooks/useLoader";
+import { useResultPage } from "@/hooks/useResultPage";
+import { useGetBloodMarkersQuery } from "store/api/bloodMarkersApi";
 import {
   LoaderBox,
   Subtitle,
@@ -26,33 +22,18 @@ import {
 function LoaderCard() {
   const { t } = useTranslation();
   const { handleBack, handleContinueSelf } = useLoader();
-  const [progress, setProgress] = useState(0);
-  const [done, setDone] = useState(false);
-  const [animateSuccess, setAnimateSuccess] = useState(false);
+  const { isLoading: isFetchingMarkers } = useGetBloodMarkersQuery();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { analysisResult } = useResultPage();
+  const location = useLocation();
+  const loaderStep: 1 | 2 = location.state?.loaderStep ?? 1;
+  const waitingForApi = loaderStep === 1 ? isFetchingMarkers : !analysisResult;
 
-  useEffect(() => {
-    if (progress < 100) {
-      const timer = setTimeout(
-        () => setProgress((progress) => progress + PROGRESS_STEP),
-        TIMER_INTERVAL_MS,
-      );
-
-      return () => clearTimeout(timer);
-    } else {
-      const timeout = setTimeout(() => setDone(true), DONE_DELAY_MS);
-      const animTimeout = setTimeout(
-        () => setAnimateSuccess(true),
-        ANIMATION_DELAY_MS,
-      );
-
-      return () => {
-        clearTimeout(timeout);
-        clearTimeout(animTimeout);
-      };
-    }
-  }, [progress]);
+  const { progress, done, animateSuccess } = useLoaderProgress(
+    loaderStep,
+    waitingForApi,
+  );
 
   return (
     <LoaderBox>
@@ -81,7 +62,7 @@ function LoaderCard() {
         <ContinueButton
           variant="contained"
           disabled={!animateSuccess}
-          onClick={handleContinueSelf}
+          onClick={() => handleContinueSelf(loaderStep)}
         >
           {t("loader.continue1")}
         </ContinueButton>
@@ -95,7 +76,7 @@ function LoaderCard() {
           <ContinueButton
             variant="contained"
             disabled={!animateSuccess}
-            onClick={handleContinueSelf}
+            onClick={() => handleContinueSelf(loaderStep)}
           >
             {t("loader.continue1")}
           </ContinueButton>

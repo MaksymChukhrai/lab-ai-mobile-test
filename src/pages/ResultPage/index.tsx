@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   CircularProgress,
   useMediaQuery,
@@ -66,6 +66,7 @@ export const ResultPage = () => {
     handleStartNewAnalysis,
     handleBack,
     pdfPageHeight,
+    isPrinting,
   } = useResultPage();
 
   const { t } = useTranslation();
@@ -81,6 +82,18 @@ export const ResultPage = () => {
   const handleToggleRecommendations = () => {
     setShowRecommendations(!showRecommendations);
   };
+
+  const pdfDocument = useMemo(() => {
+    if (!analysisResult) return null;
+
+    return <AnalysisPdfDocument data={analysisResult} t={t} pageHeight={0} />;
+  }, [analysisResult, t]);
+
+  const onPrintClick = useCallback(() => {
+    if (pdfDocument) {
+      handlePrintReport(pdfDocument);
+    }
+  }, [pdfDocument, handlePrintReport]);
 
   if (!analysisResult) {
     return (
@@ -275,7 +288,11 @@ export const ResultPage = () => {
             <img src={arrow} alt="Back" />
           </BackButton>
           <ButtonGroup>
-            <ActionButton onClick={handlePrintReport} $variant="print">
+            <ActionButton
+              onClick={onPrintClick}
+              $variant="print"
+              disabled={isPrinting}
+            >
               {t("result.printResult")}
             </ActionButton>
             <PDFDownloadLink

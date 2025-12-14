@@ -18,7 +18,7 @@ export const StyledAppBar = styled(AppBar)({
 export const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
-  width: "90%",
+  width: "95%",
   margin: "0 auto",
 
   [theme.breakpoints.down("sm")]: {
@@ -91,18 +91,14 @@ export const GetStartedButton = styled(Button)(({ theme }) => ({
 export const Background = styled(Box)(({ theme }) => ({
   display: "flex",
   width: "100%",
-  height: "604px",
+  height: "610px",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
   background: `linear-gradient(99.53deg, ${theme.colors.WHITE} 30%, ${theme.colors.PRIMARY_LIGHT}55 100%)`,
 
-  [theme.breakpoints.up("xs")]: {
+  [theme.breakpoints.down("sm")]: {
     height: "500px",
-  },
-
-  [theme.breakpoints.up("sm")]: {
-    height: "604px",
   },
 }));
 
@@ -121,12 +117,16 @@ export const BackgroundWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const BgTextContainer = styled(Box)(({ theme }) => ({
-  width: "40%",
+  width: "45%",
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
   textAlign: "left",
   gap: "15px",
+
+  [theme.breakpoints.down("md")]: {
+    paddingLeft: "20px",
+  },
 
   [theme.breakpoints.down("sm")]: {
     width: "90%",
@@ -138,14 +138,21 @@ export const LeftHeading = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.BOLD,
   fontSize: theme.fontSizes.fontSize64,
-  lineHeight: theme.lineHeights.lineHeight70,
+  lineHeight: 1,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "left",
   letterSpacing: 0,
 
+  [theme.breakpoints.down("lg")]: {
+    fontSize: theme.fontSizes.fontSize55,
+  },
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize40,
+  },
+
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize36,
-    lineHeight: theme.lineHeights.lineHeight45,
   },
 }));
 
@@ -153,14 +160,21 @@ export const LeftSubtitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize24,
-  lineHeight: theme.lineHeights.lineHeight35,
+  lineHeight: 1.4,
   color: theme.colors.PRIMARY_DARK,
   letterSpacing: 0,
   textAlign: "left",
 
+  [theme.breakpoints.down("lg")]: {
+    fontSize: theme.fontSizes.fontSize22,
+  },
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize20,
+  },
+
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize16,
-    lineHeight: theme.lineHeights.lineHeight25,
   },
 }));
 
@@ -247,6 +261,9 @@ export const Criteria = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "center",
   width: "95%",
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+  },
 
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
@@ -254,11 +271,15 @@ export const Criteria = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const CriteriaItem = styled(Box)({
+export const CriteriaItem = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: "8px",
-});
+
+  [theme.breakpoints.down("md")]: {
+    gap: "2px",
+  },
+}));
 
 export const CriteriaIcon = styled("img")({
   width: "20px",
@@ -268,13 +289,12 @@ export const CriteriaIcon = styled("img")({
 export const CriteriaText = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.LIGHT,
-  letterSpacing: "1%",
+  lineHeight: 1,
   fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight35,
   textAlign: "center",
   color: theme.colors.PRIMARY_DARK,
 
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("lg")]: {
     fontSize: theme.fontSizes.fontSize13,
   },
 }));
@@ -291,7 +311,6 @@ export const NavLink = styled(Link)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.MEDIUM,
   fontSize: theme.fontSizes.fontSize20,
-  lineHeight: theme.lineHeights.lineHeight24,
   color: theme.colors.PRIMARY_DARK,
 
   "&:hover": {
@@ -348,14 +367,18 @@ export const StatContainer = styled(Box)(({ theme }) => ({
     alignContent: "space-evenly",
     rowGap: "20px",
     columnGap: "20px",
-    height: "200px",
+    height: "250px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    height: "180px",
   },
 }));
 
 export const StatBox = styled(Box)({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
 
   "&.stat-0": { gridArea: "a" },
@@ -368,15 +391,18 @@ export const StatName = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.BOLD,
   fontSize: theme.fontSizes.fontSize64,
-  lineHeight: theme.lineHeights.lineHeight70,
+  lineHeight: 1.2,
   color: theme.colors.PRIMARY_DARK,
   textAlign: "center",
   letterSpacing: 0,
   textShadow: `0px 4px 4px ${alpha(theme.colors.SHADOW_BLACK, 0.25)}`,
 
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize48,
+  },
+
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize36,
-    lineHeight: theme.lineHeights.lineHeight40,
   },
 }));
 
@@ -388,6 +414,10 @@ export const Stat = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   color: theme.colors.PRIMARY_DARK,
   textShadow: `0px 4px 4px ${alpha(theme.colors.SHADOW_BLACK, 0.25)}`,
+
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.fontSizes.fontSize20,
+  },
 
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize15,

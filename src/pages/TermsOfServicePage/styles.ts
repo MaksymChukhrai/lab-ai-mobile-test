@@ -51,13 +51,12 @@ export const SectionBox = styled(Box)(({ theme }) => ({
       fontWeight: theme.fontWeight.SEMIBOLD,
       fontSize: theme.fontSizes.fontSize16,
       marginBottom: 0,
-      lineHeight: theme.lineHeights.lineHeight20,
     },
 
     "& p": {
       fontWeight: theme.fontWeight.REGULAR,
       fontSize: theme.fontSizes.fontSize16,
-      lineHeight: theme.lineHeights.lineHeight20,
+      lineHeight: 1,
     },
   },
 }));

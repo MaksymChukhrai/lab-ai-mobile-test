@@ -13,7 +13,7 @@ interface UseAboutResult {
 export function useAbout(): UseAboutResult {
   const { t } = useTranslation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 

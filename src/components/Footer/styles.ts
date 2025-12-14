@@ -74,6 +74,7 @@ export const Description = styled(
   [theme.breakpoints.down("md")]: {
     fontSize: theme.fontSizes.fontSize14,
     marginTop: "0px",
+    margin: "0 auto",
   },
   ...($variant === "compact" && {
     display: "none",
@@ -100,7 +101,6 @@ export const LinkTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.BOLD,
   fontSize: theme.fontSizes.fontSize22,
-  lineHeight: theme.lineHeights.lineHeight25,
   marginBottom: "14px",
   color: theme.colors.WHITE,
 
@@ -114,7 +114,6 @@ export const FooterLink = styled(Link)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize20,
-  lineHeight: theme.lineHeights.lineHeight25,
   color: theme.colors.WHITE,
   textDecoration: "none",
   opacity: 0.7,
@@ -166,7 +165,6 @@ export const Caption = styled(Typography)(({ theme }) => ({
   fontFamily: theme.fontFamily.DM_SANS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: theme.fontSizes.fontSize16,
-  lineHeight: theme.lineHeights.lineHeight25,
   color: alpha(theme.colors.WHITE, 0.75),
   textAlign: "center",
   display: "block",

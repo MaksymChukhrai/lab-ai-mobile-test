@@ -5,6 +5,7 @@ import {
   useGetBloodMarkersQuery,
   useGenerateAnalysisMutation,
 } from "store/api/bloodMarkersApi";
+import { useLoader } from "hooks/useLoader";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { selectSelectedOptions } from "store/slices/optionSlice";
 import {
@@ -42,6 +43,7 @@ export const useReviewPage = () => {
   const selectedOptions = useAppSelector(selectSelectedOptions);
   const analysisResult = useAppSelector(selectAnalysisResult);
   const generatedWith = useAppSelector(selectGeneratedWith);
+  const { handleContinue } = useLoader();
 
   const [birthDate, setBirthDate] = useState<string>("");
 
@@ -120,6 +122,8 @@ export const useReviewPage = () => {
       selectedOptions,
     };
 
+    handleContinue(2, isGenerating);
+
     if (analysisResult && generatedWith) {
       const currentInputString = JSON.stringify(analysisData);
       const savedInputString = JSON.stringify(generatedWith);
@@ -140,8 +144,6 @@ export const useReviewPage = () => {
           input: analysisData,
         }),
       );
-
-      navigate(STEP_PATHS.result);
     } catch (error) {
       console.error("Failed to generate analysis:", error);
     }

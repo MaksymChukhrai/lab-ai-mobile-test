@@ -82,6 +82,15 @@ export const Title = styled(Typography, {
       fontSize: theme.fontSizes.fontSize20,
     },
   }),
+
+  ...(!$wide && {
+    [theme.breakpoints.down("md")]: {
+      fontSize: theme.fontSizes.fontSize20,
+    },
+    [theme.breakpoints.down("lg")]: {
+      fontSize: theme.fontSizes.fontSize22,
+    },
+  }),
 }));
 
 export const Description = styled(Typography, {
@@ -90,7 +99,6 @@ export const Description = styled(Typography, {
   fontFamily: theme.fontFamily.POPPINS,
   fontWeight: theme.fontWeight.LIGHT,
   fontSize: $wide ? theme.fontSizes.fontSize20 : theme.fontSizes.fontSize16,
-  letterSpacing: "1%",
   marginLeft: $wide ? "0" : "25px",
   textAlign: $wide ? "center" : "left",
   color: theme.colors.PRIMARY_DARK,
@@ -98,6 +106,11 @@ export const Description = styled(Typography, {
   ...($wide && {
     [theme.breakpoints.down("sm")]: {
       display: "none",
+    },
+  }),
+  ...(!$wide && {
+    [theme.breakpoints.down("md")]: {
+      fontSize: theme.fontSizes.fontSize14,
     },
   }),
 }));
@@ -113,7 +126,7 @@ export const DescriptionMobile = styled(Description, {
       display: "block",
       width: "100%",
       fontSize: theme.fontSizes.fontSize15,
-      lineHeight: theme.lineHeights.lineHeight20,
+      lineHeight: 1,
     },
   }),
 }));
@@ -142,6 +155,12 @@ export const UploadBox = styled(Box, {
     [theme.breakpoints.down("sm")]: {
       width: "1px",
       display: "none",
+    },
+  }),
+
+  ...(!$wide && {
+    [theme.breakpoints.down("md")]: {
+      minHeight: "150px",
     },
   }),
 }));
@@ -261,7 +280,7 @@ export const DropText = styled(Typography, {
   ...(!$wide && {
     [theme.breakpoints.down("sm")]: {
       fontSize: theme.fontSizes.fontSize12,
-      lineHeight: theme.lineHeights.lineHeight15,
+      lineHeight: 1,
     },
   }),
 }));
@@ -275,8 +294,7 @@ export const DropTextPrefix = styled(DropText)(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize12,
-    lineHeight: theme.lineHeights.lineHeight15,
-    maxWidth: 200,
+    maxWidth: 180,
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
@@ -365,6 +383,12 @@ export const UploadButton = styled(Button, {
       width: "151px",
       height: "34px",
       fontSize: theme.fontSizes.fontSize16,
+    },
+  }),
+  ...(!$wide && {
+    [theme.breakpoints.down("md")]: {
+      minHeight: "20px",
+      padding: "5px",
     },
   }),
 }));
@@ -475,7 +499,7 @@ export const GreenText = styled(Typography)(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     fontSize: theme.fontSizes.fontSize13,
-    lineHeight: theme.lineHeights.lineHeight15,
+    lineHeight: 1.1,
   },
 }));
 

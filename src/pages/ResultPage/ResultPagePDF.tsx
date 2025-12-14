@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 40,
+    marginTop: 40,
   },
   headerSubtitle: {
     fontFamily: "DM Sans",
@@ -291,13 +292,13 @@ const styles = StyleSheet.create({
   footer: {
     position: "absolute",
     bottom: 0,
-    width: "100%",
     left: 0,
     right: 0,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: 40,
     padding: "30px 25px",
     backgroundColor: COLORS.PRIMARY_DARK,
   },
@@ -309,9 +310,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const A4_WIDTH = "595px";
-
-interface PDFDocumentProps {
+const A4_WIDTH = 595;
+export interface PDFDocumentProps {
   data: AnalysisResponse;
   t: TFunction;
   pageHeight: number;
@@ -322,6 +322,10 @@ export const AnalysisPdfDocument: React.FC<PDFDocumentProps> = ({
   t,
   pageHeight,
 }) => {
+  const pageSize: [number, number] = pageHeight
+    ? [A4_WIDTH, pageHeight]
+    : [A4_WIDTH, 842];
+
   const getStatusColor = (status: string): string => {
     switch (status) {
       case "abnormal":
@@ -349,9 +353,9 @@ export const AnalysisPdfDocument: React.FC<PDFDocumentProps> = ({
 
   return (
     <Document>
-      <Page size={[A4_WIDTH, pageHeight]} style={styles.page}>
+      <Page size={pageSize} style={styles.page}>
         <View style={styles.container}>
-          <View style={styles.headerContainer}>
+          <View style={styles.headerContainer} fixed>
             <View>
               <View style={styles.logoContainer}>
                 <Image src={logoDarkIcon} style={styles.logo} />
@@ -436,6 +440,7 @@ export const AnalysisPdfDocument: React.FC<PDFDocumentProps> = ({
             {data.markers.map((marker, index) => (
               <View
                 key={index}
+                wrap={false}
                 style={[
                   styles.tableRow,
                   {
@@ -466,7 +471,7 @@ export const AnalysisPdfDocument: React.FC<PDFDocumentProps> = ({
           </View>
 
           {data.userCommentResponse && (
-            <View style={styles.sectionBox}>
+            <View style={styles.sectionBox} wrap={false}>
               <Text style={styles.sectionTitle}>
                 {t("result.answerToQuestion")}
               </Text>
@@ -475,7 +480,7 @@ export const AnalysisPdfDocument: React.FC<PDFDocumentProps> = ({
           )}
 
           {data.recommendations.map((rec, recIndex) => (
-            <View key={recIndex} style={styles.sectionBox}>
+            <View key={recIndex} style={styles.sectionBox} wrap={false}>
               <Text style={styles.sectionTitle}>{rec.name} recommendation</Text>
               <Text style={styles.sectionText}>
                 {t("result.recommendDisclaimer")}
@@ -497,7 +502,7 @@ export const AnalysisPdfDocument: React.FC<PDFDocumentProps> = ({
             </View>
           ))}
 
-          <View style={styles.assessmentBox}>
+          <View style={styles.assessmentBox} wrap={false}>
             <Text style={styles.assessmentTitle}>
               {t("result.medicalAssessment")}
             </Text>
@@ -515,7 +520,7 @@ export const AnalysisPdfDocument: React.FC<PDFDocumentProps> = ({
             </Text>
           </View>
         </View>
-        <View style={styles.footer}>
+        <View style={styles.footer} fixed>
           <View style={styles.logoContainer}>
             <Image src={logoLightIcon} style={styles.logo} />
             <Text style={[styles.logoText, { color: COLORS.WHITE }]}>
