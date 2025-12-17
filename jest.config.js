@@ -2,6 +2,7 @@ export default {
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   moduleNameMapper: {
+    "^@/config/env$": "<rootDir>/src/config/__mocks__/env.ts",
     "^@/(.*)$": "<rootDir>/src/$1",
     "^components/(.*)$": "<rootDir>/src/components/$1",
     "^locales/(.*)$": "<rootDir>/src/locales/$1",
@@ -10,6 +11,7 @@ export default {
     "^constants/(.*)$": "<rootDir>/src/constants/$1",
     "^hooks/(.*)$": "<rootDir>/src/hooks/$1",
     "^store/(.*)$": "<rootDir>/src/store/$1",
+    "^@/config/env$": "<rootDir>/src/config/__mocks__/env.ts",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "\\.(svg|png|jpg|jpeg|gif)$": "<rootDir>/__mocks__/fileMock.js",
   },
